@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button class="btn btn-primary pull-xs-right"  data-toggle="modal" href="#stack1">
+<button class="btn btn-primary btn-block shadow hvr-box-shadow-outset"  data-toggle="modal" href="#stack1">
 	Rent
 </button>
 

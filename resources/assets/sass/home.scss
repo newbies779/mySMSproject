@@ -1,14 +1,15 @@
-#tableContent{
-	margin-top: 20px;
-	margin-bottom: 20px;
+#tableContent {
+	width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.table thead th { 
-  background-color: #2C3539;
-  color:white;
+.table thead th {
+    background-color: #2C3539;
+    color: white;
 }
 
-.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: light-gray;
+    background-color: light-gray;
 }
