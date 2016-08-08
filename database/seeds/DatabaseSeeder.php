@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    protected $toTruncate = ['users', 'categories', 'items', 'logs', 'rent_list_items'];
     /**
      * Run the database seeds.
      *
@@ -12,11 +13,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('rent_list_items')->truncate();
-        DB::table('logs')->truncate();
-        DB::table('items')->truncate();
-        DB::table('categories')->truncate();
-        DB::table('users')->truncate();
+
+        foreach ($this->toTruncate as $table) {
+            DB::table($table)->truncate();
+        }
+
         $this->call(UsersTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
         $this->call(ItemsTableSeeder::class);
