@@ -8,7 +8,7 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content modal-lg">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<button type="button" class="btn-close close" data-dismiss="modal" aria-hidden="true">×</button>
 				<h4 class="modal-title" id="myModalLabel">Available Item List</h4>
 			</div>
 			<div class="modal-body">
@@ -40,7 +40,7 @@
 								<td style="display:none" id="itemnote<?= $i; ?>">{{  $item->note }}</td>
 								<td style="display:none" id="itemid<?= $i; ?>">{{  $item->id }}</td>
 								<td align="center"> 
-									<button class="btn btn-primary rentbtn" data-toggle="modal" href="#stack2" id="btnRent<?= $i; ?>" data-itemname={{ $item->name }} data-itemid={{ $item->custom_id }} data-row=<?= $i++; ?>>Rent</button>
+									<button class="btn btn-primary rentbtn hvr-box-shadow-outset" data-toggle="modal" href="#stack2" id="btnRent<?= $i; ?>" data-itemname={{ $item->name }} data-itemid={{ $item->custom_id }} data-row=<?= $i++; ?>>Rent</button>
 
 								</td>
 							</tr>
@@ -64,7 +64,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content ">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<button type="button" class="btn-close close" data-dismiss="modal" aria-hidden="true">×</button>
 				<h4 class="modal-title" id="itemid"></h4>
 				<h4 class="modal-title" id="itemname"></h4>
 				
@@ -95,9 +95,9 @@
 
 					<input type="text" name="hiddenid" id="hiddenid" value="" style="display:none">
 
-					<div class="form-group">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Rent</button>
+					<div class="form-group pull-xs-right">
+						<button type="button" class="btn btn-close btn-secondary hvr-box-shadow-outset" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary hvr-box-shadow-outset">Rent</button>
 					</div>
 
 				</form>

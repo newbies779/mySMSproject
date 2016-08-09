@@ -77,7 +77,7 @@
         <div class="modal-content ">
             <div class="modal-header">
 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="btn-close close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="itemidReturn"></h4>
                 <h4 class="modal-title" id="itemnameReturn"></h4>
 
@@ -105,7 +105,7 @@
                     <input type="text" name="hiddenidReturn" id="hiddenidReturn" value="" style="display:none">
 
                     <div class="form-group">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Return</button>
                     </div>
 
@@ -137,15 +137,7 @@
             "info":     true,
             "pageLength": 25,
             "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
-        });
-
-        $('table#table-admin').DataTable({
-            "paging":   true,
-            "ordering": true,
-            "info":     true,
-            "pageLength": 25,
-            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
-        });
+        }); 
     });
 </script>
 

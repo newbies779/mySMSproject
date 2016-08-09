@@ -12,8 +12,9 @@
 			<th>Details</th>
 			<th>Rent Action</th>
 			<th>Return Action</th>
-			<th style="display:none">note</th>
-			<th style="display:none">itemid</th>
+			<th style="display:none">noterent</th>
+			<th style="display:none">notereturn</th>
+			<th style="display:none">rentid</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -33,35 +34,57 @@
 				<td id="td-rentstat<?= $i; ?>" style="<?php if($rent->return_status == "Yes") echo "background-color: #e2ebf7";else echo "background-color: #fcf2e4;" ?>" >{{ $rent->return_status }}</td>
 				
 				<td id="td-rentdetail<?= $i; ?>" class="text-xs-center"><i class="fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i></td>
-				<!-- Button trigger modal -->
-				<td align="center">
-					<button type="button" class="btn btn-outline-primary returnBtn"  data-toggle="modal" href="{{ url('/rent/approve') }}/{{ $rent->id}}" data-row="<?= $i ?>" data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status == "Approved" || $rent->return_status == "Yes") echo "disabled"; 
-						?>>
-							@if ($rent->rent_status == "Pending")
-								Approve
-							@else
-								Already Approved
-							@endif
-
-					</button>
+				<!-- Button Rent Trigger Modal -->
+				
+					<td align="center">
+						<button type="button" class="btn btn-outline-primary rent-approve"
+						data-toggle="modal"
+						data-target ="#rentApproveModal" 
+						data-row="<?= $i ?>"
+						data-itemcustomid="{{ $rent->item->custom_id }}"
+						data-itemname="{{ $rent->item->name }}"
+						data-itemnote="{{ $rent->item->note }}"
+						data-itemstatus="{{ $rent->item->status }}"
+						<?php if($rent->rent_status == "Approved" || $rent->return_status == "Yes") echo "disabled"; ?>>
+								@if ($rent->rent_status == "Pending")
+									Approve
+								@else
+									Already Approved
+								@endif
+						</button>
 					</td>
-				<td align="center">
-					<button type="button" class="btn btn-outline-warning returnBtn"  data-toggle="modal" href="{{ url('/rent/approve') }}" data-row="<?= $i ?>" data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->return_status == "Yes") echo "disabled"; 
-						?>>
+				
+				<!-- Button Return Approve -->
+					<td align="center">
+						<button type="button" class="btn btn-outline-warning return-approve"  
+						data-toggle="modal"
+						data-target ="#returnApproveModal" 
+						data-row="<?= $i ?>" 
+						data-itemcustomid="{{ $rent->item->custom_id }}"
+						data-itemname="{{ $rent->item->name }}"
+						data-itemnote="{{ $rent->item->note }}"
+						data-itemstatus="{{ $rent->item->status }}" 
+						<?php if($rent->return_status == "Yes") echo "disabled"; ?>>
 							@if ($rent->return_status == "No")
 								Approve
 							@else
 								Already Approved
 							@endif
-
-					</button>
+						</button>
 					</td>
-					<td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
-					<td style="display:none" id="itemidForReturn<?= $i++; ?>">{{  $rent->item->id }}</td>
 
+					{{-- Hidden Information --}}
+					<td style="display:none" id="noteForRent<?= $i; ?>">{{  $rent->item->rent_req_note }}</td>
+					<td style="display:none" id="noteForReturn<?= $i; ?>">{{  $rent->item->return_req_note }}</td>
+					<td style="display:none" id="rentId<?= $i++; ?>">{{  $rent->id }}</td>
 			</tr>
 
 		@endforeach
 
 	</tbody>
 </table>
+
+{{-- Include File --}}
+
+@include('showModalApprove')
+

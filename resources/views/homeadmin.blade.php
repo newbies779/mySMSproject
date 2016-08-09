@@ -1,5 +1,10 @@
 @extends('layouts.smslayout')
 
+@section('header')
+	@include('showerror')
+	@include('flash')
+@stop
+
 @section('tableContent')
 
 	<div id="grid-body" class="col-sm-12">
@@ -27,6 +32,44 @@
 
 <script>
     $(document).ready(function() {
+
+    	setTimeout(function() {
+            $('#flash').fadeOut('slow');
+            }, 3000); // <-- time in milliseconds
+    	// Rent Button JQuery
+    	$('.rent-approve').click(function () {
+    		// Add data to modal
+    		console.log($(this).data('itemcustomid'));
+    		$('#icustomId').text($(this).data('itemcustomid'));
+    		$('#iname').text($(this).data('itemname'));
+    		$('#istatus').text($(this).data('itemstatus'));
+    		$('#inote').html($(this).data('itemnote'));
+    		// find row
+    		var row = ($(this).data('row'));
+            // Assign rentid into action path
+			$("#table-admin #rentId"+row).each(function(){
+                $('#formRentApprove').attr('action','rent/approve/'+$(this).html());
+            });
+
+    	});
+    	// Return Button JQuery
+    	$('.return-approve').click(function () {
+    		// Add data to modal
+    		console.log($(this).data('itemcustomid'));
+    		$('#rcustomId').text($(this).data('itemcustomid'));
+    		$('#rname').text($(this).data('itemname'));
+    		$('#rstatus').text($(this).data('itemstatus'));
+    		$('#rnote').html($(this).data('itemnote'));
+    		// find row
+    		var row = ($(this).data('row'));
+            // Assign rentid into action path
+			$("#table-admin #rentId"+row).each(function(){
+                $('#formReturnApprove').attr('action','return/approve/'+$(this).html()); 
+            });
+
+    	});
+
+
 
         $('.rentbtn').click(function () {
             console.log($(this).data('itemname'));
@@ -67,9 +110,7 @@
                 
             });
 
-        setTimeout(function() {
-            $('#flash').fadeOut('slow');
-            }, 3000); // <-- time in milliseconds
+        
 
         $('.returnBtn').click(function () {
 
