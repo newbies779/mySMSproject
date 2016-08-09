@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\item;
+use App\RentListItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -49,5 +50,10 @@ class RentController extends Controller
 
 		flash($returnStatus['message'],'warning');
 		return redirect('/home');
+	}
+
+	public function approveRent(RentListItem $rent)
+	{
+		$rent = $rent->setApprove($rent);
 	}
 }

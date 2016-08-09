@@ -1,4 +1,5 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
 #layout-header,
 #nav-header {
     margin-bottom: 1.25rem;
@@ -51,7 +52,7 @@
 }
 
 @media (min-width: 846px) {
-    #header-button {
+    #header-button, #grid-menu a {
         max-width: 11.25rem;
     }
 }
