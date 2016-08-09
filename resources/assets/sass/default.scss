@@ -10,13 +10,19 @@
     box-shadow: 0 9px 10px -9px rgba(0, 0, 0, 0.5);
 }
 
+
+
 #header-button .btn {
-    background: #ead63a;
-    border-color: #ead63a;
-    border-radius: 0;
-    color: #666;
-    padding: 0.625rem 0;
+    background: #ead426;
+    border-color: #ead426;
+    border-radius: 0.2;
+    color: #292929;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    &.btn-close {
+    background-color:#CE2704;
+    border-color:#CE2704;
+    color: white;
+    }
 }
 
 .hvr-box-shadow-outset {

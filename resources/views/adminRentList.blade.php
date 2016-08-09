@@ -14,7 +14,6 @@
 			<th>Return Action</th>
 			<th style="display:none">noterent</th>
 			<th style="display:none">notereturn</th>
-			<th style="display:none">itemid</th>
 			<th style="display:none">rentid</th>
 		</tr>
 	</thead>
@@ -56,15 +55,15 @@
 					</td>
 				
 				<!-- Button Return Approve -->
-				<form action="{{ url('/return/approve') }}/{{ $rent->id}}" method="POST" id="formReturnApprove">
-					{{ csrf_field() }}
-					{{ method_field('PATCH') }}
 					<td align="center">
-						<button type="button" class="btn btn-outline-warning returnBtn"  
+						<button type="button" class="btn btn-outline-warning return-approve"  
 						data-toggle="modal"
 						data-target ="#returnApproveModal" 
-						ata-row="<?= $i ?>" 
-						data-itemid="{{ $rent->item->custom_id }}" 
+						data-row="<?= $i ?>" 
+						data-itemcustomid="{{ $rent->item->custom_id }}"
+						data-itemname="{{ $rent->item->name }}"
+						data-itemnote="{{ $rent->item->note }}"
+						data-itemstatus="{{ $rent->item->status }}" 
 						<?php if($rent->return_status == "Yes") echo "disabled"; ?>>
 							@if ($rent->return_status == "No")
 								Approve
@@ -73,11 +72,10 @@
 							@endif
 						</button>
 					</td>
-				</form>
+
 					{{-- Hidden Information --}}
 					<td style="display:none" id="noteForRent<?= $i; ?>">{{  $rent->item->rent_req_note }}</td>
 					<td style="display:none" id="noteForReturn<?= $i; ?>">{{  $rent->item->return_req_note }}</td>
-					<td style="display:none" id="itemId<?= $i; ?>">{{  $rent->item->id }}</td>
 					<td style="display:none" id="rentId<?= $i++; ?>">{{  $rent->id }}</td>
 			</tr>
 

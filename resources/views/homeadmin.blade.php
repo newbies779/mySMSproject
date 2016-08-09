@@ -36,7 +36,7 @@
     	setTimeout(function() {
             $('#flash').fadeOut('slow');
             }, 3000); // <-- time in milliseconds
-
+    	// Rent Button JQuery
     	$('.rent-approve').click(function () {
     		// Add data to modal
     		console.log($(this).data('itemcustomid'));
@@ -46,15 +46,29 @@
     		$('#inote').html($(this).data('itemnote'));
     		// find row
     		var row = ($(this).data('row'));
-    		// Assign itemid into hidden input form
-			$("#table-admin #itemId"+row).each(function(){
-                $('#hiddenid').val($(this).html()); 
-            });
             // Assign rentid into action path
 			$("#table-admin #rentId"+row).each(function(){
-                $('#formRentApprove').attr('action','rent/approve/'+$(this).html()); 
+                $('#formRentApprove').attr('action','rent/approve/'+$(this).html());
             });
+
     	});
+    	// Return Button JQuery
+    	$('.return-approve').click(function () {
+    		// Add data to modal
+    		console.log($(this).data('itemcustomid'));
+    		$('#rcustomId').text($(this).data('itemcustomid'));
+    		$('#rname').text($(this).data('itemname'));
+    		$('#rstatus').text($(this).data('itemstatus'));
+    		$('#rnote').html($(this).data('itemnote'));
+    		// find row
+    		var row = ($(this).data('row'));
+            // Assign rentid into action path
+			$("#table-admin #rentId"+row).each(function(){
+                $('#formReturnApprove').attr('action','return/approve/'+$(this).html()); 
+            });
+
+    	});
+
 
 
         $('.rentbtn').click(function () {

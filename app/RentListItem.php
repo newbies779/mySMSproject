@@ -45,7 +45,7 @@ class RentListItem extends Model
     }
 
 
-    public function setApprove($rent, $updateStatus)
+    public function setRentApprove($rent, $updateStatus)
     {
         $res=["status" => ""];
             DB::beginTransaction();
@@ -66,6 +66,30 @@ class RentListItem extends Model
             }
 
             $res = ["status" => "success", 'message' => "Approve Rent Success"];
+            return $res;
+    }
+
+    public function setReturnApprove($rent, $updateStatus)
+    {
+        $res=["status" => ""];
+            DB::beginTransaction();
+            try{
+                $rent->return_status = "Yes";
+                $rent->updated_at = Carbon::now();
+                $rent->save();
+
+                $item = new item;
+                $item = $item->getItemObject($rent->item_id);
+                $item->status = $updateStatus;
+                $item->save();
+
+                DB::commit();
+            } catch (exception $e){
+                DB::rollback();
+                $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
+            }
+
+            $res = ["status" => "success", 'message' => "Approve Return Success"];
             return $res;
     }
 }

@@ -57,7 +57,7 @@ class RentController extends Controller
 	{
 
 		$this->itemStatus = 'Borrowed';
-		$returnStatus = $rent->setApprove($rent,$this->itemStatus);
+		$returnStatus = $rent->setRentApprove($rent,$this->itemStatus);
 
 		if($returnStatus['status'] == "success"){
 			flash($returnStatus['message'],'info');
