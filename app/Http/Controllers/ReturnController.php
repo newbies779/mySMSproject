@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\item;
+use App\RentListItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -38,5 +39,19 @@ class ReturnController extends Controller
 
     	flash($returnStatus['message'],'warning');
     	return redirect('/home');
+    }
+
+    public function approveReturn(RentListItem $rent)
+    {
+        $this->itemStatus = 'Available';
+        $returnStatus = $rent->setReturnApprove($rent,$this->itemStatus);
+
+        if($returnStatus['status'] == "success"){
+            flash($returnStatus['message'],'info');
+            return redirect('/home');
+        }
+
+        flash($returnStatus['message'],'warning');
+        return redirect('/home');
     }
 }

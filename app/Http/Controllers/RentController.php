@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\item;
+use App\RentListItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,6 +18,7 @@ class RentController extends Controller
 		   	'ReturnDate' => 'date'
 		];
 	}
+
 	public function rentValidateandUpdate(Request $request, item $item){
 
 		// $this->validate($request, [
@@ -50,4 +52,22 @@ class RentController extends Controller
 		flash($returnStatus['message'],'warning');
 		return redirect('/home');
 	}
+
+	public function approveRent(RentListItem $rent)
+	{
+
+		$this->itemStatus = 'Borrowed';
+		$returnStatus = $rent->setRentApprove($rent,$this->itemStatus);
+
+		if($returnStatus['status'] == "success"){
+			flash($returnStatus['message'],'info');
+			return redirect('/home');
+		}
+
+		flash($returnStatus['message'],'warning');
+		return redirect('/home');
+
+	}
+
+	
 }

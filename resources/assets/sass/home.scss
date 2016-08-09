@@ -1,14 +1,27 @@
-#tableContent{
-	margin-top: 20px;
-	margin-bottom: 20px;
+html,
+body {
+    background-color: light-gray;
 }
 
-.table thead th { 
-  background-color: #2C3539;
-  color:white;
+.table {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.table-striped>tbody>tr:nth-child(odd)>td, 
+.table thead th {
+    background-color:#CE2704;
+    border-color:#CE2704;
+    color: white;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: light-gray;
+    background-color: light-gray;
+}
+
+.modal-inform {
+	border-bottom: 1px solid #666;
+	margin-bottom: 10px;
+	padding-bottom: 0;
 }

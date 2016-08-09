@@ -29,6 +29,11 @@ class Item extends Model
     	return $this->belongsTo(Category::class);
     }
 
+    public function getItemObject($id){
+        // dd($this->where('id',$id)->first());
+        return $this->where('id',$id)->first();
+    }
+
     public function updateItem($item, $request, $updateStatus){
 
         $res=["status" => ""];
@@ -84,6 +89,27 @@ class Item extends Model
                 }
 
                 $res = ["status" => "success", 'message' => "Return Item Success"];
+                return $res;
+
+           case 'Borrowed':
+                DB::beginTransaction();
+
+                $rentList = $rentList->getRentObject($item);
+                try{
+                    $rentList->rent_status = "Approved";
+                    $rentList->update_at = Carbon::now();
+                    $rentList->save();
+
+                    $item->status = $updateStatus;
+                    $item->save();
+
+                    DB::commit();
+                } catch (exception $e){
+                    DB::rollback();
+                    $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
+                }
+
+                $res = ["status" => "success", 'message' => "Approve Rent Success"];
                 return $res;
         }
     }

@@ -18,6 +18,10 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::patch('/rent/approve/{rent}', 'RentController@approveRent');
+
+Route::patch('/return/approve/{rent}', 'ReturnController@approveReturn');
+
 Route::patch('/rent/{item}', 'RentController@rentValidateandUpdate');
 
 Route::patch('/return/{item}', 'ReturnController@returnValidateandUpdate');
