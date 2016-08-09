@@ -26,6 +26,11 @@ class RentListItem extends Model
     {
     	return $this->belongsTo(Item::class);
     }
+
+    public function getRentRequest()
+    {
+        return $this->orderBy('id','desc')->get();
+    }
     
     public function getRentOrderDesc($user_id){
         // dd($this->where('user_id',$user_id)->orderBy('id','desc')->get());
@@ -35,5 +40,10 @@ class RentListItem extends Model
     public function getRentObject(Item $item){
         //dd($this->where('item_id',$item->id)->get());
         return $this->where('item_id',$item->id)->first();
+    }
+
+    public function setApprove(RentListItem $rent)
+    {
+        return;
     }
 }

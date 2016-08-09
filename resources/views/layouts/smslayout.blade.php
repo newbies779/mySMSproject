@@ -5,7 +5,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	
 	<title>SMS Website</title>
 
 	<link href="{{ asset('/css/all.css') }}" rel="stylesheet">
@@ -14,7 +15,7 @@
 
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap4.min.css">
 
-	
+	<script src="https://use.fontawesome.com/ac129b77f2.js"></script>
 
 </head>
 <body>
@@ -43,7 +44,7 @@
 						@else
 						<div class="dropdown pull-xs-right">
 							<a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-target="#" aria-haspopup="true" aria-expanded="false" id="dropdownMenuLink">
-								{{ Auth::user()->name }} <span class="caret"></span>
+								{{ Auth::user()->name }}&nbsp;<span class="text-muted"><small>{{ Auth::user()->role }}</small></span> <span class="caret"></span>
 							</a>
 
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
