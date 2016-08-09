@@ -137,15 +137,7 @@
             "info":     true,
             "pageLength": 25,
             "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
-        });
-
-        $('table#table-admin').DataTable({
-            "paging":   true,
-            "ordering": true,
-            "info":     true,
-            "pageLength": 25,
-            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
-        });
+        }); 
     });
 </script>
 

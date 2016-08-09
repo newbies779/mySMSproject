@@ -18,3 +18,9 @@ body {
 .table-striped>tbody>tr:nth-child(odd)>th {
     background-color: light-gray;
 }
+
+.modal-inform {
+	border-bottom: 1px solid #666;
+	margin-bottom: 10px;
+	padding-bottom: 0;
+}

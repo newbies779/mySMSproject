@@ -18,6 +18,7 @@ class RentController extends Controller
 		   	'ReturnDate' => 'date'
 		];
 	}
+
 	public function rentValidateandUpdate(Request $request, item $item){
 
 		// $this->validate($request, [
@@ -54,6 +55,19 @@ class RentController extends Controller
 
 	public function approveRent(RentListItem $rent)
 	{
-		$rent = $rent->setApprove($rent);
+
+		$this->itemStatus = 'Borrowed';
+		$returnStatus = $rent->setApprove($rent,$this->itemStatus);
+
+		if($returnStatus['status'] == "success"){
+			flash($returnStatus['message'],'info');
+			return redirect('/home');
+		}
+
+		flash($returnStatus['message'],'warning');
+		return redirect('/home');
+
 	}
+
+	
 }
