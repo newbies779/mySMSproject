@@ -45,11 +45,11 @@
 						data-itemname="{{ $rent->item->name }}"
 						data-itemnote="{{ $rent->item->note }}"
 						data-itemstatus="{{ $rent->item->status }}"
-						<?php if($rent->rent_status == "Approved" || $rent->return_status == "Yes") echo "disabled"; ?>>
+						<?php if($rent->rent_status == "Approved") echo "disabled"; ?>>
 								@if ($rent->rent_status == "Pending")
 									Approve
 								@else
-									Already Approved
+									Approved
 								@endif
 						</button>
 					</td>
@@ -64,11 +64,11 @@
 						data-itemname="{{ $rent->item->name }}"
 						data-itemnote="{{ $rent->item->note }}"
 						data-itemstatus="{{ $rent->item->status }}" 
-						<?php if($rent->return_status == "Yes") echo "disabled"; ?>>
+						<?php if($rent->return_status != "No") echo "disabled"; ?>>
 							@if ($rent->return_status == "No")
 								Approve
 							@else
-								Already Approved
+								Approved
 							@endif
 						</button>
 					</td>
