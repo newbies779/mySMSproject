@@ -1,4 +1,7 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+body {
+    font-family: 'Lato';
+}
 
 #layout-header,
 #nav-header {
@@ -7,10 +10,16 @@
 
 .shadow {
     transition-property: box-shadow;
-    box-shadow: 0 9px 10px -9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-
+.nav-shadow {
+    transition-property: box-shadow;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)
+}
+.panel-shadow {
+    transition-property: box-shadow;
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
+}
 
 #header-button .btn {
     background: #ead426;
@@ -19,9 +28,9 @@
     color: #292929;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     &.btn-close {
-    background-color:#CE2704;
-    border-color:#CE2704;
-    color: white;
+        background-color: #CE2704;
+        border-color: #CE2704;
+        color: white;
     }
 }
 
@@ -43,6 +52,24 @@
     }
 }
 
+.login-card {
+    padding: 1.25rem 1.25rem;
+    .panel-heading {
+        background-color: #CE2704;
+        color: white;
+        -webkit-transform: scale(1.1, 1.1);
+        -moz-transform: scale(1.1, 1.1);
+        -ms-transform: scale(1.1, 1.1);
+        -o-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+
+        h3 {
+            padding: 0.625rem 0;
+        }
+        
+    }
+}
+
 @media (max-width: 845px) {
     #header-title,
     #header-body {
@@ -58,7 +85,8 @@
 }
 
 @media (min-width: 846px) {
-    #header-button, #grid-menu a {
+    #header-button,
+    #grid-menu a {
         max-width: 11.25rem;
     }
 }
