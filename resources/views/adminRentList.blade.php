@@ -5,9 +5,9 @@
 			<th>Request Date</th>
 			<th>User</th>
 			<th>Item</th>
-			<th>Rent Require Date</th>
+			<th>Rent Date</th>
 			<th>Rent Status</th>
-			<th>Return Require Date</th>
+			<th>Return Date</th>
 			<th>Return Status</th>
 			<th>Details</th>
 			<th>Rent Action</th>
