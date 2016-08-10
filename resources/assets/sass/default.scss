@@ -1,2 +1,64 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+#layout-header,
+#nav-header {
+    margin-bottom: 1.25rem;
+}
+
+.shadow {
+    transition-property: box-shadow;
+    box-shadow: 0 9px 10px -9px rgba(0, 0, 0, 0.5);
+}
+
+
+
+#header-button .btn {
+    background: #ead426;
+    border-color: #ead426;
+    border-radius: 0.2;
+    color: #292929;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    &.btn-close {
+    background-color:#CE2704;
+    border-color:#CE2704;
+    color: white;
+    }
+}
+
+.hvr-box-shadow-outset {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+    &:hover {
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+    }
+}
+
+@media (max-width: 845px) {
+    #header-title,
+    #header-body {
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (max-width: 544px) {
+    #header-title,
+    #header-body {
+        text-align: center;
+    }
+}
+
+@media (min-width: 846px) {
+    #header-button, #grid-menu a {
+        max-width: 11.25rem;
+    }
+}

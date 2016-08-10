@@ -29,9 +29,14 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $rent = new RentListItem;
-        $rentList = $rent->getRentOrderDesc($user->id);
+        $rent = new RentListItem;   
         $items = Item::all();
+        if ($user->role === "Admin") {
+            $rentList = $rent->getRentRequest();
+            return view('homeadmin', compact('user','items','rentList'));
+        }
+        $rentList = $rent->getRentOrderDesc($user->id);
         return view('home', compact('user','items','rentList'));
     }
+
 }

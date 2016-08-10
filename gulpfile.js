@@ -26,22 +26,22 @@ var paths = {
 }
 
 elixir(function(mix) {
-    mix.sass("bootstrap.scss", 'public/css/', { includePaths: [paths.bootstrap + 'scss/'] })
-        .scripts([
-            paths.jquery + "dist/jquery.min.js",
-            paths.tether + "dist/js/tether.min.js",
-            paths.bootstrap + "dist/js/bootstrap.min.js",
-            paths.moment + "min/moment-with-locales.min.js",
-            paths.moment + "locale/th.js",
-            paths.datetimepicker + "build/js/bootstrap-datetimepicker.min.js",
-            paths.jqueryForm + "jquery.form.js"
+    // mix.sass("bootstrap.scss", 'public/css/', { includePaths: [paths.bootstrap + 'scss/'] })
+    //     .scripts([
+    //         paths.jquery + "dist/jquery.min.js",
+    //         paths.tether + "dist/js/tether.min.js",
+    //         paths.bootstrap + "dist/js/bootstrap.min.js",
+    //         paths.moment + "min/moment-with-locales.min.js",
+    //         paths.moment + "locale/th.js",
+    //         paths.datetimepicker + "build/js/bootstrap-datetimepicker.min.js",
+    //         paths.jqueryForm + "jquery.form.js"
 
-        ], 'public/js/all.js', './')
-        .styles([
-           'public/css/bootstrap.css',
-           paths.bootstrap + 'dist/css/bootstrap.min.css',
-            paths.datetimepicker + "build/css/bootstrap-datetimepicker.css"
-        ], 'public/css/all.css', 'public/css');
+    //     ], 'public/js/all.js', './')
+    //     .styles([
+    //        'public/css/bootstrap.css',
+    //        paths.bootstrap + 'dist/css/bootstrap.min.css',
+    //         paths.datetimepicker + "build/css/bootstrap-datetimepicker.css"
+    //     ], 'public/css/all.css', 'public/css');
 
 
     mix.scripts([
@@ -57,7 +57,7 @@ elixir(function(mix) {
             font: 'public/fonts',
             image: 'public/images',
             javascript: 'public/js',
-            paths.bootstrap: + 'dist/css/bootstrap.css'
+            bootstrap: paths.bootstrap + 'dist/css/bootstrap.css',
         })
         .styles([
             'default.css',

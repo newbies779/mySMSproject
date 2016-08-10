@@ -3,9 +3,19 @@
 @section('header')
 @include('showerror')
 @include('flash')
-<h3 class="pull-xs-left">Item list for user {{ $user->name }}</h3>
-{{-- @include('dumpDB') --}}
-@include('showAvailableItemModal')
+
+    <div class="row">
+        <div id="header-title" class="col-xs-12 col-sm-8">
+            <h3>
+                <strong>{{ $user->name }}'s</strong> Items List
+            </h3>
+        </div>
+        <div id="header-button" class="col-xs-12 col-sm-4 pull-md-right">
+            {{-- @include('dumpDB') --}}
+            @include('showAvailableItemModal')
+        </div>
+    </div>
+
 @stop
 
 @section('tableContent')
@@ -30,29 +40,29 @@
 
             @foreach ($rentList as $rent)
 
-            <tr>
-                <th scope="row"><?= $i ?></th>
-                <td id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
-                <td>{{ date('d-m-Y', strtotime($rent->rent_req_date))}}</td>
-                <td>
-                    <?php if($rent->return_date != "") : ?>
-                        {{ date('d-m-Y', strtotime($rent->return_req_date)) }}
-                    <?php endif ?>
-                </td> 
-                <td style="<?php if($rent->rent_status == "Approved") echo "background-color: #e2ebf7";else echo "background-color: #fcf2e4;" ?>" >{{ $rent->rent_status }}</td> 
-                <td style="<?php if($rent->return_status == "Yes") echo "background-color: #e0f3e7"; 
-                    else echo "background-color: #d8d8d8"; ?> "> <?= $rent->return_status; ?>
-                </td>
+                <tr>
+                    <th class="pull-xs-right" scope="row"><?= $i ?></th>
+                    <td id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
+                    <td>{{ date('d-m-Y', strtotime($rent->rent_req_date))}}</td>
+                    <td>
+                        <?php if($rent->return_date != "") : ?>
+                            {{ date('d-m-Y', strtotime($rent->return_req_date)) }}
+                        <?php endif ?>
+                    </td> 
+                    <td style="<?php if($rent->rent_status == "Approved") echo "background-color: #e2ebf7";else echo "background-color: #fcf2e4;" ?>" >{{ $rent->rent_status }}</td> 
+                    <td style="<?php if($rent->return_status == "Yes") echo "background-color: #e0f3e7"; 
+                        else echo "background-color: #d8d8d8"; ?> "> <?= $rent->return_status; ?>
+                    </td>
 
-                <!-- Button trigger modal -->
-                <td align="center">
-                    <button type="button" class="btn btn-outline-primary returnBtn"  data-toggle="modal" href="#stack3" data-row="<?= $i ?>" data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status == "Pending" || $rent->return_status == "Approved") echo "disabled"; 
-                    ?>>Return</button>
-                </td>
-                <td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
-                <td style="display:none" id="itemidForReturn<?= $i++; ?>">{{  $rent->item->id }}</td>
+                    <!-- Button trigger modal -->
+                    <td align="center">
+                        <button type="button" class="btn btn-outline-primary returnBtn"  data-toggle="modal" href="#stack3" data-row="<?= $i ?>" data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status == "Pending" || $rent->return_status == "Approved") echo "disabled"; 
+                        ?>>Return</button>
+                    </td>
+                    <td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
+                    <td style="display:none" id="itemidForReturn<?= $i++; ?>">{{  $rent->item->id }}</td>
 
-            </tr>
+                </tr>
             @endforeach
         </tbody>
     </table>
@@ -67,7 +77,7 @@
         <div class="modal-content ">
             <div class="modal-header">
 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="btn-close close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="itemidReturn"></h4>
                 <h4 class="modal-title" id="itemnameReturn"></h4>
 
@@ -95,7 +105,7 @@
                     <input type="text" name="hiddenidReturn" id="hiddenidReturn" value="" style="display:none">
 
                     <div class="form-group">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Return</button>
                     </div>
 
@@ -127,7 +137,7 @@
             "info":     true,
             "pageLength": 25,
             "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
-        });
+        }); 
     });
 </script>
 
