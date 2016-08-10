@@ -74,7 +74,7 @@ class RentListItem extends Model
         $res=["status" => ""];
             DB::beginTransaction();
             try{
-                $rent->return_status = "Yes";
+                $rent->return_status = "Approved";
                 $rent->updated_at = Carbon::now();
                 $rent->save();
 

@@ -56,7 +56,7 @@
 
                     <!-- Button trigger modal -->
                     <td align="center">
-                        <button type="button" class="btn btn-outline-primary returnBtn"  data-toggle="modal" href="#stack3" data-row="<?= $i ?>" data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status == "Pending" || $rent->return_status == "Approved") echo "disabled"; 
+                        <button type="button" class="btn btn-outline-primary returnBtn"  data-toggle="modal" href="#stack3" data-row="<?= $i ?>" data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled"; 
                         ?>>Return</button>
                     </td>
                     <td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
