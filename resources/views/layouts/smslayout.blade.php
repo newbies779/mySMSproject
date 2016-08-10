@@ -15,12 +15,14 @@
 
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap4.min.css">
 
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+
 	<script src="https://use.fontawesome.com/ac129b77f2.js"></script>
 
 </head>
 <body>
 	<header id="layout-header">
-		<nav id="nav-header" class="navbar navbar-full navbar-light bg-faded shadow">
+		<nav id="nav-header" class="navbar navbar-full navbar-light bg-faded nav-shadow">
 			<div class="container">
 				<button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
 					&#9776;

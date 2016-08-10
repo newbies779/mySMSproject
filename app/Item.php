@@ -19,6 +19,7 @@ class Item extends Model
         'status', 'location', 'name', 'bought_year'
     ];
 
+
     public function rent()
     {
     	return $this->hasMany(RentListItem::class);
