@@ -1,6 +1,6 @@
 <?php
 
-function flash($message, $status = 'Info'){
+function flash($message, $status = 'info'){
 	session()->flash('status', $status);
 	session()->flash('message', $message);
 }

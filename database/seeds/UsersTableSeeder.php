@@ -19,7 +19,13 @@ class UsersTableSeeder extends Seeder
         $user->password = bcrypt('0859947192');
         $user->role = 'guess';
         $user->save();
-
-        factory('App\User', 2)->create();
+        
+        $user = new App\User;
+        $user->name = 'kanorAdmin';
+        $user->email = 'newbies780@gmail.com';
+        $user->password = bcrypt('0859947192');
+        $user->role = 'Admin';
+        $user->save();
+        
    }
 }

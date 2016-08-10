@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ItemsTableSeeder::class);
         // $this->call(RentListTableSeeder::class);
         $this->call(LogTableSeeder::class);
+        
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
