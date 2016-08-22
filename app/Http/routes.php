@@ -26,3 +26,5 @@ Route::patch('/rent/{item}', 'RentController@rentValidateandUpdate');
 
 Route::patch('/return/{item}', 'ReturnController@returnValidateandUpdate');
 
+Route::resource('item','ItemController');
+

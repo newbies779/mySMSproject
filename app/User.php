@@ -33,4 +33,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Logs::class);
     }
+
+    public function isAdmin($id)
+    {
+        if($this->where('id',$id)->first()->role == "Admin"){
+            return true;
+        }
+
+        return false;
+    }
 }

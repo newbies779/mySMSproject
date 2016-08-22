@@ -30,7 +30,8 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $rent = new RentListItem;   
-        $items = Item::all();
+        $items = Item::Available()->CategoryRentable()->get();
+
         if ($user->role === "Admin") {
             $rentList = $rent->getRentRequest();
             return view('homeadmin', compact('user','items','rentList'));

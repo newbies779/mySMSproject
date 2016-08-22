@@ -30,7 +30,7 @@
 				<td id="td-itemreq<?= $i; ?>">{{ $rent->item->name }}</td>
 				<td id="td-rentreqdate<?= $i; ?>"> {{ date('d-m-Y', strtotime($rent->rent_req_date))}} </td>
 				<td id="td-rentstat<?= $i; ?>" style="<?php if($rent->rent_status == "Approved") echo "background-color: #e2ebf7";else echo "background-color: #fcf2e4;" ?>" >{{ $rent->rent_status }}</td>
-				<td id="td-returnreqdate<?= $i; ?>"> {{ date('d-m-Y', strtotime($rent->return_req_date))}} </td>
+				<td id="td-returnreqdate<?= $i; ?>"> @if(!is_null($rent->return_req_date)){{ date('d-m-Y', strtotime($rent->return_req_date))}} @endif </td>
 				<td id="td-rentstat<?= $i; ?>" style="<?php if($rent->return_status == "Yes") echo "background-color: #e2ebf7";else echo "background-color: #fcf2e4;" ?>" >{{ $rent->return_status }}</td>
 				
 				<td id="td-rentdetail<?= $i; ?>" class="text-xs-center"><i class="fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i></td>
@@ -64,8 +64,8 @@
 						data-itemname="{{ $rent->item->name }}"
 						data-itemnote="{{ $rent->item->note }}"
 						data-itemstatus="{{ $rent->item->status }}" 
-						<?php if($rent->return_status != "No") echo "disabled"; ?>>
-							@if ($rent->return_status == "No")
+						<?php if($rent->return_status != "Pending") echo " disabled"; ?>>
+							@if ($rent->return_status != "Approved")
 								Approve
 							@else
 								Approved

@@ -20,7 +20,7 @@ class Item extends Model
     ];
 
 
-    public function rent()
+public function rent()
     {
     	return $this->hasMany(RentListItem::class);
     }
@@ -33,6 +33,17 @@ class Item extends Model
     public function getItemObject($id){
         // dd($this->where('id',$id)->first());
         return $this->where('id',$id)->first();
+    }
+
+    public function scopeAvailable($query)
+    {
+        return $query->where('status','Available');
+    }
+
+    public function scopeCategoryRentable($query)
+    {
+        return $query->join('categories','items.category_id','=','categories.id','inner')
+                     ->where('categories.rentable','1');
     }
 
     public function updateItem($item, $request, $updateStatus){

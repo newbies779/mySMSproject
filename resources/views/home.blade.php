@@ -25,6 +25,7 @@
             <tr>
                 <th>#</th>
                 <th>Item Name</th>
+                <th>Committed Date</th>
                 <th>Rent Date</th>
                 <th>Due Date</th>
                 <th>Rent Status</th>
@@ -36,17 +37,18 @@
         </thead>
         <tbody>
 
-            <?php $i = 1; ?>
+            <?php $i = $rentList->count(); ?>
 
             @foreach ($rentList as $rent)
 
                 <tr>
                     <th class="pull-xs-right" scope="row"><?= $i ?></th>
                     <td id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
-                    <td>{{ date('d-m-Y', strtotime($rent->rent_req_date))}}</td>
+                    <td>{{date('d/m/y H:i', strtotime($rent->created_at))}}</td>
+                    <td>{{ date('d/m/Y', strtotime($rent->rent_req_date))}}</td>
                     <td>
                         <?php if($rent->return_date != "") : ?>
-                            {{ date('d-m-Y', strtotime($rent->return_req_date)) }}
+                            {{ date('d/m/Y', strtotime($rent->return_req_date)) }}
                         <?php endif ?>
                     </td> 
                     <td style="<?php if($rent->rent_status == "Approved") echo "background-color: #e2ebf7";else echo "background-color: #fcf2e4;" ?>" >{{ $rent->rent_status }}</td> 
@@ -60,7 +62,7 @@
                         ?>>Return</button>
                     </td>
                     <td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
-                    <td style="display:none" id="itemidForReturn<?= $i++; ?>">{{  $rent->item->id }}</td>
+                    <td style="display:none" id="itemidForReturn<?= $i--; ?>">{{  $rent->item->id }}</td>
 
                 </tr>
             @endforeach
@@ -128,7 +130,8 @@
             "ordering": true,
             "info":     true,
             "pageLength": 25,
-            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+            "aaSorting": [[0,'desc']]
         }); 
 
         $('table#itemtable1').DataTable({
@@ -181,10 +184,6 @@
 
                 
             });
-
-        setTimeout(function() {
-            $('#flash').fadeOut('slow');
-            }, 3000); // <-- time in milliseconds
 
         $('.returnBtn').click(function () {
 

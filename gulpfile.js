@@ -22,7 +22,8 @@ var paths = {
     'moment': './bower_components/moment/',
     'datetimepicker': './bower_components/eonasdan-bootstrap-datetimepicker/',
     'jqueryForm': './bower_components/jquery-form/',
-    'js': './resources/assets/js/'
+    'js': './resources/assets/js/',
+    'drop':'./bower_components/tether-drop/'
 }
 
 elixir(function(mix) {
@@ -39,14 +40,14 @@ elixir(function(mix) {
         ], 'public/js/all.js', './')
         .styles([
            'public/css/bootstrap.css',
-           paths.bootstrap + 'dist/css/bootstrap.min.css',
+            paths.bootstrap + 'dist/css/bootstrap.min.css',
             paths.datetimepicker + "build/css/bootstrap-datetimepicker.css"
         ], 'public/css/all.css', 'public/css');
 
 
     mix.scripts([
-            'default.js'
-
+            'default.js',
+            paths.drop + "dist/js/drop.js"
         ], 'public/js/app.js')
         .compass([
             'default.scss',
@@ -57,7 +58,6 @@ elixir(function(mix) {
             font: 'public/fonts',
             image: 'public/images',
             javascript: 'public/js',
-            bootstrap: paths.bootstrap + 'dist/css/bootstrap.css',
         })
         .styles([
             'default.css',
