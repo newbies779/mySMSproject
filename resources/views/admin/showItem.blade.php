@@ -1,4 +1,4 @@
-@extends('layouts.smslayout')
+@extends('layouts.adminsmslayout')
 
 @section('header')
 @include('showerror')
@@ -12,6 +12,7 @@
 @stop
 
 @section('tableContent')
+<<<<<<< HEAD
 
 <div id="grid-body">
     <div id="table-container" class="card card-block shadow">
@@ -23,6 +24,15 @@
             @include('admin.adminItemList')
         </div>
     </div>
+=======
+<div id="grid-body" class="col-sm-10 offset-sm-1">
+  <div id="table-container" class="card card-block shadow">
+   <h3 class="card-title text-xs-center">Item List</h3>
+   <div class="table-responsive">
+    @include('admin.adminItemList')
+</div>
+</div>
+>>>>>>> 987ca6b6e65053b654ff9eb382a0335e5f9b0730
 </div>
 @stop
 

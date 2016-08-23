@@ -10,58 +10,89 @@ use Illuminate\Support\Facades\Auth;
 
 class Item extends Model
 {
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'status', 'location', 'name', 'bought_year'
-    ];
+    protected $guarded = ['id'];
 
 
     public function rent()
     {
-    	return $this->hasMany(RentListItem::class);
+        return $this->hasMany(RentListItem::class);
     }
 
     public function category()
     {
-    	return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
+    }
+    
+    public function getItemRequestbyUpdated()
+    {
+        return $this->orderBy('updated_at', 'desc')->get();
     }
 
-    public function getItemObject($id){
+    public function getItemObject($id)
+    {
         // dd($this->where('id',$id)->first());
-        return $this->where('id',$id)->first();
+        return $this->where('id', $id)->first();
     }
 
     public function scopeAvailable($query)
     {
-        return $query->where('status','Available');
+        return $query->where('status', 'Available');
     }
 
     public function scopeCategoryRentable($query)
     {
-        return $query->select(array
-                (
+        return $query->select(array(
                     'items.*'
                 ))
-                ->join('categories','categories.id','=','items.category_id','left')
-                ->where('categories.rentable','1');                
+                ->join('categories', 'categories.id', '=', 'items.category_id', 'left')
+                ->where('categories.rentable', '1');
+    }
+    
+    public function updateItemReview($request)
+    {
+        $res=["status" => ""];
+        $itemId = $request->input('id');
+        $item = $this->getItemObject($itemId);
+        DB::beginTransaction();
+        try {
+            if ($request->input('status')) {
+                $item->status = $request->input('status');
+            }
+            
+            if ($request->input('note')) {
+                $item->note = $request->input('note');
+            }
+            
+            $item->save();
+
+            DB::commit();
+        } catch (exception $e) {
+            DB::rollback();
+            $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
+        }
+
+        $res['status'] = "success";
+        $res['message'] = "Review Success";
+        return $res;
     }
 
-    public function updateItem($item, $request, $updateStatus='update'){
-
+    public function updateItem($item, $request, $updateStatus='update')
+    {
         $res=["status" => ""];
         $rentList = new RentListItem;
 
-        switch($updateStatus){
+        switch ($updateStatus) {
             case 'Reserved':
                 DB::beginTransaction();
-                try{
+                try {
                     $rentList->rent_date = Carbon::now();
                     $rentList->rent_req_date = $request->input('RentDate');
-                    if($request->input('ReturnDate')!=""){
+                    if ($request->input('ReturnDate')!="") {
                         $rentList->return_date = $request->input('ReturnDate');
                     }
                     $rentList->rent_status = "Pending";
@@ -75,7 +106,7 @@ class Item extends Model
                     $item->save();
 
                     DB::commit();
-                } catch (exception $e){
+                } catch (exception $e) {
                     DB::rollback();
                     $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
                     return $res;
@@ -89,7 +120,7 @@ class Item extends Model
                 DB::beginTransaction();
 
                 $rentList = $rentList->getRentObject($item);
-                try{
+                try {
                     $rentList->return_date = Carbon::now();
                     $rentList->return_req_date = $request->input('ReturnDate');
                     $rentList->return_status = "Pending";
@@ -100,7 +131,7 @@ class Item extends Model
                     $item->save();
 
                     DB::commit();
-                } catch (exception $e){
+                } catch (exception $e) {
                     DB::rollback();
                     $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
                     return $res;
@@ -112,7 +143,7 @@ class Item extends Model
             case 'update':
                 DB::beginTransaction();
 
-                try{
+                try {
                     $item->custom_id = $request->itemid;
                     $item->name = $request->itemname;
                     $item->status = $request->status;
@@ -122,7 +153,7 @@ class Item extends Model
                     $item->save();
 
                     DB::commit();
-                } catch (exception $e){
+                } catch (exception $e) {
                     DB::rollback();
                     $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
                     return $res;

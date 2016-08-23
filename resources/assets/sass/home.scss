@@ -1,27 +1,55 @@
 html,
-body {
-    background-color: light-gray;
+body
+{
+    width: 100%;
 }
 
-.table {
-    width: 100%;
+table
+{
     margin-top: 20px;
     margin-bottom: 20px;
+
+    border-bottom: 1px solid #ccc;
 }
 
-.table thead th {
-    background-color:#CE2704;
-    border-color:#CE2704;
-    color: white;
+#header-button .btn
+{
+    border-radius: .25rem;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.table-striped>tbody>tr:nth-child(odd)>td,
-.table-striped>tbody>tr:nth-child(odd)>th {
-    background-color: light-gray;
+.table
+{
+    td,
+    th
+    {
+        border-color: #ccc;
+    }
+    td.pos-left
+    {
+        padding: 12px 12px 12px 0;
+    }
+    thead th
+    {
+        padding: .75rem 0;
+
+        border-color: #ccc;
+        border-top: 0;
+    }
 }
 
-.modal-inform {
-	border-bottom: 1px solid #666;
-	margin-bottom: 10px;
-	padding-bottom: 0;
+
+
+.returnBtn, .rentbtn
+{
+    border-radius: .8rem;
+}
+
+.modal-inform
+{
+    margin-bottom: 10px;
+    padding-bottom: 0;
+
+    border-bottom: 1px solid #666;
 }
