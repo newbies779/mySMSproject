@@ -21,7 +21,7 @@
 
 		@foreach ($items as $item)
 		<tr>
-			<td><?= $i; ?></td>
+			<td><?= $item->id; ?></td>
 			<td><?= $item->custom_id; ?></td>
 			<td><?= $item->name; ?></td>
 			<td><?= $item->status; ?></td>
