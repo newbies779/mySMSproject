@@ -29,7 +29,7 @@
                     @elseif ($item->status == "Repairing")
                         <span class="tag tag-warning">
                     @elseif ($item->status == "Borrowed")
-                        <span class="tag tag-primary">
+                        <span class="tag tag-borrow">
                     @elseif ($item->status == "Broken")
                         <span class="tag tag-danger">
                     @elseif ($item->status == "Lost")
