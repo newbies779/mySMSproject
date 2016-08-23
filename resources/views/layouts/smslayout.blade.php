@@ -41,6 +41,10 @@
 									<li class="nav-item">
 										<a class="nav-link" id="editnav" href="{{ url('/item') }}">Edit</a>
 									</li>
+
+									<li class="nav-item">
+										<a class="nav-link" id="reviewnav" href="{{ url('/review') }}">Review</a>
+									</li>
 								@endif
 							@endif
 
@@ -76,11 +80,11 @@
 	
 	
 	
-	<div class="container">
+	<div class="container-fluid">
 		@yield('content')
 	</div>
 
-	<div class="container" id="tableContent">
+	<div class="container-fluid" id="tableContent">
 		@yield('tableContent')
 	</div>
 

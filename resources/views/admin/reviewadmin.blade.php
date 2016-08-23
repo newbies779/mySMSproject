@@ -1,4 +1,4 @@
-@extends('layouts.adminsmslayout')
+@extends('layouts.smslayout')
 
 
 @section('header')

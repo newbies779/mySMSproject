@@ -1,17 +1,17 @@
-<table class="table table-bordered table-hover table-striped" id="table-admin">
-	<thead class="thead-default">
+<table class="table table-hover" style="width: 100%;" cellspacing="0" id="table-admin">
+	<thead>
 		<tr>
-			<th>#</th>
-			<th>Request Date</th>
-			<th>User</th>
-			<th>Item</th>
-			<th>Rent Date</th>
-			<th>Rent Status</th>
-			<th>Return Date</th>
-			<th>Return Status</th>
-			<th>Details</th>
-			<th>Rent Action</th>
-			<th>Return Action</th>
+			<th class="text-xs-center">#</th>
+			<th class="text-xs-left">Request Date</th>
+			<th class="text-xs-left">User</th>
+			<th class="text-xs-left">Item</th>
+			<th class="text-xs-left">Rent Date</th>
+			<th class="text-xs-left">Rent Status</th>
+			<th class="text-xs-left">Return Date</th>
+			<th class="text-xs-left">Return Status</th>
+			<th class="text-xs-left">Details</th>
+			<th class="text-xs-left">Rent Action</th>
+			<th class="text-xs-left">Return Action</th>
 			<th style="display:none">noterent</th>
 			<th style="display:none">notereturn</th>
 			<th style="display:none">rentid</th>
@@ -102,5 +102,5 @@
 
 {{-- Include File --}}
 
-@include('showModalApprove')
+@include('modals.showModalApprove')
 

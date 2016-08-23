@@ -12,7 +12,7 @@
         </div>
         <div id="header-button" class="col-xs-12 col-sm-4 pull-md-right">
             {{-- @include('dumpDB') --}}
-            @include('showAvailableItemModal')
+            @include('modals.showAvailableItemModal')
         </div>
     </div>
 

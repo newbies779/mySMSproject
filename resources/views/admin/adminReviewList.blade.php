@@ -64,6 +64,8 @@ var reviewData = {};
 var modal = $('#modalEditReview');
 
     $(document).ready(function() {
+        $('#reviewnav').addClass("active");
+        
         setTimeout(function() {
             $('#flash').fadeOut('slow');
             }, 3000); // <-- time in milliseconds
