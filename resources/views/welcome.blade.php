@@ -17,4 +17,9 @@
 
 @include('showerror')
 
+@section('script')
+	<script>
+		$('#homenav').addClass("active");
+	</script>
+@stop
 @endsection

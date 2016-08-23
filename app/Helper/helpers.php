@@ -15,3 +15,8 @@ function dump_db(){
 		});
 	}
 }
+
+function requireTxt()
+{
+	return "<small style=\"color:red\">required*</small>";
+}

@@ -10,9 +10,9 @@
 			<th>Bought_year</th>
 			<th>CategoryName</th>
 			<th>Action</th>
-			<th style="display:none">noterent</th>
-			<th style="display:none">notereturn</th>
-			<th style="display:none">rentid</th>
+			<th style="display:none"></th>
+			<th style="display:none"></th>
+			<th style="display:none"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,7 +20,6 @@
 		<?php $i = 1; ?>
 
 		@foreach ($items as $item)
-
 		<tr>
 			<td><?= $i; ?></td>
 			<td><?= $item->custom_id; ?></td>
@@ -31,7 +30,8 @@
 			<td><?= date('d/m/y',strtotime($item->bought_year)); ?></td>
 			<td><?= $item->category->name; ?></td>
 			<td align="center">
-				<button type="button" class="btn btn-primary">Return</button>
+			<button type="button" class="btn btn-primary adminEdit"  data-toggle="modal" href="#adminEditItem" id="adminEditButton<?= $i; ?>" data-row="<?= $i; ?>" data-itemid="<?= $item->custom_id ?>" data-itemdata='<?= $item; ?>'>Edit</button>
+
 			</td>
 			<td id="noteforitemlist<?= $i++; ?>" style="display:none"><?= $item->note ?></td>
 			<td style="display:none"><?= '123' ?></td>

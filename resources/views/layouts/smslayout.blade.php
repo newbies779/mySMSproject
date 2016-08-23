@@ -33,13 +33,13 @@
 					<div class="bg-faded p-a-1">
 						<a class="navbar-brand" href="{{ url('/') }}">Responsive navbar</a>
 						<ul class="nav navbar-nav">
-							<li class="nav-item active">
-								<a class="nav-link" href="{{ url('/home') }}">Home <span class="sr-only">(current)</span></a>
+							<li class="nav-item">
+								<a class="nav-link" id="homenav" href="{{ url('/home') }}">Home</a>
 							</li>
 							@if (!Auth::guest())
 								@if (Auth::user()->role == "Admin")
 									<li class="nav-item">
-										<a class="nav-link" href="{{ url('/item') }}">Edit</a>
+										<a class="nav-link" id="editnav" href="{{ url('/item') }}">Edit</a>
 									</li>
 								@endif
 							@endif
@@ -47,9 +47,9 @@
 							<!--Right Side of NavBar -->
 							@if (Auth::guest())
 
-							<li class="nav-item pull-xs-right"><a class="nav-link" href="{{ url('/register') }}">Register</a></li>
+							<li class="nav-item pull-xs-right"><a class="nav-link" id="regisnav" href="{{ url('/register') }}">Register</a></li>
 
-							<li class="nav-item pull-xs-right"><a class="nav-link" href="{{ url('/login') }}">Login</a></li>
+							<li class="nav-item pull-xs-right"><a class="nav-link" id="loginnav" href="{{ url('/login') }}">Login</a></li>
 							@else
 							<div class="dropdown pull-xs-right">
 								<a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-target="#" aria-haspopup="true" aria-expanded="false" id="dropdownMenuLink">
@@ -69,6 +69,7 @@
 
 		<div id="header-body" class="container" style="margin-top: 10px;padding-right:30px">
 			@yield('header')
+			
 		</div>
 
 	</header><!-- /header -->

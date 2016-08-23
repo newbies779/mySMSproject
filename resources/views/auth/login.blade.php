@@ -64,3 +64,8 @@
     </div>
 </div>
 @endsection
+@section('script')
+    <script>
+        $('#loginnav').addClass("active");
+    </script>
+@stop

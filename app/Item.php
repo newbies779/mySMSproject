@@ -20,7 +20,7 @@ class Item extends Model
     ];
 
 
-public function rent()
+    public function rent()
     {
     	return $this->hasMany(RentListItem::class);
     }
@@ -42,11 +42,15 @@ public function rent()
 
     public function scopeCategoryRentable($query)
     {
-        return $query->join('categories','items.category_id','=','categories.id','inner')
-                     ->where('categories.rentable','1');
+        return $query->select(array
+                (
+                    'items.*'
+                ))
+                ->join('categories','categories.id','=','items.category_id','left')
+                ->where('categories.rentable','1');                
     }
 
-    public function updateItem($item, $request, $updateStatus){
+    public function updateItem($item, $request, $updateStatus='update'){
 
         $res=["status" => ""];
         $rentList = new RentListItem;
@@ -74,6 +78,7 @@ public function rent()
                 } catch (exception $e){
                     DB::rollback();
                     $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
+                    return $res;
                 }
 
                 $res['status'] = "success";
@@ -98,9 +103,32 @@ public function rent()
                 } catch (exception $e){
                     DB::rollback();
                     $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
+                    return $res;
                 }
 
                 $res = ["status" => "success", 'message' => "Return Item Success"];
+                return $res;
+
+            case 'update':
+                DB::beginTransaction();
+
+                try{
+                    $item->custom_id = $request->itemid;
+                    $item->name = $request->itemname;
+                    $item->status = $request->status;
+                    $item->location = $request->location;
+                    $item->note = $request->note;
+                    $item->bought_year = $request->bought_year;
+                    $item->save();
+
+                    DB::commit();
+                } catch (exception $e){
+                    DB::rollback();
+                    $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
+                    return $res;
+                }
+
+                $res = ["status" => "success", 'message' => "Update Item Success"];
                 return $res;
 
         }

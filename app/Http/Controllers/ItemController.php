@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ItemController extends Controller
 {
@@ -19,6 +20,11 @@ class ItemController extends Controller
         $this->middleware('adminOnly');
     }
 
+    public function validation($request){
+        return [
+        ];
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -28,7 +34,8 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all()->load('category');
-        return view('admin.showItem', compact('items'));
+        $categories = \DB::table('categories')->pluck('name','id');
+        return view('admin.showItem', compact('items','categories'));
     }
 
     /**
@@ -49,17 +56,49 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //call Validator
-        //
-        //DB:transaction
-        //
-        //create new Item
-        //
-        //Insert to Database
-        //
-        //DB:commit
-        //
-        //redirect To index
+        $this->validate($request, [
+            'itemid' => 'required|max:100|min:5',
+            'customid' => 'unique:items,custom_id|max:100|min:5',
+            'itemname' => 'required|max:64|min:2',
+            'status' => 'required|max:64|min:2',
+            'location' => 'required|max:128|min:2',
+            'note' => 'max:512',
+            'bought_year' => 'date'
+        ]);
+
+        $res=["status" => ""];
+
+        \DB::beginTransaction();
+
+        try{
+            $item = new Item;
+            $item->item_id = $request->input('itemid');
+            if($request->input('customid')===''){
+                $item->custom_id = $request->input('itemid');
+            }else{
+                $item->custom_id = $request->input('customid');
+            }
+            $item->name = $request->input('itemname');
+            $item->status = $request->input('status');
+            $item->location = $request->input('location');
+            $item->category_id = $request->input('category');
+            $item->note = $request->input('note');
+            $item->bought_year = $request->input('bought_year');
+            $item->save();
+            \DB::commit();
+        }catch(Exception $e){
+            \DB::rollback();
+            $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
+            flash($res['message'],$res['status']);
+            return redirect()->route('item.index');
+        }
+       
+        $res['status'] = "success";
+        $res['message'] = "Create Item Success";
+
+        flash($res['message'],$res['status']);
+        return redirect()->route('item.index');
+
     }
 
     /**
@@ -91,9 +130,25 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        //
+        $validator = Validator::make($request->all(), $this->validation($request));
+
+        if ($validator->fails()) {
+            return redirect('/home')
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $returnStatus = $item->updateItem($item,$request);
+        if($returnStatus['status'] == "success"){
+            flash($returnStatus['message'],'info');
+            return redirect('/item');
+        }
+
+        flash($returnStatus['message'],'warning');
+        return redirect('/home');
+
     }
 
     /**

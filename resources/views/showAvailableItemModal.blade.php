@@ -79,7 +79,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="RentDate">Rent Date:</label>
+						<label for="RentDate">Rent Date <?= requireTxt(); ?>:</label>
 						<input type="date" name="RentDate" class="form-control" id="RentDate" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" required>
 					</div>
 

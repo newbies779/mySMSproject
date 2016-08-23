@@ -95,7 +95,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ReturnDate">Return Date:</label>
+                        <label for="ReturnDate">Return Date <?= requireTxt(); ?>:</label>
                         <input type="date" name="ReturnDate" class="form-control" id="ReturnDate" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" required>
                     </div>
 
@@ -146,6 +146,9 @@
 
 <script>
     $(document).ready(function() {
+        
+        $('#homenav').addClass("active");
+
         $('.rentbtn').click(function () {
             console.log($(this).data('itemname'));
             console.log($(this).data('itemid'));

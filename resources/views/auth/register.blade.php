@@ -80,3 +80,8 @@
     </div>
 </div>
 @endsection
+@section('script')
+    <script>
+        $('#regisnav').addClass("active");
+    </script>
+@stop

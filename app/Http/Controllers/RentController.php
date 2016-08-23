@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\item;
+use App\Item;
 use App\RentListItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
