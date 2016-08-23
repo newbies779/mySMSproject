@@ -25,6 +25,45 @@ body {
     }
 }
 
+.btn-borrow {
+    border-color: #17b5be;
+    background-color: #17b5be;
+    color: #fff;
+    &:hover{
+        background-color: #22a8b0;
+        color: #fff;
+    }
+    &:active {
+        background-color: #11777d;
+        color: #fff;
+    }
+}
+
+.btn-outline-borrow {
+    border-color: #17b5be;
+    color: #17b5be;
+    &:hover, &.active{
+        background-color: #22a8b0;
+        color: #fff;
+    }
+    &.focus.active {
+        background-color: #11777d;
+        color: #fff;
+    }
+}
+
+
+
+.tag-borrow {
+    border-color: #17b5be;
+    background-color: #17b5be;
+}
+
+.tag-outline-borrow {
+    border-color: #e9f5fa;
+    background-color: #e9f5fa;
+}
+
 .shadow {
     transition-property: box-shadow;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
