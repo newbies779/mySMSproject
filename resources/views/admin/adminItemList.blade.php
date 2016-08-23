@@ -20,17 +20,6 @@
 		<?php $i = 1; ?>
 
 		@foreach ($items as $item)
-		<tr>
-			<td><?= $item->id; ?></td>
-			<td><?= $item->custom_id; ?></td>
-			<td><?= $item->name; ?></td>
-			<td><?= $item->status; ?></td>
-			<td><?= $item->location; ?></td>
-			<td class="text-xs-center iconhover" data-toggle="tooltip" title="" data-row="<?= $i; ?>"><i class="fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i></td>
-			<td><?= date('d/m/y',strtotime($item->bought_year)); ?></td>
-			<td><?= $item->category->name; ?></td>
-			<td align="center">
-			<button type="button" class="btn btn-primary adminEdit"  data-toggle="modal" href="#adminEditItem" id="adminEditButton<?= $i; ?>" data-row="<?= $i; ?>" data-itemid="<?= $item->custom_id ?>" data-itemdata='<?= $item; ?>'>Edit</button>
 
 		<tr>
 			<td class="text-xs-center" scope="row"><?= $i; ?></td>
@@ -56,8 +45,8 @@
 			<td class="pos-left iconhover" data-toggle="tooltip" title="" data-row="<?= $i; ?>"><i class="fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i></td>
 			<td class="pos-left"><?= date('d/m/y',strtotime($item->bought_year)); ?></td>
 			<td class="pos-left"><?= $item->category->name; ?></td>
-			<td class="pos-left">
-				<button type="button" class="btn btn-sm btn-primary">Return</button>
+			<td align="center">
+						<button type="button" class="btn btn-primary adminEdit"  data-toggle="modal" href="#adminEditItem" id="adminEditButton<?= $i; ?>" data-row="<?= $i; ?>" data-itemid="<?= $item->custom_id ?>" data-itemdata='<?= $item; ?>'>Edit</button>
 			</td>
 			<td id="noteforitemlist<?= $i++; ?>" style="display:none"><?= $item->note ?></td>
 			<td style="display:none"><?= '123' ?></td>

@@ -31,7 +31,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#table_item_admin').DataTable({
+        $('#tableItemAdmin').DataTable({
             "paging":   true,
             "ordering": true,
             "info":     true,
