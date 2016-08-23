@@ -1,20 +1,20 @@
-@extends('layouts.adminsmslayout')
+@extends('layouts.smslayout')
 
 @section('header')
-	@include('showerror')
-	@include('flash')
+@include('showerror')
+@include('flash')
 @stop
 
 @section('tableContent')
 
-	<div id="grid-body" class="col-sm-10 offset-sm-1">
-		<div id="table-container" class="card card-block shadow">
-			<h3 class="card-title text-xs-center">Request List</h3>
-			<div class="table-responsive">
-				@include('admin.adminRentList')
-			</div>
-		</div>
-	</div>
+<div id="grid-body" class="col-sm-12">
+    <div id="table-container" class="card card-block shadow">
+        <h3 class="card-title text-xs-center">Request List</h3>
+        <div class="table-responsive">
+            @include('adminRentList')
+        </div>
+    </div>
+</div>
 @stop
 
 @section('script')
@@ -33,7 +33,9 @@
 <script>
     $(document).ready(function() {
 
-    	setTimeout(function() {
+        $('#homenav').addClass("active");
+
+        setTimeout(function() {
             $('#flash').fadeOut('slow');
             }, 3000); // <-- time in milliseconds
     	// Rent Button JQuery
@@ -47,11 +49,11 @@
     		// find row
     		var row = ($(this).data('row'));
             // Assign rentid into action path
-			$("#table-admin #rentId"+row).each(function(){
+            $("#table-admin #rentId"+row).each(function(){
                 $('#formRentApprove').attr('action','rent/approve/'+$(this).html());
             });
 
-    	});
+        });
     	// Return Button JQuery
     	$('.return-approve').click(function () {
     		// Add data to modal
@@ -63,11 +65,11 @@
     		// find row
     		var row = ($(this).data('row'));
             // Assign rentid into action path
-			$("#table-admin #rentId"+row).each(function(){
+            $("#table-admin #rentId"+row).each(function(){
                 $('#formReturnApprove').attr('action','return/approve/'+$(this).html()); 
             });
 
-    	});
+        });
 
 
 
@@ -120,19 +122,19 @@
             $('#itemnameReturn').html($('#tditemname'+row).html());
 
             $("#itemtable #itemnoteForReturn"+row).each(function(){
-               console.log($(this));
-                $('textarea#itemNoteReturn').html($(this).html()); 
+             console.log($(this));
+             $('textarea#itemNoteReturn').html($(this).html()); 
                     // console.log('itemsnote: ' + $('p#itemsnote').html());
-            });
+                });
 
             $("#itemtable #itemidForReturn"+row).each(function(){
                 $('input#hiddenidReturn').val($(this).html()); 
                 $('form#formforreturn').attr('action','return/'+$(this).html()); 
             });
         });
+
+
     });
-
-
 
 </script>
 
