@@ -18,6 +18,10 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/review', 'ReviewController@index');
+
+Route::get('/review/get', 'ReviewController@getData');
+
 Route::patch('/rent/approve/{rent}', 'RentController@approveRent');
 
 Route::patch('/return/approve/{rent}', 'ReturnController@approveReturn');
@@ -25,6 +29,8 @@ Route::patch('/return/approve/{rent}', 'ReturnController@approveReturn');
 Route::patch('/rent/{item}', 'RentController@rentValidateandUpdate');
 
 Route::patch('/return/{item}', 'ReturnController@returnValidateandUpdate');
+
+Route::patch('/review/update', 'ReviewController@updateData');
 
 Route::resource('item','ItemController');
 
