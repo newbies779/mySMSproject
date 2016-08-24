@@ -45,6 +45,10 @@
 									<li class="nav-item">
 										<a class="nav-link" id="reviewnav" href="{{ url('/review') }}">Review</a>
 									</li>
+
+									<li class="nav-item">
+										<a class="nav-link" id="historynav" href="{{ url('/history') }}">History</a>
+									</li>
 								@endif
 							@endif
 

@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/review', 'ReviewController@index');
 
+Route::get('/history', 'HistoryController@index');
+
 Route::get('/review/get', 'ReviewController@getData');
 
 Route::patch('/rent/approve/{rent}', 'RentController@approveRent');
