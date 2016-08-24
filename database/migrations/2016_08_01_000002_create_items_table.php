@@ -21,6 +21,7 @@ class CreateItemsTable extends Migration
             $table->string('location');
             $table->string('note');
             $table->date('bought_year');
+            $table->timestamp('reviewed_at')->nullable();
 
             //foreign key
             $table->integer('category_id')->unsigned();

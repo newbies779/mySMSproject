@@ -44,13 +44,14 @@ elixir(function(mix) {
         ], 'public/css/all.css', 'public/css');
 
 
-    mix.browserify([
+    mix.scripts([
             'default.js'
 
         ], 'public/js/app.js')
         .compass([
             'default.scss',
-            'home.scss'
+            'home.scss',
+            'review.scss',
 
         ], 'public/css', {
             sass: 'resources/assets/sass',
@@ -60,7 +61,8 @@ elixir(function(mix) {
         })
         .styles([
             'default.css',
-            'home.css'
+            'home.css',
+            'review.css',
 
         ], 'public/css/app.css', 'public/css')
         .browserSync();

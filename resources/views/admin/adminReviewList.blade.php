@@ -7,7 +7,7 @@
 			<th class="text-xs-left">Status</th>
 			<th class="text-xs-left">Note</th>
             <th class="text-xs-left">Last updated</th>
-			<th class="text-xs-left">Action</th>
+			<th class="text-xs-left"></th>
 			<th style="display:none">itemid</th>
 		</tr>
 	</thead>
@@ -38,7 +38,7 @@
                     {{ $item->status }}</span>
                 </td>
 				<td class="pos-left"> {{ substr($item->note,0,80) }} </td>
-				<td class="pos-left"> {{ date('d-m-Y', strtotime($item->updated_at))}} </td>			
+				<td class="pos-left"> {{ date('d/m/y', strtotime($item->updated_at))}} </td>			
 				<td class="pos-left">
                     <button class="btn btn-sm btn-primary" 
                     data-toggle="modal" 
@@ -82,7 +82,7 @@ var modal = $('#modalEditReview');
             var button = $(e.relatedTarget);
             var item = button.data('item');
             reviewData["id"] = item.id;
-
+            modal.find('.modal-header').addClass(item.status);
             modal.find('.active').removeClass('active');
             modal.find('#reviewNote').val('');
             modal.find('.modal-title').html('Review&nbsp;to&nbsp;<strong>' + item.name + '</strong>&nbsp;' + item.custom_id);

@@ -88,6 +88,7 @@ $factory->define(App\Item::class, function (Faker\Generator $faker) {
         'location' => $faker->city,
         'note' => $faker->paragraph,
         'bought_year' => Carbon::now()->addYears( $faker->numberBetween( -4,-1 )),
+        'reviewed_at' => Carbon::createFromTimestamp($faker->dateTimeBetween($startDate = '+1 days', $endDate = '+1 week')->getTimeStamp()),
         
     ];
 });
@@ -106,7 +107,6 @@ $factory->define(App\Logs::class, function (Faker\Generator $faker) {
 	$statusArray = DB::table('items')->lists('status');
 
     return [
-        'Note' => $faker->paragraph,
         'item_id' => $faker->randomElement($itemArray),
         'status' => $faker->randomElement($statusArray),
         'user_id' => $faker->randomElement($userArray),

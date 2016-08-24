@@ -7,9 +7,9 @@
 			<th class="text-xs-left">Status</th>
 			<th class="text-xs-left">Location</th>
 			<th class="text-xs-left">Note</th>
-			<th class="text-xs-left">Bought_year</th>
-			<th class="text-xs-left">CategoryName</th>
-			<th class="text-xs-left">Action</th>
+			<th class="text-xs-left">Bought date</th>
+			<th class="text-xs-left">Category</th>
+			<th class="text-xs-left"></th>
 			<th style="display:none">noterent</th>
 			<th style="display:none">notereturn</th>
 			<th style="display:none">rentid</th>
@@ -22,7 +22,7 @@
 		@foreach ($items as $item)
 
 		<tr>
-			<td class="text-xs-center" scope="row"><?= $i; ?></td>
+			<td class="pos-left" scope="row"><?= $i; ?></td>
 			<td class="pos-left"><?= $item->custom_id; ?></td>
 			<td class="pos-left"><?= $item->name; ?></td>
 			<td class="pos-left">

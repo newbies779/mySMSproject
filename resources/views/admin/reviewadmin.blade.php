@@ -13,9 +13,9 @@
 	    <div class="modal-content">
 	    	<div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	            <span aria-hidden="true">&times;</span>
+	            <span aria-hidden="true" style="color: #fff;">&times;</span>
 	          </button>
-	          <h4 class="modal-title" id="mySmallModalLabel">Review</h4>
+	          <h5 class="modal-title" id="mySmallModalLabel">Review</h5>
 	        </div>
 	        <div class="modal-body">
 	        	<form id="reviewForm" action="{{ url('/review/update') }}" method="POST">
@@ -46,7 +46,7 @@
 			      	</fieldset>
 			      	<fieldset class="form-group">
 			      		<label for="reviewNote"><strong>Item note:</strong></label>
-			      		<textarea type="text" class="form-control" id="reviewNote" placeholder="Give me some note."></textarea>
+			      		<textarea rows="4" cols="50" type="text" class="form-control" id="reviewNote" placeholder="Give me some note."></textarea>
 			      	</fieldset>
 			      	<div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
