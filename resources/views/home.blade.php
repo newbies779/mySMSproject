@@ -207,17 +207,6 @@
                 });
             });
 
-            var pusher = new Pusher('0384eeee590df2dd40c8', {
-                cluster: 'ap1',
-                encrypted: true
-            });
-
-            var channel = pusher.subscribe('test_channel');
-            channel.bind('my_event', function(data) {
-                alert(data.message);
-            });
-
-
         });
 
 
