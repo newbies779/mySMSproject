@@ -8,6 +8,7 @@ use App\Item;
 use App\RentListItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Vinkla\Pusher\Facades\Pusher;
 
 class HomeController extends Controller
 {
@@ -38,6 +39,7 @@ class HomeController extends Controller
         }
         
         $rentList = $rent->getRentOrderDesc($user->id);
+
         return view('home', compact('user','items','rentList'));
     }
 

@@ -26,6 +26,6 @@ class EventRentApproveListener
      */
     public function handle(AdminRentApprove $event)
     {
-        var_dump($event->user);
+        //
     }
 }
