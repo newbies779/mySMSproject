@@ -73,65 +73,65 @@
 
 
 
-        $('.rentbtn').click(function () {
-            console.log($(this).data('itemname'));
-            console.log($(this).data('itemid'));
-                // alert($(this).data('note'));
-                $('#itemid').html($(this).data('itemid'));
-                $('#itemname').html($(this).data('itemname'));
+        // $('.rentbtn').click(function () {
+        //     console.log($(this).data('itemname'));
+        //     console.log($(this).data('itemid'));
+        //         // alert($(this).data('note'));
+        //         $('#itemid').html($(this).data('itemid'));
+        //         $('#itemname').html($(this).data('itemname'));
 
-                var row = ($(this).data('row'));
+        //         var row = ($(this).data('row'));
 
-                $("#itemtable1 #itemnote"+row).each(function(){
-                    $('textarea#itemsnote').html($(this).html()); 
-                    // console.log('itemsnote: ' + $('p#itemsnote').html());
-                });
+        //         $("#itemtable1 #itemnote"+row).each(function(){
+        //             $('textarea#itemsnote').html($(this).html()); 
+        //             // console.log('itemsnote: ' + $('p#itemsnote').html());
+        //         });
 
-                $("#itemtable1 #itemid"+row).each(function(){
-                    $('input#hiddenid').val($(this).html()); 
-                    $('form#formforrent').attr('action','rent/'+$(this).html()); 
-                });
+        //         $("#itemtable1 #itemid"+row).each(function(){
+        //             $('input#hiddenid').val($(this).html()); 
+        //             $('form#formforrent').attr('action','rent/'+$(this).html()); 
+        //         });
                 
                 
-                // console.log( 'testrent= ' + '/rents/'+$('input#hiddenid').val());
+        //         // console.log( 'testrent= ' + '/rents/'+$('input#hiddenid').val());
 
-                $('#stack1').modal('hide');
+        //         $('#stack1').modal('hide');
 
 
-                $('#stack2').on('hide.bs.modal', function () {
-                    $('#stack1').modal('show');
-                });
+        //         $('#stack2').on('hide.bs.modal', function () {
+        //             $('#stack1').modal('show');
+        //         });
 
-                //make modal still scrollable when one modal is closed
-                $('.modal').on('hidden.bs.modal', function (e) {
-                    if($('.modal').hasClass('in')) {
-                        $('body').addClass('modal-open');
-                    }    
-                });
+        //         //make modal still scrollable when one modal is closed
+        //         $('.modal').on('hidden.bs.modal', function (e) {
+        //             if($('.modal').hasClass('in')) {
+        //                 $('body').addClass('modal-open');
+        //             }    
+        //         });
 
                 
-            });
+        //     });
 
         
 
-        $('.returnBtn').click(function () {
+        // $('.returnBtn').click(function () {
 
-            var row = ($(this).data('row'));
+        //     var row = ($(this).data('row'));
 
-            $('#itemidReturn').html($('#itemidforrent'+row).html());
-            $('#itemnameReturn').html($('#tditemname'+row).html());
+        //     $('#itemidReturn').html($('#itemidforrent'+row).html());
+        //     $('#itemnameReturn').html($('#tditemname'+row).html());
 
-            $("#itemtable #itemnoteForReturn"+row).each(function(){
-             console.log($(this));
-             $('textarea#itemNoteReturn').html($(this).html()); 
-                    // console.log('itemsnote: ' + $('p#itemsnote').html());
-                });
+        //     $("#itemtable #itemnoteForReturn"+row).each(function(){
+        //      console.log($(this));
+        //      $('textarea#itemNoteReturn').html($(this).html()); 
+        //             // console.log('itemsnote: ' + $('p#itemsnote').html());
+        //         });
 
-            $("#itemtable #itemidForReturn"+row).each(function(){
-                $('input#hiddenidReturn').val($(this).html()); 
-                $('form#formforreturn').attr('action','return/'+$(this).html()); 
-            });
-        });
+        //     $("#itemtable #itemidForReturn"+row).each(function(){
+        //         $('input#hiddenidReturn').val($(this).html()); 
+        //         $('form#formforreturn').attr('action','return/'+$(this).html()); 
+        //     });
+        // });
 
 
     });

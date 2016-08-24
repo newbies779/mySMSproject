@@ -18,6 +18,10 @@ class EventServiceProvider extends ServiceProvider
         ],
     ];
 
+    protected $subscribe = [
+           'App\Listeners\ItemEventListener'
+       ];
+
     /**
      * Register any other events for your application.
      *
@@ -27,7 +31,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(DispatcherContract $events)
     {
         parent::boot($events);
-
-        //
     }
+
+    
 }

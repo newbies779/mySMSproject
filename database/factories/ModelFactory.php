@@ -10,6 +10,7 @@
 | database. Just tell the factory how a default model should look.
 |
 */
+use App\Events\ItemCreate;
 use Carbon\Carbon;
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
@@ -68,29 +69,29 @@ $factory->define(App\RentListItem::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Item::class, function (Faker\Generator $faker) {
 	$categoryArray = DB::table('categories')->lists('id');
-	$itemstatusArray = [
-		'Available',
-        'Repairing',
-		//'Borrowed',
-		'Broken',
-		'Lost'
-        //'Reserved'
-	];
+        $itemstatusArray = [
+            'Available',
+            'Repairing',
+            //'Borrowed',
+            'Broken',
+            'Lost'
+            //'Reserved'
+        ];
 
-
-
-    return [
-        'name' => $faker->colorName,
-        'status' => $faker->randomElement($itemstatusArray),
-        'item_id' => $faker->creditCardNumber,
-        'custom_id' => $faker->creditCardNumber,
-        'category_id' => $faker->randomElement($categoryArray),
-        'location' => $faker->city,
-        'note' => $faker->paragraph,
-        'bought_year' => Carbon::now()->addYears( $faker->numberBetween( -4,-1 )),
-        'reviewed_at' => Carbon::createFromTimestamp($faker->dateTimeBetween($startDate = '+1 days', $endDate = '+1 week')->getTimeStamp()),
-        
-    ];
+        $custom_id = $faker->creditCardNumber;
+        $status = $faker->randomElement($itemstatusArray);
+ 
+        return [
+            'name' => $faker->colorName,
+            'status' => $status,
+            'item_id' => $faker->creditCardNumber,
+            'custom_id' => $custom_id,
+            'category_id' => $faker->randomElement($categoryArray),
+            'location' => $faker->city,
+            'note' => $faker->paragraph,
+            'reviewed_at' => Carbon::now(),
+            'bought_year' => Carbon::now()->addYears( $faker->numberBetween( -4,-1 )),
+        ];
 });
 
 $factory->define(App\Category::class, function (Faker\Generator $faker) {
@@ -102,15 +103,15 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
 
 
 $factory->define(App\Logs::class, function (Faker\Generator $faker) {
-	$itemArray = DB::table('items')->lists('id');
-    $userArray = DB::table('users')->where('role','=','Admin')->lists('id');
-	$statusArray = DB::table('items')->lists('status');
+	// $itemArray = DB::table('items')->lists('id');
+ //    $userArray = DB::table('users')->where('role','=','Admin')->lists('id');
+	// $statusArray = DB::table('items')->lists('status');
 
-    return [
-        'item_id' => $faker->randomElement($itemArray),
-        'status' => $faker->randomElement($statusArray),
-        'user_id' => $faker->randomElement($userArray),
-    ];
+ //    return [
+ //        'item_id' => $faker->randomElement($itemArray),
+ //        'status' => $faker->randomElement($statusArray),
+ //        'user_id' => $faker->randomElement($userArray),
+ //    ];
 });
 
 // $factory->define(App\RentListItem::class, function (Faker\Generator $faker) {

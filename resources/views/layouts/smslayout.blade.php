@@ -98,6 +98,8 @@
 	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap4.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.1/js/tether.min.js"></script>
+	<script src="https://js.pusher.com/3.2/pusher.min.js"></script>
+
 	@yield('script')
 	
 </body>

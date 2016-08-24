@@ -2,6 +2,7 @@
 
 use App\Events\AdminRentApprove;
 use Illuminate\Foundation\Auth\User;
+use App\Events\ItemCreate;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +38,16 @@ Route::patch('/review/update', 'ReviewController@updateData');
 
 Route::resource('item','ItemController');
 
+use Vinkla\Pusher\Facades\Pusher;
+
 Route::get('broadcast', function(){
-	event(new AdminRentApprove('123'));
+	//event(new AdminRentApprove('123'));
+	event(new ItemCreate('Available','2','200'));
+	// Pusher::trigger('test1', 'testEvent', ['message' => '555']);
 	return "done";
 });
+
+
 
 Route::get('pusher',function(){
 	return view('pusher');

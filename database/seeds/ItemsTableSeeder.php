@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ItemCreate;
 use Illuminate\Database\Seeder;
 
 class ItemsTableSeeder extends Seeder
@@ -11,6 +12,10 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-    	factory('App\Item', 150)->create();
+    	for($i = 1; $i<=50; $i++){
+    		factory('App\Item')->create();
+    		$item = \DB::table('items')->select('id','status')->orderBy('id','desc')->first();
+    		event(new ItemCreate($item->status, 2 ,$item->id));
+    	}	
     }
 }

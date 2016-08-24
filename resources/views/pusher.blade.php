@@ -1,6 +1,9 @@
 @extends('layouts.smslayout')
-<script src="https://js.pusher.com/3.2/pusher.min.js"></script>
 
+@section('content')
+	
+@stop
+@section('script')
 <script type="text/javascript">
 	(function(){
 
@@ -16,3 +19,4 @@
 	})();
 
 </script>
+@stop('script')
