@@ -1,5 +1,8 @@
 <?php
 
+use App\Events\AdminRentApprove;
+use Illuminate\Foundation\Auth\User;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -33,4 +36,13 @@ Route::patch('/return/{item}', 'ReturnController@returnValidateandUpdate');
 Route::patch('/review/update', 'ReviewController@updateData');
 
 Route::resource('item','ItemController');
+
+Route::get('broadcast', function(){
+	event(new AdminRentApprove('123'));
+	return "done";
+});
+
+Route::get('pusher',function(){
+	return view('pusher');
+});
 

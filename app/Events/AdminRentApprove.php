@@ -6,18 +6,20 @@ use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class SomeEvent extends Event
+class AdminRentApprove extends Event implements ShouldBroadcast
 {
     use SerializesModels;
+
+    public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -27,6 +29,6 @@ class SomeEvent extends Event
      */
     public function broadcastOn()
     {
-        return [];
+        return ['rent_approve_listener'];
     }
 }

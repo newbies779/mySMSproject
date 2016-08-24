@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\SomeEvent;
+use App\Events\AdminRentApprove;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EventListener
+class EventRentApproveListener
 {
     /**
      * Create the event listener.
@@ -21,11 +21,11 @@ class EventListener
     /**
      * Handle the event.
      *
-     * @param  SomeEvent  $event
+     * @param  AdminRentApprove  $event
      * @return void
      */
-    public function handle(SomeEvent $event)
+    public function handle(AdminRentApprove $event)
     {
-        //
+        var_dump($event->user);
     }
 }
