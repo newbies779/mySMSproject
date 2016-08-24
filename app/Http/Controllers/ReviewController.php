@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ItemGetReview;
 use App\Item;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -68,9 +70,10 @@ class ReviewController extends Controller
 
         $item         = new Item;
         $returnReview = $item->updateItemReview($request);
-
+        $itemEvent = $item->getItemObject($request->input('id'));
         if ($returnReview['status'] == "success") {
             flash($returnReview['message'], 'info');
+            event(new ItemGetReview($itemEvent->status,Auth::user()->id,$itemEvent->id));
             return redirect('/review');
         }
 

@@ -127,6 +127,7 @@ class Item extends Model
                     $rentList->return_req_note = $request->input('NoteReturn');
                     $rentList->save();
 
+                    $item->status = $updateStatus;
                     $item->save();
 
                     DB::commit();

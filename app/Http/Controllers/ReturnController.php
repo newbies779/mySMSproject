@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ReturnApprove;
+use App\Events\ReturnItem;
 use App\Http\Requests;
-use App\item;
 use App\RentListItem;
+use App\item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ReturnController extends Controller
@@ -34,6 +37,7 @@ class ReturnController extends Controller
     	
     	if($returnStatus['status'] == "success"){
     		flash($returnStatus['message'],'info');
+            event(new ReturnItem($item->status,Auth::user()->id,$item->id));
     		return redirect('/home');
     	}
 
@@ -48,6 +52,7 @@ class ReturnController extends Controller
 
         if($returnStatus['status'] == "success"){
             flash($returnStatus['message'],'info');
+            event(new ReturnApprove($item->status,Auth::user()->id,$item->id));
             return redirect('/home');
         }
 

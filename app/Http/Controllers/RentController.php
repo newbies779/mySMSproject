@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RentApprove;
+use App\Events\RentItem;
 use App\Http\Requests;
 use App\Item;
 use App\RentListItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class RentController extends Controller
@@ -46,6 +49,7 @@ class RentController extends Controller
 		$returnStatus = $item->updateItem($item,$request,$this->itemStatus);
 		if($returnStatus['status'] == "success"){
 			flash($returnStatus['message'],'info');
+			event(new RentItem($item->status,Auth::user()->id,$item->id));
 			return redirect('/home');
 		}
 
@@ -61,6 +65,7 @@ class RentController extends Controller
 
 		if($returnStatus['status'] == "success"){
 			flash($returnStatus['message'],'info');
+			event(new RentApprove($item->status,Auth::user()->id,$item->id));
 			return redirect('/home');
 		}
 
