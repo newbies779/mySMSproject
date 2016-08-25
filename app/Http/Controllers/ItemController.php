@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ItemGetEdit;
 use App\Http\Requests;
 use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ItemController extends Controller
@@ -83,7 +85,10 @@ class ItemController extends Controller
             $item->location = $request->input('location');
             $item->category_id = $request->input('category');
             $item->note = $request->input('note');
-            $item->bought_year = $request->input('bought_year');
+            if($request->input('bought_year') != ""){
+                $item->bought_year = $request->input('bought_year');
+            }
+            
             $item->save();
             \DB::commit();
         }catch(Exception $e){
@@ -143,6 +148,7 @@ class ItemController extends Controller
         $returnStatus = $item->updateItem($item,$request);
         if($returnStatus['status'] == "success"){
             flash($returnStatus['message'],'info');
+            event(new ItemGetEdit($item->status,Auth::user()->id,$item->id));
             return redirect('/item');
         }
 

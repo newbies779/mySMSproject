@@ -44,7 +44,7 @@ use Vinkla\Pusher\Facades\Pusher;
 
 Route::get('broadcast', function(){
 	//event(new AdminRentApprove('123'));
-	event(new ItemCreate('Available','2','200'));
+	//event(new ItemCreate('Available','2','200'));
 	// Pusher::trigger('test1', 'testEvent', ['message' => '555']);
 	return "done";
 });
