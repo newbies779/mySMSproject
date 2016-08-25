@@ -11,8 +11,10 @@
         </h3>
     </div>
     <div id="header-button" class="col-xs-12 col-sm-4 pull-md-right">
-        {{-- @include('dumpDB') --}}
-        @include('modals.showAvailableItemModal')
+       <!-- Button trigger modal -->
+        <a role="button" class="btn btn-primary btn-block btn-circle shadow hvr-box-shadow-outset"  data-toggle="modal" href="#stack1">
+            <span><b>Rent</b></span>           
+        </a>
     </div>
 </div>
 
@@ -227,4 +229,6 @@
     </script>
 
     @stop
+
+    @include('modals.showAvailableItemModal')
 

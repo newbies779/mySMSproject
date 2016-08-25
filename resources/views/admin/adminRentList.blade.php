@@ -56,7 +56,7 @@
 								data-row="<?= $i ?>"
 								data-itemcustomid="{{ $rent->item->custom_id }}"
 								data-itemname="{{ $rent->item->name }}"
-								data-itemnote={{ $rent->rent_req_note }}
+								data-itemnote="{{ $rent->rent_req_note }}"
 								data-itemstatus="{{ $rent->item->status }}"
 								<?php if($rent->rent_status == "Approved") echo "disabled"; ?>>
 										@if ($rent->rent_status == "Pending")
@@ -75,7 +75,7 @@
 								data-row="<?= $i ?>" 
 								data-itemcustomid="{{ $rent->item->custom_id }}"
 								data-itemname="{{ $rent->item->name }}"
-								data-itemnote={{ $rent->return_req_note }}
+								data-itemnote="{{ $rent->return_req_note }}"
 								data-itemstatus="{{ $rent->item->status }}" 
 								<?php if($rent->return_status != "Pending") echo " disabled"; ?>>
 									@if ($rent->return_status != "Approved")

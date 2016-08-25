@@ -1,6 +1,3 @@
-<!-- Button trigger modal -->
-<button class="btn btn-primary btn-block btn-circle shadow hvr-box-shadow-outset" data-toggle="modal" href="#adminAddNew"><h3><b>+</b></h3></button>
-
 <div class="modal hide fade" id="adminAddNew" tabindex="-1" role="dialog" data-focus-on="input:first" aria-labelledby="adminAddNew" aria-hidden="true" >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content ">

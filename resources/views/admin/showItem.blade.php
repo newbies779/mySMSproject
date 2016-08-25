@@ -3,32 +3,33 @@
 @section('header')
 @include('showerror')
 @include('flash')
-<div id="header-button" class="col-xs-12 col-sm-4 pull-md-right">
-    {{-- @include('dumpDB') --}}
-    @include('modals/adminEditModal')
-    
-</div>
 
 @stop
 
 @section('tableContent')
-
-<div id="grid-body" class="col-sm-10 offset-sm-1">
-    <div id="table-container" class="card card-block shadow">
-        <h3 class="card-title text-xs-center">Item List</h3>
-        <div id="header-button" class="pull-xs-right">
-            @include('modals.adminAddNewItem')
+<div class="col-sm-10 offset-sm-1" id="grid-body">
+    <div class="card card-block shadow" id="table-container">
+        <h3 class="card-title text-xs-center">
+            Item List
+        </h3>
+        <div class="pull-xs-right" id="header-button">
+            <!-- Button trigger modal -->
+            <a class="btn btn-primary btn-block btn-circle shadow hvr-box-shadow-outset" data-toggle="modal" href="#adminAddNew" role="button">
+                <h4 style="margin-top: 10px;">
+                    <b>
+                        +
+                    </b>
+                </h4>
+            </a>
         </div>
         <div class="table-responsive">
             @include('admin.adminItemList')
         </div>
     </div>
 </div>
-
 @stop
 
 @section('script')
-
 <script>
     $(document).ready(function() {
         $('#tableItemAdmin').DataTable({
@@ -40,8 +41,6 @@
         });
     });
 </script>
-
-
 <script>
     $(document).ready(function() {
         $('#editnav').addClass("active");
@@ -95,3 +94,6 @@
     });
 </script>
 @stop
+
+@include('modals.adminAddNewItem')
+@include('modals/adminEditModal')
