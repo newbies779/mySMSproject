@@ -26,7 +26,7 @@
             </td>
             <td class="pos-left">
                 <div class="row">
-                    <div class="col-sm-1">
+                    <div class="col-sm-2">
                         @if ($log->status == "Reserved")
                         <span class="tag tag-success">
                             @elseif ($log->status == "Available")
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-2"></div>
                     <div>
                         <small style="color: #909090;">
                             ID: {{ $log->item->custom_id}}

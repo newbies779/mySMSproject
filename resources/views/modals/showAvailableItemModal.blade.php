@@ -1,5 +1,5 @@
 <!-- Modal1 -->
-<div class="modal hide fade" id="stack1" data-focus-on="input:first" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide fade" id="rentListModal" data-focus-on="input:first" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content modal-lg">
 			<div class="modal-header">
@@ -35,7 +35,11 @@
 								<td style="display:none" id="itemnote<?= $i; ?>">{{  $item->note }}</td>
 								<td style="display:none" id="itemid<?= $i; ?>">{{  $item->id }}</td>
 								<td align="center"> 
-									<button class="btn btn-primary rentbtn hvr-box-shadow-outset" data-toggle="modal" href="#stack2" id="btnRent<?= $i; ?>" data-itemname={{ $item->name }} data-itemid={{ $item->custom_id }} data-row=<?= $i++; ?>>Rent</button>
+									<button class="btn btn-primary rentbtn hvr-box-shadow-outset"
+									data-toggle="modal" 
+									href="#RentConfirmModal"
+									data-item="{{ $item }}"
+									>Rent</button>
 
 								</td>
 							</tr>
@@ -55,7 +59,7 @@
 </div>
 
 <!-- Modal2 -->
-<div class="modal hide fade" id="stack2" tabindex="-1" role="dialog" data-focus-on="input:first" aria-labelledby="myModalLabel2" aria-hidden="true" >
+<div class="modal hide fade" id="RentConfirmModal" tabindex="-1" role="dialog" data-focus-on="input:first" aria-labelledby="myModalLabel2" aria-hidden="true" >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content ">
 			<div class="modal-header">

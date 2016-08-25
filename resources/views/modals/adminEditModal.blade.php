@@ -8,8 +8,8 @@
 				<div class="modal-header">
 					<button type="button" class="btn-close close" data-dismiss="modal" aria-hidden="true">×</button>
 					<div class="form-group">
-						<label for="itemid">Item ID <?= requireTxt(); ?>:</label>
-						<input name="itemid" class="form-control" id="itemid" required>{{ old('itemid') }}</input>
+						<label for="itemid">Item ID:</label>
+						<input name="itemid" class="form-control" id="itemid" disabled>{{ old('itemid') }}</input>
 					</div>
 
 					<div class="form-group">
@@ -20,7 +20,7 @@
 				</div>
 				<div class="modal-body">
 
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="status">Item status:</label>
 						<select name="status" id="statusSelector">
 							<option>Available</option>
@@ -31,17 +31,17 @@
 							<option>Reserved</option>
 							<option>ReturnPending</option>
 						</select>
-					</div>
+					</div> --}}
 
 					<div class="form-group">
 						<label for="location">item location <?= requireTxt(); ?>:</label>
 						<input name="location" class="form-control" id="location" value="{{ old('location') }}" required>
 					</div>
 
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="note">note:</label>
 						<textarea name="note" class="form-control" rows="4" id="note" value="{{ old('note') }}"></textarea>
-					</div>
+					</div> --}}
 
 					<div class="form-group">
 						<label for="bought_year">bought year:</label>

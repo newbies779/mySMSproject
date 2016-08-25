@@ -29,6 +29,13 @@
 </div>
 @stop
 
+@section('content')
+
+    @include('modals.adminEditModal')
+    @include('modals.adminAddNewItem')
+    
+@stop
+
 @section('script')
 <script>
     $(document).ready(function() {
@@ -43,6 +50,9 @@
 </script>
 <script>
     $(document).ready(function() {
+
+        var modal = $('#adminEditItem');
+
         $('#editnav').addClass("active");
 
         $(".iconhover").hover(
@@ -51,14 +61,13 @@
             $(this).attr("title",$("#noteforitemlist"+row).html());
         });
 
-        $('.adminEdit').click(function () {
-
-            var row = ($(this).data('row'));
-            var itemId = ($(this).data('itemID'));
-            var itemdata = ($(this).data('itemdata'));
+       $('#adminEditItem').on('show.bs.modal', function(e) {
+            var button = $(e.relatedTarget);
+            var item = button.data('itemdata');
+            
             //set default for status dropdown
             var statusSelector = document.getElementById('statusSelector');
-            switch(itemdata.status){
+            switch(item.status){
                 case 'Available':
                 statusSelector.selectedIndex = 0;
                 break;
@@ -81,19 +90,17 @@
                 statusSelector.selectedIndex = 6;
                 break;
             }
-            
-            
-            $('#itemid').val(itemdata.custom_id);
-            $('#itemname').val(itemdata.name);
-            $('#location').val(itemdata.location);
-            $('#note').val(itemdata.note);
-            $('#bought_year').val(itemdata.bought_year);
-            $('form#formForAdminEdit').attr('action','item/'+ itemdata.id); 
+
+            $('#itemid').val(item.custom_id);
+            $('#itemname').val(item.name);
+            $('#location').val(item.location);
+            $('#note').val(item.note);
+            $('#bought_year').val(item.bought_year);
+            $('form#formForAdminEdit').attr('action','item/'+ item.id); 
             
         });
     });
 </script>
 @stop
 
-@include('modals.adminAddNewItem')
-@include('modals/adminEditModal')
+

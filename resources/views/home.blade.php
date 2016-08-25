@@ -11,13 +11,14 @@
         </h3>
     </div>
     <div id="header-button" class="col-xs-12 col-sm-4 pull-md-right">
-       <!-- Button trigger modal -->
-        <a role="button" class="btn btn-primary btn-block btn-circle shadow hvr-box-shadow-outset"  data-toggle="modal" href="#stack1">
-            <span><b>Rent</b></span>           
-        </a>
-    </div>
+     <!-- Button trigger modal -->
+     <a role="button" class="btn btn-primary btn-block btn-circle shadow hvr-box-shadow-outset"  data-toggle="modal" href="#rentListModal">
+        <span><b>Rent</b></span>           
+    </a>
+</div>
 </div>
 
+@include('modals.showAvailableItemModal')
 @stop
 
 @section('tableContent')
@@ -27,7 +28,8 @@
             <tr>
                 <th>#</th>
                 <th>Item Name</th>
-                <th>Committed Date</th>
+                <th>Date</th>
+                <th>Time</th>
                 <th>Rent Date</th>
                 <th>Due Date</th>
                 <th>Rent Status</th>
@@ -46,7 +48,8 @@
             <tr>
                 <th class="pull-xs-right" scope="row"><?= $i ?></th>
                 <td id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
-                <td>{{date('d/m/y H:i', strtotime($rent->created_at))}}</td>
+                <td>{{date('d/m/y', strtotime($rent->created_at))}}</td>
+                <td>{{date('H:i', strtotime($rent->created_at))}}</td>
                 <td>{{ date('d/m/Y', strtotime($rent->rent_req_date))}}</td>
                 <td>
                     <?php if($rent->return_date != "") : ?>
@@ -151,34 +154,16 @@
 
             $('#homenav').addClass("active");
 
-            $('.rentbtn').click(function () {
-                console.log($(this).data('itemname'));
-                console.log($(this).data('itemid'));
-                // alert($(this).data('note'));
-                $('#itemid').html($(this).data('itemid'));
-                $('#itemname').html($(this).data('itemname'));
+            $('#RentConfirmModal').on('show.bs.modal', function(e) {
+                var button = $(e.relatedTarget);
+                var item = button.data('item');
+                console.log(item);
+                $('#itemid').html(item.custom_id);
+                $('#itemname').html(item.name);
+                $('#itemsnote').html(item.note);
+                $('form#formforrent').attr('action','rent/'+item.id);
 
-                var row = ($(this).data('row'));
-
-                $("#itemtable1 #itemnote"+row).each(function(){
-                    $('textarea#itemsnote').html($(this).html()); 
-                    // console.log('itemsnote: ' + $('p#itemsnote').html());
-                });
-
-                $("#itemtable1 #itemid"+row).each(function(){
-                    $('input#hiddenid').val($(this).html()); 
-                    $('form#formforrent').attr('action','rent/'+$(this).html()); 
-                });
-                
-                
-                // console.log( 'testrent= ' + '/rents/'+$('input#hiddenid').val());
-
-                $('#stack1').modal('hide');
-
-
-                $('#stack2').on('hide.bs.modal', function () {
-                    $('#stack1').modal('show');
-                });
+                $('#rentListModal').modal('hide');
 
                 //make modal still scrollable when one modal is closed
                 $('.modal').on('hidden.bs.modal', function (e) {
@@ -186,9 +171,13 @@
                         $('body').addClass('modal-open');
                     }    
                 });
-
-                
             });
+
+            $('#RentConfirmModal').on('hide.bs.modal', function () {
+                $('#rentListModal').modal('show');
+            });
+
+            
 
             $('.returnBtn').click(function () {
 
@@ -198,8 +187,8 @@
                 $('#itemnameReturn').html($('#tditemname'+row).html());
 
                 $("#itemtable #itemnoteForReturn"+row).each(function(){
-                   console.log($(this));
-                   $('textarea#itemNoteReturn').html($(this).html()); 
+                 console.log($(this));
+                 $('textarea#itemNoteReturn').html($(this).html()); 
                     // console.log('itemsnote: ' + $('p#itemsnote').html());
                 });
 
@@ -230,5 +219,4 @@
 
     @stop
 
-    @include('modals.showAvailableItemModal')
 

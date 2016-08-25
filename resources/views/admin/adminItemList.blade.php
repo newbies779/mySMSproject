@@ -20,7 +20,12 @@
 		<?php $i = 1; ?>
 
 		@foreach ($items as $item)
-
+		<?php 
+			$item = json_encode($item);
+			$item = str_replace("'","&#39",$item);
+			$item = json_decode($item);
+			// dd($item);
+		 ?>
 		<tr>
 			<td class="pos-left" scope="row"><?= $i; ?></td>
 			<td class="pos-left"><?= $item->custom_id; ?></td>
@@ -54,7 +59,7 @@
 			</td>
 			<td class="pos-left"><?= $item->category->name; ?></td>
 			<td align="center">
-						<button type="button" class="btn btn-primary adminEdit"  data-toggle="modal" href="#adminEditItem" id="adminEditButton<?= $i; ?>" data-row="<?= $i; ?>" data-itemid="<?= $item->custom_id ?>" data-itemdata='<?= $item; ?>'>Edit</button>
+						<button type="button" class="btn btn-primary adminEdit"  data-toggle="modal" href="#adminEditItem" id="adminEditButton<?= $i; ?>" data-row="<?= $i; ?>" data-itemid="<?= $item->custom_id ?>" data-itemdata='<?= json_encode($item); ?>'>Edit</button>
 			</td>
 			<td id="noteforitemlist<?= $i++; ?>" style="display:none"><?= $item->note ?></td>
 			<td style="display:none"><?= '123' ?></td>
