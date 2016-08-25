@@ -47,7 +47,7 @@
                     <button class="btn btn-sm btn-primary" 
                     data-toggle="modal" 
                     href="#modalEditReview" 
-                    data-row="<?= $i ?>" 
+                    data-row="<?= $i++ ?>" 
                     data-item="{{ $item }}">
                     Review
                     </button>            
