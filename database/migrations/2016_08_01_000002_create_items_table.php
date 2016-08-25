@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('status');
             $table->string('location');
             $table->string('note');
-            $table->date('bought_year');
+            $table->date('bought_year')->nullable();
             $table->timestamp('reviewed_at')->nullable();
 
             //foreign key

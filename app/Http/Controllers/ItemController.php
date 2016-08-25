@@ -85,7 +85,10 @@ class ItemController extends Controller
             $item->location = $request->input('location');
             $item->category_id = $request->input('category');
             $item->note = $request->input('note');
-            $item->bought_year = $request->input('bought_year');
+            if($request->input('bought_year') != ""){
+                $item->bought_year = $request->input('bought_year');
+            }
+            
             $item->save();
             \DB::commit();
         }catch(Exception $e){

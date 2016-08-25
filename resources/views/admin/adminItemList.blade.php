@@ -43,7 +43,11 @@
 			</td>
 			<td class="pos-left"><?= $item->location; ?></td>
 			<td class="pos-left iconhover" data-toggle="tooltip" title="" data-row="<?= $i; ?>"><i class="fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i></td>
-			<td class="pos-left"><?= date('d/m/y',strtotime($item->bought_year)); ?></td>
+			<td class="pos-left"> 
+				<?php if($item->bought_year != "") : ?>
+					{{ date('d/m/y',strtotime($item->bought_year)) }} 
+				<?php endif ?>
+			</td>
 			<td class="pos-left"><?= $item->category->name; ?></td>
 			<td align="center">
 						<button type="button" class="btn btn-primary adminEdit"  data-toggle="modal" href="#adminEditItem" id="adminEditButton<?= $i; ?>" data-row="<?= $i; ?>" data-itemid="<?= $item->custom_id ?>" data-itemdata='<?= $item; ?>'>Edit</button>
