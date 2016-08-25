@@ -1,8 +1,9 @@
 <table class="table table-hover" style="width: 100%;" cellspacing="0" id="table-admin">
 	<thead>
 		<tr>
-			<th class="text-xs-center">#</th>
-			<th class="text-xs-left">Request Date</th>
+			<th class="text-xs-left">#</th>
+			<th class="text-xs-left">Date</th>
+			<th class="text-xs-left">Time</th>
 			<th class="text-xs-left">User</th>
 			<th class="text-xs-left">Item</th>
 			<th class="text-xs-left">Rent Date</th>
@@ -23,8 +24,9 @@
 		@foreach ($rentList as $rent)
 
 					<tr>
-						<th class="pos-left" scope="row"><?= $i ?></th>
-						<td class="pos-left" id="td-rentdate<?= $i; ?>"> {{ date('d/m/y', strtotime($rent->rent_date))}} </td>
+						<td class="pos-left" scope="row"><b><?= $i ?></b></td>
+						<td class="pos-left" id="td-rentdate<?= $i; ?>"> {{ date('d/m/y', strtotime($rent->created_at))}} </td>
+						<td class="pos-left" id="td-renttime<?= $i; ?>">{{ date('H:i', strtotime($rent->created_at))}}</td>
 						<td class="pos-left" id="td-requser<?= $i; ?>">{{ $rent->user->name }}</td>
 						<td class="pos-left" id="td-itemreq<?= $i; ?>">{{ $rent->item->name }}</td>
 						<td class="pos-left" id="td-rentreqdate<?= $i; ?>"> {{ date('d/m/y', strtotime($rent->rent_req_date))}} </td>

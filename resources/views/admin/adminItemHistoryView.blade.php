@@ -24,9 +24,9 @@
             <td class="pos-left">
                 {{ $log->user->name }}
             </td>
-            <td class="pos-left">
+            <td class="pos-left history-status">
                 <div class="row">
-                    <div class="col-sm-1">
+                    <div class="col-sm-1" style="margin-right: 10px;">
                         @if ($log->status == "Reserved")
                         <span class="tag tag-success">
                             @elseif ($log->status == "Available")
@@ -38,11 +38,11 @@
                                         @elseif ($log->status == "Broken")
                                         <span class="tag tag-danger">
                                             @elseif ($log->status == "Lost")
-                                            <span class="tag tag-default">
+                                            <span class="tag tag-lost">
                                                 @elseif ($log->status == "ReturnPending")
                                                 <span class="tag tag-return-pending">
                                                     @elseif ($log->status == "Unavailable")
-                                                    <span class="tag tag-unavailable">
+                                                    <span class="tag tag-default">
                                                         @endif
                         {{ $log->status }}
                                                     </span>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-1" style="margin-right: 10px;"></div>
                     <div>
                         <small style="color: #909090;">
                             ID: {{ $log->item->custom_id}}

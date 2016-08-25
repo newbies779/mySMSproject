@@ -33,11 +33,11 @@
                     @elseif ($item->status == "Broken")
                         <span class="tag tag-danger">
                     @elseif ($item->status == "Lost")
-                        <span class="tag tag-default">
+                        <span class="tag tag-lost">
                     @elseif ($item->status == "ReturnPending")
                         <span class="tag tag-return-pending">
                     @elseif ($item->status == "Unavailable")
-                        <span class="tag tag-unavailable">
+                        <span class="tag tag-default">
                     @endif
                     {{ $item->status }}</span>
                 </td>

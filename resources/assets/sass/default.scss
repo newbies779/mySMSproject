@@ -19,10 +19,10 @@ body {
     background-color: #ff2362;
     border-color: #ff2362;
     &:hover {
-        background-color: #de1e55;
+      background-color: #de1e55;
     }
     &:focus {
-        outline: none;
+      outline: none;
     }
   }
   h4 {
@@ -31,7 +31,6 @@ body {
     bottom: 50%;
     transform: translate(50%, 70%);
   }
-  
   span {
     position: absolute;
     right: 50%;
@@ -72,6 +71,11 @@ body {
       background-color: pink;
     }
   }
+}
+
+.btn:focus,
+label:focus {
+  outline: none;
 }
 
 .btn-outline-default {
@@ -115,9 +119,52 @@ body {
   }
 }
 
+.btn-lost {
+  border-color: #9157dc;
+  background-color: #9157dc;
+  color: #fff;
+  &:hover {
+    background-color: #814dc3;
+    color: #fff;
+  }
+  &:active {
+    background-color: #7748b3;
+    color: #fff;
+  }
+}
+
+.btn-outline-lost {
+  border-color: #9157dc;
+  color: #9157dc;
+  &:hover,
+  &.active {
+    background-color: #814dc3;
+    color: #fff;
+  }
+  &.focus.active {
+    background-color: #7748b3;
+    color: #fff;
+  }
+}
+
 .tag-borrow {
   border-color: #17b5be;
   background-color: #17b5be;
+}
+
+.tag-outline-borrow {
+  border: 1px solid #17b5be;
+  color: #17b5be;
+}
+
+.tag-lost {
+  border-color: #9157dc;
+  background-color: #9157dc;
+}
+
+.tag-outline-lost {
+  border: 1px solid #9157dc;
+  color: #9157dc;
 }
 
 .tag-return-pending {

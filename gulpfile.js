@@ -52,6 +52,7 @@ elixir(function(mix) {
             'default.scss',
             'home.scss',
             'review.scss',
+            'history.scss',
 
         ], 'public/css', {
             sass: 'resources/assets/sass',
@@ -63,6 +64,7 @@ elixir(function(mix) {
             'default.css',
             'home.css',
             'review.css',
+            'history.css'
 
         ], 'public/css/app.css', 'public/css')
         .browserSync();

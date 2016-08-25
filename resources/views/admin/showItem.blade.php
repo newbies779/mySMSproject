@@ -27,6 +27,8 @@
         </div>
     </div>
 </div>
+@include('modals.adminEditModal')
+@include('modals.adminAddNewItem')
 @stop
 
 @section('script')
@@ -93,7 +95,7 @@
         });
     });
 </script>
+
 @stop
 
-@include('modals.adminAddNewItem')
-@include('modals/adminEditModal')
+
