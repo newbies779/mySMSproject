@@ -63,6 +63,9 @@ class RentController extends Controller
 		$this->itemStatus = 'Borrowed';
 		$returnStatus = $rent->setRentApprove($rent,$this->itemStatus);
 
+		$item = new item;
+		$item = $item->getItemObject($rent->item_id);
+		
 		if($returnStatus['status'] == "success"){
 			flash($returnStatus['message'],'info');
 			event(new RentApprove($item->status,Auth::user()->id,$item->id));

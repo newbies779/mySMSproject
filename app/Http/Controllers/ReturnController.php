@@ -50,6 +50,9 @@ class ReturnController extends Controller
         $this->itemStatus = 'Available';
         $returnStatus = $rent->setReturnApprove($rent,$this->itemStatus);
 
+        $item = new item;
+        $item = $item->getItemObject($rent->item_id);
+
         if($returnStatus['status'] == "success"){
             flash($returnStatus['message'],'info');
             event(new ReturnApprove($item->status,Auth::user()->id,$item->id));
