@@ -25,12 +25,12 @@
 
 					<tr>
 						<td class="pos-left" scope="row"><b><?= $i ?></b></td>
-						<td class="pos-left" id="td-rentdate<?= $i; ?>"> {{ date('d/m/y', strtotime($rent->created_at))}} </td>
-						<td class="pos-left" id="td-renttime<?= $i; ?>">{{ date('H:i', strtotime($rent->created_at))}}</td>
-						<td class="pos-left" id="td-requser<?= $i; ?>">{{ $rent->user->name }}</td>
-						<td class="pos-left" id="td-itemreq<?= $i; ?>">{{ $rent->item->name }}</td>
-						<td class="pos-left" id="td-rentreqdate<?= $i; ?>"> {{ date('d/m/y', strtotime($rent->rent_req_date))}} </td>
-						<td class="pos-left" id="td-rentstat<?= $i; ?>">
+						<td class="pos-left"> {{ date('d/m/y', strtotime($rent->created_at))}} </td>
+						<td class="pos-left">{{ date('H:i', strtotime($rent->created_at))}}</td>
+						<td class="pos-left">{{ $rent->user->name }}</td>
+						<td class="pos-left">{{ $rent->item->name }}</td>
+						<td class="pos-left"> {{ date('d/m/y', strtotime($rent->rent_req_date))}} </td>
+						<td class="pos-left">
 							 @if ($rent->rent_status == "Approved")
 		                        <span class="tag tag-success">
 		                    @elseif ($rent->rent_status == "Pending")
@@ -38,8 +38,8 @@
 		                    @endif
 		                    {{ $rent->rent_status }}</span>
 						</td>
-						<td class="pos-left" id="td-returnreqdate<?= $i; ?>"> @if(!is_null($rent->return_req_date)){{ date('d/m/y', strtotime($rent->return_req_date))}} @endif </td>
-						<td class="pos-left" id="td-rentstat<?= $i; ?>">
+						<td class="pos-left"> @if(!is_null($rent->return_req_date)){{ date('d/m/y', strtotime($rent->return_req_date))}} @endif </td>
+						<td class="pos-left">
 							@if ($rent->return_status == "Approved")
 		                        <span class="tag tag-success">
 		                    @elseif ($rent->return_status == "Pending")
@@ -56,10 +56,8 @@
 								data-toggle="modal"
 								data-target ="#rentApproveModal" 
 								data-row="<?= $i ?>"
-								data-itemcustomid="{{ $rent->item->custom_id }}"
-								data-itemname="{{ $rent->item->name }}"
-								data-itemnote="{{ $rent->rent_req_note }}"
-								data-itemstatus="{{ $rent->item->status }}"
+								data-rent = "{{ $rent }}"
+								data-rentItem = "{{ $rent->item }}"
 								<?php if($rent->rent_status == "Approved") echo "disabled"; ?>>
 										@if ($rent->rent_status == "Pending")
 											Approve
@@ -74,11 +72,8 @@
 								<button type="button" class="btn btn-sm btn-warning return-approve"  
 								data-toggle="modal"
 								data-target ="#returnApproveModal" 
-								data-row="<?= $i ?>" 
-								data-itemcustomid="{{ $rent->item->custom_id }}"
-								data-itemname="{{ $rent->item->name }}"
-								data-itemnote="{{ $rent->return_req_note }}"
-								data-itemstatus="{{ $rent->item->status }}" 
+								data-row="<?= $i ?>"
+								data-rent = "{{ $rent }}"
 								<?php if($rent->return_status != "Pending") echo " disabled"; ?>>
 									@if ($rent->return_status != "Approved")
 										Approve
@@ -104,3 +99,58 @@
 
 @include('modals.showModalApprove')
 
+@section('script')
+<script>
+    $(document).ready(function() {
+        $('#table-admin').DataTable({
+            "paging":   true,
+            "ordering": true,
+            "info":     true,
+            "pageLength": 25,
+            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        $('#homenav').addClass("active");
+
+        setTimeout(function() {
+            $('#flash').fadeOut('slow');
+            }, 3000); // <-- time in milliseconds
+
+        // on Modal rent approve show
+        $('#rentApproveModal').on('show.bs.modal', function(e) {
+        	var modal = $(this);
+            var button = $(e.relatedTarget);
+            var rent = button.data('rent');
+            //console.log(rent.item.custom_id);
+            modal.find('#icustomId').text(rent.item.custom_id);
+            modal.find('#iname').text(rent.item.name);
+            modal.find('#istatus').text(rent.item.status);
+            modal.find('#inote').text(rent.rent_req_note);
+
+            modal.find('#formRentApprove').attr('action','rent/approve/'+rent.id);
+        });
+
+        // on Modal return approve show
+        $('#returnApproveModal').on('show.bs.modal', function(e) {
+        	var modal = $(this);
+            var button = $(e.relatedTarget);
+            var rent = button.data('rent');
+            //console.log(rent.item.custom_id);
+            modal.find('#rcustomId').text(rent.item.custom_id);
+            modal.find('#rname').text(rent.item.name);
+            modal.find('#rstatus').text(rent.item.status);
+            modal.find('#rnote').text(rent.return_req_note);
+
+            modal.find('#formReturnApprove').attr('action','return/approve/'+rent.id);
+        });
+
+    });
+
+</script>
+
+@stop

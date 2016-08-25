@@ -14,7 +14,7 @@
         </h3>
         <div class="pull-xs-right" id="header-button">
             <!-- Button trigger modal -->
-            <a class="btn btn-primary btn-block btn-circle shadow hvr-box-shadow-outset" data-toggle="modal" href="#adminAddNew" role="button">
+            <a class="btn btn-primary btn-block btn-circle float-shadow" data-toggle="modal" href="#adminAddNew" role="button">
                 <h4 style="margin-top: 10px;">
                     <b>
                         +
