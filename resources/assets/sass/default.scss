@@ -8,9 +8,46 @@ body {
     height: 100%;
 }
 
+#header-button .btn {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    right: 2%;
+    bottom: 5%;
+    &.btn-circle {
+        border-radius: 50%;
+        &:focus {
+            border-color: #fff;
+        }
+    }
+}
+
 #layout-header,
 #nav-header {
     margin-bottom: 1.25rem;
+}
+
+#grid-lside {
+    position: absolute;
+    height: 100%;
+    .content {
+        position: absolute;
+        font-size: 18px;
+        line-height: 110%;
+        overflow:hidden;
+    }
+    .list-group {
+    margin-top: -16px;
+    margin-left: -16px;
+    margin-bottom: 16px;
+    }
+    .list-group-item {
+        border: 1px solid #fff;
+        &::before {
+            content: "";
+            background-color: pink;
+        }
+    }
 }
 
 .btn-outline-default {
@@ -59,11 +96,16 @@ body {
     background-color: #17b5be;
 }
 
-.tag-outline-borrow {
-    border-color: #e9f5fa;
-    background-color: #e9f5fa;
+.tag-return-pending {
+    border-color: #d36733;
+    background-color: #d36733;
 }
 
+.tag-return-unavailable {
+    border-color: #f5f6f7;
+    background-color: #f5f6f7;
+    color: #909090;
+}
 .shadow {
     transition-property: box-shadow;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

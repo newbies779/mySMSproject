@@ -33,7 +33,7 @@
 				</div>
 
 				<div class="form-group row">
-					<label class="col-sm-3 col-form-label">Item-Note:</label>
+					<label class="col-sm-3 col-form-label">Rent-Note:</label>
 				    <div class="col-sm-7">
 				      <p class="modal-inform form-control-static" id="inote"></p>
 				    </div>
@@ -95,7 +95,7 @@
 				</div>
 
 				<div class="form-group row">
-					<label class="col-sm-3 col-form-label">Item-Note:</label>
+					<label class="col-sm-3 col-form-label">Return-Note:</label>
 				    <div class="col-sm-7">
 				      <p class="modal-inform form-control-static" id="rnote"></p>
 				    </div>

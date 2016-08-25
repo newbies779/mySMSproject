@@ -34,6 +34,10 @@
                         <span class="tag tag-danger">
                     @elseif ($item->status == "Lost")
                         <span class="tag tag-default">
+                    @elseif ($item->status == "ReturnPending")
+                        <span class="tag tag-return-pending">
+                    @elseif ($item->status == "Unavailable")
+                        <span class="tag tag-unavailable">
                     @endif
                     {{ $item->status }}</span>
                 </td>
