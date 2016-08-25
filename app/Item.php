@@ -47,10 +47,10 @@ class Item extends Model
     public function scopeCategoryRentable($query)
     {
         return $query->select(array(
-                    'items.*'
-                ))
-                ->join('categories', 'categories.id', '=', 'items.category_id', 'left')
-                ->where('categories.rentable', '1');
+            'items.*'
+            ))
+        ->join('categories', 'categories.id', '=', 'items.category_id', 'left')
+        ->where('categories.rentable', '1');
     }
     
     public function updateItemReview($request)
@@ -88,79 +88,84 @@ class Item extends Model
 
         switch ($updateStatus) {
             case 'Reserved':
-                DB::beginTransaction();
-                try {
-                    $rentList->rent_date = Carbon::now();
-                    $rentList->rent_req_date = $request->input('RentDate');
-                    if ($request->input('ReturnDate')!="") {
-                        $rentList->return_date = $request->input('ReturnDate');
-                    }
-                    $rentList->rent_status = "Pending";
-                    $rentList->return_status = "No";
-                    $rentList->rent_req_note = $request->input('Note');
-                    $rentList->user_id = Auth::user()->id;
-                    $rentList->item_id = $item->id;
-                    $rentList->save();
-
-                    $item->status = $updateStatus;
-                    $item->save();
-
-                    DB::commit();
-                } catch (exception $e) {
-                    DB::rollback();
-                    $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
-                    return $res;
+            DB::beginTransaction();
+            try {
+                $rentList->rent_date = Carbon::now();
+                $rentList->rent_req_date = $request->input('RentDate');
+                if ($request->input('ReturnDate')!="") {
+                    $rentList->return_date = $request->input('ReturnDate');
                 }
+                $rentList->rent_status = "Pending";
+                $rentList->return_status = "No";
+                $rentList->rent_req_note = $request->input('Note');
+                $rentList->user_id = Auth::user()->id;
+                $rentList->item_id = $item->id;
+                $rentList->save();
 
-                $res['status'] = "success";
-                $res['message'] = "Rent Item Success";
+                $item->status = $updateStatus;
+                $item->save();
+
+                DB::commit();
+            } catch (exception $e) {
+                DB::rollback();
+                $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
                 return $res;
+            }
+
+            $res['status'] = "success";
+            $res['message'] = "Rent Item Success";
+            return $res;
 
             case 'ReturnPending':
-                DB::beginTransaction();
+            DB::beginTransaction();
 
-                $rentList = $rentList->getRentObject($item);
-                try {
-                    $rentList->return_date = Carbon::now();
-                    $rentList->return_req_date = $request->input('ReturnDate');
-                    $rentList->return_status = "Pending";
-                    $rentList->return_req_note = $request->input('NoteReturn');
-                    $rentList->save();
+            $rentList = $rentList->getRentObject($item);
+            try {
+                $rentList->return_date = Carbon::now();
+                $rentList->return_req_date = $request->input('ReturnDate');
+                $rentList->return_status = "Pending";
+                $rentList->return_req_note = $request->input('NoteReturn');
+                $rentList->save();
 
-                    $item->status = $updateStatus;
-                    $item->save();
+                $item->status = $updateStatus;
+                $item->save();
 
-                    DB::commit();
-                } catch (exception $e) {
-                    DB::rollback();
-                    $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
-                    return $res;
-                }
-
-                $res = ["status" => "success", 'message' => "Return Item Success"];
+                DB::commit();
+            } catch (exception $e) {
+                DB::rollback();
+                $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
                 return $res;
+            }
+
+            $res = ["status" => "success", 'message' => "Return Item Success"];
+            return $res;
 
             case 'update':
-                DB::beginTransaction();
+            DB::beginTransaction();
 
-                try {
-                    $item->custom_id = $request->itemid;
-                    $item->name = $request->itemname;
-                    $item->status = $request->status;
-                    $item->location = $request->location;
-                    $item->note = $request->note;
+            try {
+                $item->custom_id = $request->itemid;
+                $item->name = $request->itemname;
+                $item->status = $request->status;
+                $item->location = $request->location;
+                $item->note = $request->note;
+                if($request->bought_year != ""){
                     $item->bought_year = $request->bought_year;
-                    $item->save();
-
-                    DB::commit();
-                } catch (exception $e) {
-                    DB::rollback();
-                    $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
-                    return $res;
+                }else{
+                    $item->bought_year = null;
                 }
 
-                $res = ["status" => "success", 'message' => "Update Item Success"];
+                $item->save();
+
+                DB::commit();
+            } catch (exception $e) {
+                DB::rollback();
+                $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
                 return $res;
+            }
+
+            $res = ["status" => "success", 'message' => "Update Item Success"];
+            return $res;
 
         }
     }
