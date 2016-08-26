@@ -19,6 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->string('status');
             $table->string('location');
+            $table->integer('assignee_id')->unsigned()->nullable();
             $table->string('note');
             $table->date('bought_year')->nullable();
             $table->timestamp('reviewed_at')->nullable();
@@ -31,6 +32,7 @@ class CreateItemsTable extends Migration
 
         Schema::table('items', function (Blueprint $table) {
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('assignee_id')->references('id')->on('users');
         });
     }
 

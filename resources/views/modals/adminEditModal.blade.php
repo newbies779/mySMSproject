@@ -18,20 +18,13 @@
 					</div>
 
 				</div>
+
 				<div class="modal-body">
 
-					{{-- <div class="form-group">
-						<label for="status">Item status:</label>
-						<select name="status" id="statusSelector">
-							<option>Available</option>
-							<option>Broken</option>
-							<option>Borrowed</option>
-							<option>Lost</option>
-							<option>Repairing</option>
-							<option>Reserved</option>
-							<option>ReturnPending</option>
-						</select>
-					</div> --}}
+					<div class="form-group">
+						<label for="status">Item status:</label>					
+						<span id='spanStatus' class="tag"></span>
+					</div>
 
 					<div class="form-group">
 						<label for="location">item location <?= requireTxt(); ?>:</label>

@@ -33,7 +33,7 @@
 								<td>{{ $item->category->name }}</td> 
 								{{-- <td>{{ date('Y', strtotime($item->bought_year)) }}</td>  --}}
 								<td style="display:none" id="itemnote<?= $i; ?>">{{  $item->note }}</td>
-								<td style="display:none" id="itemid<?= $i; ?>">{{  $item->id }}</td>
+								<td style="display:none" id="itemid<?= $i++; ?>">{{  $item->id }}</td>
 								<td align="center"> 
 									<button class="btn btn-primary rentbtn hvr-box-shadow-outset"
 									data-toggle="modal" 

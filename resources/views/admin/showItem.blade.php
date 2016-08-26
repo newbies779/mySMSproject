@@ -31,9 +31,9 @@
 
 @section('content')
 
-    @include('modals.adminEditModal')
-    @include('modals.adminAddNewItem')
-    
+@include('modals.adminEditModal')
+@include('modals.adminAddNewItem')
+
 @stop
 
 @section('script')
@@ -55,50 +55,48 @@
 
         $('#editnav').addClass("active");
 
-        $(".iconhover").hover(
-          function () {
-            var row = ($(this).data('row'));
-            $(this).attr("title",$("#noteforitemlist"+row).html());
-        });
-
-       $('#adminEditItem').on('show.bs.modal', function(e) {
+        $('#adminEditItem').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
             var item = button.data('itemdata');
             
             //set default for status dropdown
-            var statusSelector = document.getElementById('statusSelector');
+            var spanStatus = $('#spanStatus');
             switch(item.status){
                 case 'Available':
-                statusSelector.selectedIndex = 0;
-                break;
+                    spanStatus.attr('class','tag tag-info')
+                    break;
                 case 'Broken':
-                statusSelector.selectedIndex = 1;
-                break;
+                    spanStatus.attr('class','tag tag-danger')
+                    break;
                 case 'Borrowed':
-                statusSelector.selectedIndex = 2;
-                break;
+                    spanStatus.attr('class','tag tag-borrow')
+                    break;
                 case 'Lost':
-                statusSelector.selectedIndex = 3;
-                break;
+                    spanStatus.attr('class','tag tag-default')
+                    break;
                 case 'Repairing':
-                statusSelector.selectedIndex = 4;
-                break;
+                    spanStatus.attr('class','tag tag-warning')
+                    break;
                 case 'Reserved':
-                statusSelector.selectedIndex = 5;
-                break;
+                    spanStatus.attr('class','tag tag-success')
+                    break;
                 case 'ReturnPending':
-                statusSelector.selectedIndex = 6;
-                break;
-            }
+                    spanStatus.attr('class','tag tag-return-pending')
+                    break;
+                case 'Unavailable':
+                    spanStatus.attr('class','tag tag-unavailable')
+                    break;
+                }
+                spanStatus.html(item.status);
 
-            $('#itemid').val(item.custom_id);
-            $('#itemname').val(item.name);
-            $('#location').val(item.location);
-            $('#note').val(item.note);
-            $('#bought_year').val(item.bought_year);
-            $('form#formForAdminEdit').attr('action','item/'+ item.id); 
-            
-        });
+                $('#itemid').val(item.custom_id);
+                $('#itemname').val(item.name);
+                $('#location').val(item.location);
+                $('#note').val(item.note);
+                $('#bought_year').val(item.bought_year);
+                $('form#formForAdminEdit').attr('action','item/'+ item.id); 
+
+            });
     });
 </script>
 @stop
