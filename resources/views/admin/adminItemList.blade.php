@@ -27,7 +27,7 @@
 		<tr>
 			<td class="pos-left" scope="row"><?= $i; ?></td>
 			<td class="pos-left"><?= $item->custom_id; ?></td>
-			<td class="pos-left"><?= $item->name; ?></td>
+			<td class="pos-left" style="max-height:100px;max-width: 100px;word-wrap:break-word;overflow:hidden"><?= $item->name; ?></td>
 			<td class="pos-left">
 				@if ($item->status == "Reserved")
                     <span class="tag tag-success">
@@ -40,13 +40,14 @@
                 @elseif ($item->status == "Broken")
                     <span class="tag tag-danger">
                 @elseif ($item->status == "Lost")
-                    <span class="tag tag-default">
+                    <span class="tag tag-lost">
                 @elseif ($item->status == "ReturnPending")
                     <span class="tag tag-return-pending">
                 @elseif ($item->status == "Unavailable")
-                    <span class="tag tag-unavailable">
+                    <span class="tag tag-default">
                 @endif
-                {{ $item->status }}</span>
+                {{ $item->status }}
+                </span>
 			</td>
 			<td class="pos-left"><?= $item->location; ?></td>
 			<td class="pos-left">
@@ -61,7 +62,7 @@
 					{{ date('d/m/y',strtotime($item->bought_year)) }} 
 				<?php endif ?>
 			</td>
-			<td class="pos-left"><?= $item->category->name; ?></td>
+			<td class="pos-left" style="max-height:100px;max-width:150px;word-wrap:break-word;overflow:hidden"><?= $item->category->name; ?></td>
 			<td align="center">
 						<button 
 						type="button" 

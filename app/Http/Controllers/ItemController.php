@@ -144,7 +144,6 @@ class ItemController extends Controller
             ->withErrors($validator)
             ->withInput();
         }
-
         $returnStatus = $item->updateItem($item,$request);
         if($returnStatus['status'] == "success"){
             flash($returnStatus['message'],'info');

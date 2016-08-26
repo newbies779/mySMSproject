@@ -142,19 +142,18 @@ class Item extends Model
 
             case 'update':
             DB::beginTransaction();
-
             try {
                 $item->custom_id = $request->itemid;
                 $item->name = $request->itemname;
                 $item->status = $request->status;
                 $item->location = $request->location;
                 $item->note = $request->note;
-                if($request->bought_year != ""){
+                if ($request->bought_year != "") {
                     $item->bought_year = $request->bought_year;
-                }else{
+                } else {
                     $item->bought_year = null;
                 }
-
+                
                 $item->save();
 
                 DB::commit();

@@ -9,7 +9,7 @@
 					<button type="button" class="btn-close close" data-dismiss="modal" aria-hidden="true">×</button>
 					<div class="form-group">
 						<label for="itemid">Item ID:</label>
-						<input name="itemid" class="form-control" id="itemid" disabled>{{ old('itemid') }}</input>
+						<input name="itemid" class="form-control" id="itemid" readonly="">{{ old('itemid') }}</input>
 					</div>
 
 					<div class="form-group">
@@ -24,6 +24,7 @@
 					<div class="form-group">
 						<label for="status">Item status:</label>					
 						<span id='spanStatus' class="tag"></span>
+						<input name="status" id="inputStatus" style="display:none">
 					</div>
 
 					<div class="form-group">
