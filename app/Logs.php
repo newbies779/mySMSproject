@@ -25,4 +25,9 @@ class Logs extends Model
     	return $this->belongsTo(Item::class);
     }
 
+    public function scopeForHistory($query)
+    {
+        return $query->orderBy('item_id','asc')->orderBy('created_at', 'asc');
+    }
+
 }

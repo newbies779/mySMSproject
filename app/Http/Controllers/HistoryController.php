@@ -17,7 +17,7 @@ class HistoryController extends Controller
 
     public function index()
     {
-    	$logs = Logs::all();
+    	$logs = Logs::forHistory()->get();
     	return view('admin.historyadmin', compact('logs'));
     }
 }

@@ -96,7 +96,9 @@ var modal = $('#modalEditReview');
             "ordering": true,
             "info":     true,
             "pageLength": 25,
-            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+            "aaSorting": [],
+            "sScrollY": "500px"
         });
     });
 </script>

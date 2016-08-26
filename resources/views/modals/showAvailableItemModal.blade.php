@@ -40,7 +40,6 @@
 									href="#RentConfirmModal"
 									data-item="{{ $item }}"
 									>Rent</button>
-
 								</td>
 							</tr>
 							@endif
@@ -68,8 +67,9 @@
 				<h4 class="modal-title" id="itemname"></h4>
 				
 			</div>
+			<form action="" method="POST" id="formforrent">
 			<div class="modal-body">
-				<form action="" method="POST" id="formforrent">
+				
 					{{ csrf_field() }}
 					{{ method_field('PATCH') }}
 					<div class="form-group">
@@ -94,16 +94,13 @@
 
 					<input type="text" name="hiddenid" id="hiddenid" value="" style="display:none">
 
-					<div class="form-group pull-xs-right">
-						<button type="button" class="btn btn-close btn-secondary hvr-box-shadow-outset" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary hvr-box-shadow-outset">Rent</button>
-					</div>
-
-				</form>
-			</div>
-			<div class="modal-footer">
 				
 			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-close btn-secondary hvr-box-shadow-outset" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary hvr-box-shadow-outset">Rent</button>
+			</div>
+			</form>
 		</div>
 	</div>
 </div>
