@@ -26,11 +26,7 @@
             </td>
             <td class="pos-left history-status">
                 <div class="row">
-<<<<<<< HEAD
                     <div class="col-sm-1" style="margin-right: 10px;">
-=======
-                    <div class="col-sm-2">
->>>>>>> d47270861dfb5ec297b816c3b66c1083408a37d7
                         @if ($log->status == "Reserved")
                         <span class="tag tag-success">
                             @elseif ($log->status == "Available")
@@ -67,11 +63,7 @@
                     </div>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
                     <div class="col-sm-1" style="margin-right: 10px;"></div>
-=======
-                    <div class="col-sm-2"></div>
->>>>>>> d47270861dfb5ec297b816c3b66c1083408a37d7
                     <div>
                         <small style="color: #909090;">
                             ID: {{ $log->item->custom_id}}

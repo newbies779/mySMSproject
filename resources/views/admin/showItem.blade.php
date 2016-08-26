@@ -7,21 +7,32 @@
 @stop
 
 @section('tableContent')
-<div class="col-sm-10 offset-sm-1" id="grid-body">
-    <div class="card card-block shadow" id="table-container">
-        <h3 class="card-title text-xs-center">
-            Item List
-        </h3>
-        <div class="pull-xs-right" id="header-button">
-            <!-- Button trigger modal -->
-            <a class="btn btn-primary btn-block btn-circle float-shadow" data-toggle="modal" href="#adminAddNew" role="button">
-                <h4 style="margin-top: 10px;">
-                    <b>
-                        +
-                    </b>
-                </h4>
-            </a>
+<div id="grid-lside" class="col-sm-2">
+    <div class="col-sm-10 offset-sm-1 pull-xs-center" id="header-button">
+        <!-- Button trigger modal -->
+        <button class="btn btn-primary btn-block hvn-btn-shadow-outset" data-toggle="modal" href="#adminAddNew" role="button">
+            <span style="margin-top: 10px;">
+                <b>
+                    NEW
+                </b>
+            </span>
+        </button>
+    </div>
+    <div class="card panel-shadow content list-group">
+        <div class="card-block shadow">          
+                <h5 class="card-title text-sm-center">Category</h5>
         </div>
+        <div href="#" class="list-group-item list-group-item-action">
+            <span>Item History</span>
+        </div>
+        <div href="#" class="list-group-item list-group-item-action">
+            <span>User History</span>
+        </div>
+    </div>  
+</div>
+
+<div class="col-sm-10 offset-sm-2" id="grid-body">
+    <div class="card card-block shadow" id="table-container">
         <div class="table-responsive">
             @include('admin.adminItemList')
         </div>
@@ -42,11 +53,14 @@
 <script>
     $(document).ready(function() {
         $('#tableItemAdmin').DataTable({
+            "dom": '<"toolbar row"<"col-sm-6"l><"col-sm-6"f>>rtip',
             "paging":   true,
             "ordering": true,
             "info":     true,
             "pageLength": 25,
-            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+            "scrollY":        "50vh",
+            "scrollCollapse": true,
         });
     });
 </script>

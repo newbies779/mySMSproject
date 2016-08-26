@@ -24,7 +24,7 @@
 </head>
 <body>
 	<header id="layout-header">
-		<nav id="nav-header" class="navbar navbar-full navbar-light bg-faded nav-shadow">
+		<nav id="nav-header" class="navbar navbar-fixed-top navbar-full navbar-light bg-faded nav-shadow">
 			<div class="container">
 				<button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
 					&#9776;
