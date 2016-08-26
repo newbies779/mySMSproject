@@ -75,7 +75,7 @@
 			</div>
 		</nav>
 
-		<div id="header-body" class="container" style="margin-top: 10px;padding-right:30px">
+		<div id="header-body" class="container" style="margin-top: 80px;padding-right:30px">
 			@yield('header')
 			
 		</div>

@@ -3,6 +3,7 @@
 use App\Events\AdminRentApprove;
 use Illuminate\Foundation\Auth\User;
 use App\Events\ItemCreate;
+use Vinkla\Pusher\Facades\Pusher;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,8 @@ Route::patch('/review/update', 'ReviewController@updateData');
 
 Route::resource('item','ItemController');
 
-use Vinkla\Pusher\Facades\Pusher;
+Route::post('/category','CategoryController@store');
+
 
 Route::get('broadcast', function(){
 	//event(new AdminRentApprove('123'));

@@ -18,17 +18,30 @@
             </span>
         </button>
     </div>
+    
     <div class="card panel-shadow content list-group">
         <div class="card-block shadow">          
                 <h5 class="card-title text-sm-center">Category</h5>
         </div>
-        <div href="#" class="list-group-item list-group-item-action">
-            <span>Item History</span>
+
+        @foreach ($categories as $key => $value)
+            <div href="#" class="list-group-item list-group-item-action">
+                <span><?= $value ?></span>
+            </div>
+        @endforeach
+
+        <div class="col-sm-10 offset-sm-1 pull-xs-center">
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-block hvn-btn-shadow-outset" data-toggle="modal" href="#adminNewCate" role="button">
+                <span style="margin-top: 10px;">
+                    <b>
+                        NEW Category
+                    </b>
+                </span>
+            </button>
         </div>
-        <div href="#" class="list-group-item list-group-item-action">
-            <span>User History</span>
-        </div>
-    </div>  
+    </div> 
+
 </div>
 
 <div class="col-sm-10 offset-sm-2" id="grid-body">
@@ -38,14 +51,13 @@
         </div>
     </div>
 </div>
-@include('modals.adminEditModal')
-@include('modals.adminAddNewItem')
 @stop
 
 @section('content')
 
 @include('modals.adminEditModal')
 @include('modals.adminAddNewItem')
+@include('modals.adminAddCategory')
 
 @stop
 
