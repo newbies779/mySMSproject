@@ -42,4 +42,9 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function scopeRoleUser($query)
+    {
+        return $query->where('role', 'User');
+    }
 }

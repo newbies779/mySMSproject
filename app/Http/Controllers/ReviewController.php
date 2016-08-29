@@ -36,8 +36,10 @@ class ReviewController extends Controller
     {
         $user       = Auth::user();
         $item       = new Item;
+        $assignees  = User::roleUser()->orderBy('name')->get();
         $reviewItem = $item->getItemRequestbyUpdated();
-        return view('admin.reviewadmin', compact('reviewItem'));
+        $users      = User::all();
+        return view('admin.reviewadmin', compact('reviewItem', 'assignees', 'users'));
     }
 
     /**
@@ -65,7 +67,10 @@ class ReviewController extends Controller
         // dd(
         //     $request->input('id'),
         //     $request->input('status'),
-        //     $request->input('note')
+        //     $request->input('note'),
+        //     $request->input('assignee_id'),
+        //     $request->input('assignee_location')
+
         // );
 
         $item         = new Item;
