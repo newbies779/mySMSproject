@@ -31,7 +31,7 @@
 				</button>
 				<div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
 					<div class="bg-faded p-a-1">
-						<a class="navbar-brand" href="{{ url('/') }}">Responsive navbar</a>
+						<a class="navbar-brand" href="{{ url('/') }}">SMS project</a>
 						<ul class="nav navbar-nav">
 							<li class="nav-item">
 								<a class="nav-link" id="homenav" href="{{ url('/home') }}">Home</a>
@@ -84,7 +84,7 @@
 	
 	
 	
-	<div class="container-fluid">
+	<div class="container-fluid" id="content">
 		@yield('content')
 	</div>
 

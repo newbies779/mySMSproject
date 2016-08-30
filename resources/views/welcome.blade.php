@@ -7,13 +7,17 @@
 
 @section('content')
 
-<div class="card card-default" style="margin-top:25px;">
-    <div class="card-header">Welcome</div>
-
-    <div class="card-block">
-        Your Application's Landing Page.
+    <div id="hero-section">
+    	<div class="jumbotron jumbotron-fluid">
+    	<h1 class="display-3">Welcome to SMS project</h1>
+		<p class="lead">
+			Have not create account yet? 
+		</p>
+        <div class="btn-group" role="group" aria-label="Button Hero">
+          <button type="button" class="btn btn-primary"><strong>Join Us</strong></button>
+        </div>
+    	</div>
     </div>
-</div>
 
 @include('showerror')
 
