@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\RentListItem;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +16,10 @@ class Item extends Model
      */
     protected $guarded = ['id'];
 
+    public function users()
+    {
+        return $this->belongsTo(User::class,'assignee_id','id');
+    }
 
     public function rent()
     {

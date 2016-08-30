@@ -34,6 +34,11 @@ class User extends Authenticatable
         return $this->hasMany(Logs::class);
     }
 
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+
     public function isAdmin($id)
     {
         if($this->where('id',$id)->first()->role == "Admin"){
