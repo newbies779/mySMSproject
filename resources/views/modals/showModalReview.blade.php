@@ -68,8 +68,20 @@
 		                                Assignee:
 		                            </strong>
 		                        </label>
-		                        <input class="form-control" id="reviewAssignee" placeholder="Assignee name" type="text">
-		                        </input>
+                                <div class="input-group">
+                                  <div class="input-group-btn">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Select
+                                    </button>
+                                    <div class="dropdown-menu">
+                                    @foreach ($assignees as $assignee)
+                                        <a class="assignee-drd dropdown-item" href="#" data-assignee="{{ $assignee }}"> {{ $assignee->name}} </a>
+                                    @endforeach
+                                    
+                                    </div>
+                                  </div>
+                                  <input id="reviewAssignee" type="text" class="form-control" aria-label="Text input with dropdown button" disabled >
+                                </div>
                     		</div>
                     		<div class="col-sm-6">
                     			<label for="reviewLocation">
@@ -78,7 +90,6 @@
 		                            </strong>
 		                        </label>
 		                        <input class="form-control" id="reviewLocation" placeholder="Assignee address (Ex. CB4 ชั้น8)" type="text">
-		                        </input>
                     		</div>
                     	</div>
                     </fieldset>

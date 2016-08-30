@@ -63,9 +63,18 @@ class Item extends Model
             if ($request->input('status')) {
                 $item->status = $request->input('status');
             }
+
             
             if ($request->input('note')) {
                 $item->note = $request->input('note');
+            }
+
+            if ($request->input('assignee_id')) {
+                $item->assignee_id = $request->input('assignee_id');
+            }
+
+            if ($request->input('assignee_location')) {
+                $item->location = $request->input('assignee_location');
             }
             
             $item->save();
