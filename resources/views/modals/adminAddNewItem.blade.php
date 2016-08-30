@@ -38,8 +38,9 @@
 					<div class="form-group">
 						<label for="category">Item category:</label>
 						<select name="category" id="categorySelector">
-							@foreach ($categories as $key => $value)
-							<option value="<?= $key ?>"><?= $value ?></option>
+
+							@foreach ($categories as $category)
+							<option value="<?= $category->id ?>"><?= $category->name ?></option>
 							@endforeach
 						</select>
 					</div>

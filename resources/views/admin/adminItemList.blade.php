@@ -8,7 +8,7 @@
 			<th class="text-xs-left">Location</th>
 			<th class="text-xs-left">Assignee</th>
 			<th class="text-xs-left">Note</th>
-			<th class="text-xs-left">Bought date</th>
+			{{-- <th class="text-xs-left">Bought date</th> --}}
 			<th class="text-xs-left">Category</th>
 			<th class="text-xs-left">Action</th>
 		</tr>
@@ -57,11 +57,11 @@
 				@endif
 			</td>
 			<td class="pos-left iconhover" data-toggle="tooltip" title='<?= $item->note ?>'><i class="fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i></td>
-			<td class="pos-left"> 
+			<!-- <td class="pos-left"> 
 				<?php if($item->bought_year != "") : ?>
-					{{ date('d/m/y',strtotime($item->bought_year)) }} 
+					{{-- {{ date('d/m/y',strtotime($item->bought_year)) }}  --}}
 				<?php endif ?>
-			</td>
+			</td> -->
 			<td class="pos-left" style="max-height:100px;max-width:150px;word-wrap:break-word;overflow:hidden"><?= $item->category->name; ?></td>
 			<td align="center">
 						<button 

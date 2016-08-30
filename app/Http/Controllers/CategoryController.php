@@ -39,4 +39,20 @@ class CategoryController extends Controller
     	flash($res['message'],$res['status']);
     	return redirect()->route('item.index');
     }
+
+    public function update(Request $request, Category $category)
+    {
+        $validator = Validator::make($request->all(), $this->validation($request));
+
+        if ($validator->fails()) {
+            return redirect()->route('item.index')
+            ->withErrors($validator)
+            ->withInput();
+        }
+        
+        $res = $category->updateCategory($request);
+
+        flash($res['message'],$res['status']);
+        return redirect()->route('item.index');
+    }
 }

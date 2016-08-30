@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Events\ItemGetEdit;
 use App\Http\Requests;
 use App\Item;
@@ -36,7 +37,7 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all()->load('category');
-        $categories = \DB::table('categories')->pluck('name','id');
+        $categories = Category::all();
         return view('admin.showItem', compact('items','categories'));
     }
 
