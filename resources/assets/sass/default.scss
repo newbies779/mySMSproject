@@ -5,7 +5,6 @@ body {
   width: 100%;
 }
 
-
 label:focus {
   outline: none;
 }
@@ -210,12 +209,43 @@ label:focus {
 #grid-lside {
   position: fixed;
   height: 95%;
-  #header-button .btn {
-    &:hover,
-    &:active,
-    &:visited,
-    &:focus {
-      background-color: #0275d8;
+  z-index: 999;
+  #header-button {
+    .btn {
+      &:hover,
+      &:active,
+      &:visited,
+      &:focus {
+        background-color: #0275d8;
+      }
+    }
+    .new-contextmenu {
+      z-index: 1000;
+      margin: 0;
+      width: 200%;
+      padding: 0.7rem;
+      padding-left: 0;
+      > a {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        cursor: pointer;
+        i {
+          color: #909090;
+          > i {
+            color: #fff;
+            position: absolute;
+            top: 40%;
+            left: 8%;
+            font-size: 10px;
+          }
+        }
+        &:hover {
+          background-color: #e8e8e8;
+          border-left: 8px solid #909090;
+        }
+      }
     }
   }
   .content {
@@ -240,10 +270,15 @@ label:focus {
     margin-left: -16px;
     margin-bottom: 16px;
   }
+
   .list-group-item {
     border-top: 4px solid #fff;
     border-bottom: 4px solid #fff;
     border-right: 0;
+    cursor: pointer;
+    label,a {
+      cursor: pointer;
+    }
     &:hover {
       background-color: #d8d8d8;
       border-left: 8px solid #909090;

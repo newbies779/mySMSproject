@@ -37,11 +37,16 @@
 </script>
 <script>
     $(document).ready(function() {
-        $('.showall').addClass('active');
-
         var modal = $('#adminEditItem');
-
+        $('.showall').addClass('active');
+        $('.new-contextmenu').hide();
         $('#editnav').addClass("active");
+
+        $(window).click(function() {
+            if($('.new-contextmenu').is(":visible")) {
+                $('.new-contextmenu').hide();
+            }
+        });
 
         $('#adminEditItem').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
@@ -114,7 +119,12 @@
             console.log(category);
             $('#adminEditCategory').find('#name').val($(this).parent().find('label').html());
             $('#formForEditCategory').attr('action','category/'+category.id);
-        })
+        });
+
+        $('#button-new').click(function(e) {
+            e.stopPropagation();
+            $('.new-contextmenu').show();
+        });
     });
 </script>
 
