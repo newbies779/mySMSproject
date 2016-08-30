@@ -31,7 +31,7 @@
 				</button>
 				<div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
 					<div class="bg-faded p-a-1">
-						<a class="navbar-brand" href="{{ url('/') }}">Responsive navbar</a>
+						<a class="navbar-brand" href="{{ url('/') }}">SMS project</a>
 						<ul class="nav navbar-nav">
 							<li class="nav-item">
 								<a class="nav-link" id="homenav" href="{{ url('/home') }}">Home</a>
@@ -46,7 +46,7 @@
 										<a class="nav-link" id="reviewnav" href="{{ url('/review') }}">Review</a>
 									</li>
 
-									<li class="nav-item">
+									<li class="nav-item" style="margin-right: 16px;">
 										<a class="nav-link" id="historynav" href="{{ url('/history') }}">History</a>
 									</li>
 								@endif
@@ -55,7 +55,7 @@
 							<!--Right Side of NavBar -->
 							@if (Auth::guest())
 
-							<li class="nav-item pull-xs-right"><a class="nav-link" id="regisnav" href="{{ url('/register') }}">Register</a></li>
+							<li class="nav-item pull-xs-right" style="margin-right: 16px;"><a class="nav-link" id="regisnav" href="{{ url('/register') }}">Register</a></li>
 
 							<li class="nav-item pull-xs-right"><a class="nav-link" id="loginnav" href="{{ url('/login') }}">Login</a></li>
 							@else
@@ -64,7 +64,7 @@
 									{{ Auth::user()->name }}&nbsp;<span class="text-muted"><small>{{ Auth::user()->role }}</small></span> <span class="caret"></span>
 								</a>
 
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-right: 20px;">
 									<a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
 								</div>
 							</div>
@@ -75,7 +75,7 @@
 			</div>
 		</nav>
 
-		<div id="header-body" class="container" style="margin-top: 80px;padding-right:30px">
+		<div id="header-body" class="container" style="margin-top: 100px;padding-right:30px">
 			@yield('header')
 			
 		</div>
@@ -84,7 +84,7 @@
 	
 	
 	
-	<div class="container-fluid">
+	<div class="container-fluid" id="content">
 		@yield('content')
 	</div>
 

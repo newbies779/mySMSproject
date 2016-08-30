@@ -1,11 +1,11 @@
 @extends('layouts.smslayout')
 
 @section('content')
-<div class="container">
+<div id="loginForm" class="container">
     <div class="row">
         <div class="card card-slide col-md-8 offset-md-2 shadow">
             <div class="panel panel-default">
-                <div class="panel-heading text-md-center"><h3 class=" display-4">Login</h3></div>
+                <div class="panel-heading text-md-center" style="padding: 16px 16px;"><h3 class=" display-3">Login</h3></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
@@ -67,5 +67,6 @@
 @section('script')
     <script>
         $('#loginnav').addClass("active");
+        $('#homenav').hide();
     </script>
 @stop

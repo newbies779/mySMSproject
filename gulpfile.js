@@ -67,5 +67,6 @@ elixir(function(mix) {
             'history.css'
 
         ], 'public/css/app.css', 'public/css')
+        .browserSync()
     
 });

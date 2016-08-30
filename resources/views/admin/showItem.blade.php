@@ -12,21 +12,12 @@
 </div>
 
 <div class="col-sm-10 offset-sm-2" id="grid-body">
-    <div class="card card-block shadow" id="table-container">
+    <div class="card card-block shadow" id="table-container" style="height: 85%;">
         <div class="table-responsive">
             @include('admin.adminItemList')
         </div>
     </div>
 </div>
-@stop
-
-@section('content')
-
-@include('modals.adminEditModal')
-@include('modals.adminAddNewItem')
-@include('modals.adminAddCategory')
-@include('modals.adminEditCategory')
-
 @stop
 
 @section('script')
@@ -39,22 +30,26 @@
             "info":     true,
             "pageLength": 25,
             "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
-            "scrollY":        "50vh",
+            "scrollY":        "55vh",
             "scrollCollapse": true,
         });
     });
 </script>
 <script>
     $(document).ready(function() {
-
         var modal = $('#adminEditItem');
-
+        $('.showall').addClass('active');
         $('#editnav').addClass("active");
+
+        $(window).click(function() {
+            if($('.new-contextmenu').is(":visible")) {
+                $('.new-contextmenu').hide();
+            }
+        });
 
         $('#adminEditItem').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
             var item = button.data('itemdata');
-            
             //set default for status dropdown
             var spanStatus = $('#spanStatus');
             switch(item.status){
@@ -92,7 +87,7 @@
                                             $('#note').val(item.note);
                                             $('#bought_year').val(item.bought_year);
                                             $('form#formForAdminEdit').attr('action','item/'+ item.id); 
-
+                                            $('#formForAdminEdit').find('option[value="'+ item.category.id+'"]').prop("selected",true);
                                         });
 
         var table = $('#tableItemAdmin').DataTable();
@@ -122,10 +117,22 @@
             console.log(category);
             $('#adminEditCategory').find('#name').val($(this).parent().find('label').html());
             $('#formForEditCategory').attr('action','category/'+category.id);
-        })
+            $('#adminEditCategory').find('option[value="'+ category.rentable+'"]').prop("selected",true);
+        });
+
+        $('#button-new').click(function(e) {
+            e.stopPropagation();
+            $('.new-contextmenu').removeClass('invisible').show();
+        });
     });
 </script>
 
 @stop
+{{-- Include Modals --}}
+
+@include('modals.adminEditModal')
+@include('modals.adminAddNewItem')
+@include('modals.adminAddCategory')
+@include('modals.adminEditCategory')
 
 

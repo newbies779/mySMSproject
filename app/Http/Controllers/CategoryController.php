@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
 	public function validation(Request $request){
 	    return [
-	    	'name' => 'required|unique:categories'
+	    	'name' => 'required'
 	    ];
 	}
 

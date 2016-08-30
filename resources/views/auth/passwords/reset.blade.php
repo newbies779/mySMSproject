@@ -68,3 +68,10 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+    <script>
+        $('#loginnav').addClass("active");
+        $('#homenav').hide();
+    </script>
+@stop
