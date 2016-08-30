@@ -157,6 +157,7 @@ class Item extends Model
                 $item->status = $request->status;
                 $item->location = $request->location;
                 $item->note = $request->note;
+                $item->category_id = $request->category;
                 if ($request->bought_year != "") {
                     $item->bought_year = $request->bought_year;
                 } else {

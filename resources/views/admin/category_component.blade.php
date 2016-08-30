@@ -7,7 +7,7 @@
             </b>
         </span>
     </button>
-    <div class="new-contextmenu card card-block shadow list-group">
+    <div class="new-contextmenu card card-block shadow list-group invisible">
         <a class="list-group-item list-group-item-action pull-sm-right" data-toggle="modal" href="#adminAddNew"><i class="fa fa-plus-square fa-lg pull-sm-left"></i> &nbsp;&nbsp;&nbsp;&nbsp;Item </a>
         <a class="list-group-item list-group-item-action pull-sm-right" data-toggle="modal" href="#adminNewCate"><span class="pull-sm-left"><i class="fa fa-tags fa-lg"><i class="fa fa-plus"></i></i></span>&nbsp;&nbsp;&nbsp;&nbsp;Category </a>
     </div>

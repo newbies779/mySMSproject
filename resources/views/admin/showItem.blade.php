@@ -39,7 +39,6 @@
     $(document).ready(function() {
         var modal = $('#adminEditItem');
         $('.showall').addClass('active');
-        $('.new-contextmenu').hide();
         $('#editnav').addClass("active");
 
         $(window).click(function() {
@@ -51,7 +50,6 @@
         $('#adminEditItem').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
             var item = button.data('itemdata');
-            
             //set default for status dropdown
             var spanStatus = $('#spanStatus');
             switch(item.status){
@@ -89,7 +87,7 @@
                                             $('#note').val(item.note);
                                             $('#bought_year').val(item.bought_year);
                                             $('form#formForAdminEdit').attr('action','item/'+ item.id); 
-
+                                            $('#formForAdminEdit').find('option[value="'+ item.category.id+'"]').prop("selected",true);
                                         });
 
         var table = $('#tableItemAdmin').DataTable();
@@ -119,11 +117,12 @@
             console.log(category);
             $('#adminEditCategory').find('#name').val($(this).parent().find('label').html());
             $('#formForEditCategory').attr('action','category/'+category.id);
+            $('#adminEditCategory').find('option[value="'+ category.rentable+'"]').prop("selected",true);
         });
 
         $('#button-new').click(function(e) {
             e.stopPropagation();
-            $('.new-contextmenu').show();
+            $('.new-contextmenu').removeClass('invisible').show();
         });
     });
 </script>
