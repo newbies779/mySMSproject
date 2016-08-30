@@ -23,6 +23,7 @@
 					</div>
 
 					<div class="form-group">
+
 						<label for="itemname"><strong>Item name: <span class="tag tag-warning" style="color: red;"><?= requireTxt(); ?></span></strong></label>
 						<input name="itemname" class="form-control" id="itemname" value="{{ old('itemname') }}" required>
 					</div>

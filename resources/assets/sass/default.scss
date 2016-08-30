@@ -270,13 +270,13 @@ label:focus {
     margin-left: -16px;
     margin-bottom: 16px;
   }
-
   .list-group-item {
     border-top: 4px solid #fff;
     border-bottom: 4px solid #fff;
     border-right: 0;
     cursor: pointer;
-    label,a {
+    label,
+    a {
       cursor: pointer;
     }
     &:hover {

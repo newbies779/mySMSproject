@@ -23,6 +23,7 @@
 
     @foreach ($categories as $category)
     <div class="list-group-item list-group-item-action cate_hover">
+
         <div class="row">
             <label class="pull-sm-left" style="max-width: 17ch;
         word-wrap:break-word;
@@ -34,4 +35,5 @@
         </div>
     </div>
     @endforeach
+
 </div> 

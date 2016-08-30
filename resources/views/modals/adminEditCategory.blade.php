@@ -25,6 +25,7 @@
 		
 						<div class="form-group">
 							<label for="Rentable"><strong>Rentable:&nbsp;</strong></label><br>
+
 							<select name="Rentable" id="Rentable">
 								<option value="1">yes</option>
 								<option value="0">no</option>
