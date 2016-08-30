@@ -36,16 +36,43 @@
     });
 </script>
 <script>
+var data = {};
     $(document).ready(function() {
         var modal = $('#adminEditItem');
-        $('.showall').addClass('active');
-        $('#editnav').addClass("active");
+
+        $(function () {
+            $('.showall').addClass('active');
+            $('#editnav').addClass("active");
+            $('.iconpopover').popover({
+                container: 'body'
+            })
+        })
+
+        $('.iconpopover').hover(function() {
+           $(this).popover('toggle');
+        });
 
         $(window).click(function() {
             if($('.new-contextmenu').is(":visible")) {
                 $('.new-contextmenu').hide();
             }
         });
+
+        $('#adminAddNew').on('show.bs.modal', function(e) {
+            $('label.btn').click(function() {
+            data['status'] = $(this).children('input[name="options"]').val();
+            console.log(data["status"]);
+            });
+        });
+
+        $('#formForAdminAddNew').submit(function(e) {
+            var status = $("<input>")
+               .attr("type", "hidden")
+               .attr("name", "status").val(data.status);
+            $(this).append($(status));
+            return true;
+        });
+        
 
         $('#adminEditItem').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);

@@ -63,14 +63,12 @@ class ItemController extends Controller
             'itemid' => 'required|max:100|min:5',
             'customid' => 'unique:items,custom_id|max:100|min:5',
             'itemname' => 'required|max:64|min:2',
-            'status' => 'required|max:64|min:2',
             'location' => 'required|max:128|min:2',
             'note' => 'max:512',
             'bought_year' => 'date'
         ]);
 
         $res=["status" => ""];
-
         \DB::beginTransaction();
 
         try{

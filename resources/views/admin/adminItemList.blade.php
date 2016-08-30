@@ -56,7 +56,7 @@
 				@else <?= 'No' ?>
 				@endif
 			</td>
-			<td class="pos-left iconhover" data-toggle="tooltip" title='<?= $item->note ?>'><i class="fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i></td>
+			<td class="pos-left iconpopover" data-toggle="popover" data-container="body" data-placement="bottom" data-content="{{ $item->note }}" title="Note"><i class="fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i></td>
 			<!-- <td class="pos-left"> 
 				<?php if($item->bought_year != "") : ?>
 					{{-- {{ date('d/m/y',strtotime($item->bought_year)) }}  --}}
