@@ -14,7 +14,7 @@
 			Have not create account yet? 
 		</p>
         <div class="btn-group" role="group" aria-label="Button Hero">
-          <button type="button" class="btn btn-primary"><strong>Join Us</strong></button>
+          <a href="{{ url('/register') }}" role="button" class="btn btn-primary"><strong>Join Us</strong></a>
         </div>
     	</div>
     </div>
@@ -23,7 +23,7 @@
 
 @section('script')
 	<script>
-		$('#homenav').addClass("active");
+		$('#homenav').hide();
 	</script>
 @stop
 @endsection

@@ -12,21 +12,12 @@
 </div>
 
 <div class="col-sm-10 offset-sm-2" id="grid-body">
-    <div class="card card-block shadow" id="table-container">
+    <div class="card card-block shadow" id="table-container" style="height: 85%;">
         <div class="table-responsive">
             @include('admin.adminItemList')
         </div>
     </div>
 </div>
-@stop
-
-@section('content')
-
-@include('modals.adminEditModal')
-@include('modals.adminAddNewItem')
-@include('modals.adminAddCategory')
-@include('modals.adminEditCategory')
-
 @stop
 
 @section('script')
@@ -39,13 +30,14 @@
             "info":     true,
             "pageLength": 25,
             "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
-            "scrollY":        "50vh",
+            "scrollY":        "55vh",
             "scrollCollapse": true,
         });
     });
 </script>
 <script>
     $(document).ready(function() {
+        $('.showall').addClass('active');
 
         var modal = $('#adminEditItem');
 
@@ -127,5 +119,11 @@
 </script>
 
 @stop
+{{-- Include Modals --}}
+
+@include('modals.adminEditModal')
+@include('modals.adminAddNewItem')
+@include('modals.adminAddCategory')
+@include('modals.adminEditCategory')
 
 

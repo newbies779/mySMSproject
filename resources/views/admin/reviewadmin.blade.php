@@ -5,9 +5,7 @@
 	@include('showerror')
 	@include('flash')
 @stop
-@section('content')
-	@include('modals.showModalReview')
-@stop
+
 @section('tableContent')
 
 	<div class="col-sm-10 offset-sm-1">
@@ -20,3 +18,5 @@
 	</div>
 	
 @stop
+{{-- Include Modal --}}
+@include('modals.showModalReview')

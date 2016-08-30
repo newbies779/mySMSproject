@@ -83,5 +83,6 @@
 @section('script')
     <script>
         $('#regisnav').addClass("active");
+        $('#homenav').hide();
     </script>
 @stop
