@@ -43,4 +43,27 @@ class Category extends Model
         $res['message'] = "Create Category Success";
         return $res;
     }
+
+    public function updateCategory($request)
+    {
+        $res=["status" => ""];
+
+        \DB::beginTransaction();
+
+        try{
+            $this->name = $request->input('name');
+            $this->rentable = $request->input('Rentable');
+            $this->save();
+            \DB::commit();
+
+        }catch(Exception $e){
+            \DB::rollback();
+            $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
+            return $res;
+        }
+        
+        $res['status'] = "success";
+        $res['message'] = "Edit Category Success";
+        return $res;
+    }
 }

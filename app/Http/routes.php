@@ -43,6 +43,8 @@ Route::resource('item','ItemController');
 
 Route::post('/category','CategoryController@store');
 
+Route::patch('/category/{category}','CategoryController@update');
+
 
 Route::get('broadcast', function(){
 	//event(new AdminRentApprove('123'));

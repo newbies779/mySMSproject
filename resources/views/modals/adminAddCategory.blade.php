@@ -12,8 +12,8 @@
 				<div class="modal-body">
 					
 					<div class="form-group">
-						<label for="name">Category Name <?php requireTxt(); ?>:</label>
-						<input name="name" class="form-control" id="name" required>{{ old('name') }}</input>
+						<label for="name">Category Name <?= requireTxt(); ?>:</label>
+						<input name="name" class="form-control" id="name" value="{{ old('name') }}" required>
 					</div>
 
 					<div class="form-group">

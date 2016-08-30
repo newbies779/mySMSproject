@@ -9,12 +9,12 @@
 					<button type="button" class="btn-close close" data-dismiss="modal" aria-hidden="true">×</button>
 					<div class="form-group">
 						<label for="itemid">Item ID:</label>
-						<input name="itemid" class="form-control" id="itemid" readonly="">{{ old('itemid') }}</input>
+						<input name="itemid" class="form-control" id="itemid" value="{{ old('itemid') }}" readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="itemname">Item name <?= requireTxt(); ?>:</label>
-						<input name="itemname" class="form-control" id="itemname" required>{{ old('itemname') }}</input>
+						<input name="itemname" class="form-control" id="itemname" value="{{ old('itemname') }}" required>
 					</div>
 
 				</div>

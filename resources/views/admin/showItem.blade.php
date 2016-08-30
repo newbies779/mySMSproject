@@ -8,40 +8,7 @@
 
 @section('tableContent')
 <div id="grid-lside" class="col-sm-2">
-    <div class="col-sm-10 offset-sm-1 pull-xs-center" id="header-button">
-        <!-- Button trigger modal -->
-        <button class="btn btn-primary btn-block hvn-btn-shadow-outset" data-toggle="modal" href="#adminAddNew" role="button">
-            <span style="margin-top: 10px;">
-                <b>
-                    NEW
-                </b>
-            </span>
-        </button>
-    </div>
-    
-    <div class="card panel-shadow content list-group">
-        <div class="card-block shadow">          
-                <h5 class="card-title text-sm-center">Category</h5>
-        </div>
-
-        @foreach ($categories as $key => $value)
-            <div href="#" class="list-group-item list-group-item-action">
-                <span><?= $value ?></span>
-            </div>
-        @endforeach
-
-        <div class="col-sm-10 offset-sm-1 pull-xs-center">
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-block hvn-btn-shadow-outset" data-toggle="modal" href="#adminNewCate" role="button">
-                <span style="margin-top: 10px;">
-                    <b>
-                        NEW Category
-                    </b>
-                </span>
-            </button>
-        </div>
-    </div> 
-
+    @include('admin.category_component')
 </div>
 
 <div class="col-sm-10 offset-sm-2" id="grid-body">
@@ -58,6 +25,7 @@
 @include('modals.adminEditModal')
 @include('modals.adminAddNewItem')
 @include('modals.adminAddCategory')
+@include('modals.adminEditCategory')
 
 @stop
 
@@ -93,39 +61,68 @@
                 case 'Available':
                     spanStatus.attr('class','tag tag-info')
                     break;
-                case 'Broken':
-                    spanStatus.attr('class','tag tag-danger')
-                    break;
-                case 'Borrowed':
-                    spanStatus.attr('class','tag tag-borrow')
-                    break;
-                case 'Lost':
-                    spanStatus.attr('class','tag tag-lost')
-                    break;
-                case 'Repairing':
-                    spanStatus.attr('class','tag tag-warning')
-                    break;
-                case 'Reserved':
-                    spanStatus.attr('class','tag tag-success')
-                    break;
-                case 'ReturnPending':
-                    spanStatus.attr('class','tag tag-return-pending')
-                    break;
-                case 'Unavailable':
-                    spanStatus.attr('class','tag tag-unavailable')
-                    break;
-                }
-                spanStatus.html(item.status);
-                $('#inputStatus').val(item.status);
+                    case 'Broken':
+                        spanStatus.attr('class','tag tag-danger')
+                        break;
+                        case 'Borrowed':
+                            spanStatus.attr('class','tag tag-borrow')
+                            break;
+                            case 'Lost':
+                                spanStatus.attr('class','tag tag-lost')
+                                break;
+                                case 'Repairing':
+                                    spanStatus.attr('class','tag tag-warning')
+                                    break;
+                                    case 'Reserved':
+                                        spanStatus.attr('class','tag tag-success')
+                                        break;
+                                        case 'ReturnPending':
+                                            spanStatus.attr('class','tag tag-return-pending')
+                                            break;
+                                            case 'Unavailable':
+                                                spanStatus.attr('class','tag tag-unavailable')
+                                                break;
+                                            }
+                                            spanStatus.html(item.status);
+                                            $('#inputStatus').val(item.status);
 
-                $('#itemid').val(item.custom_id);
-                $('#itemname').val(item.name);
-                $('#location').val(item.location);
-                $('#note').val(item.note);
-                $('#bought_year').val(item.bought_year);
-                $('form#formForAdminEdit').attr('action','item/'+ item.id); 
+                                            $('#itemid').val(item.custom_id);
+                                            $('#itemname').val(item.name);
+                                            $('#location').val(item.location);
+                                            $('#note').val(item.note);
+                                            $('#bought_year').val(item.bought_year);
+                                            $('form#formForAdminEdit').attr('action','item/'+ item.id); 
 
-            });
+                                        });
+
+        var table = $('#tableItemAdmin').DataTable();
+
+        // $('.cate_hover').click(function(e){
+        //     $('.cate_hover').removeClass('active');
+        //     table.search($(this).children().find('label').html()).draw();
+        //     $(this).addClass('active');
+        // });
+
+        $('.cate_hover').click(function(e){
+            $('.showall').removeClass('active');
+            $('.cate_hover').removeClass('active');
+            table.search($(this).children().find('label').html()).draw();
+            $(this).addClass('active');
+        });
+
+        $('.showall').click(function(e){
+            $('.showall').removeClass('active');
+            $('.cate_hover').removeClass('active');
+            table.search('').draw();
+            $(this).addClass('active');
+        });
+
+        $('.categoryEdit').click(function(e){
+            var category = $(this).data("category");
+            console.log(category);
+            $('#adminEditCategory').find('#name').val($(this).parent().find('label').html());
+            $('#formForEditCategory').attr('action','category/'+category.id);
+        })
     });
 </script>
 
