@@ -1,12 +1,12 @@
 <table class="table table-hover" style="width: 100%;" cellspacing="0" id="tableItemAdmin">
 	<thead>
 		<div class="btn-group" role="button" arial-label="Import/Export" style="padding: 0.5rem;">
-			<button class="btn btn-primary btn-sm">
+			<a href="{{ URL::to('export') }}" class="btn btn-primary btn-sm">
 				Import
-			</button>
-			<button class="btn btn-secondary btn-sm">
+			</a>
+			<a class="btn btn-secondary btn-sm" data-toggle="modal" href="#adminImportItem">
 				Export
-			</button>
+			</a>
 		</div>
 		<tr>
 			<th class="text-xs-center">#</th>
@@ -71,10 +71,10 @@
 				<?php endif ?>
 			</td> -->
 			<td class="pos-left" style="max-height:100px;max-width:150px;word-wrap:break-word;overflow:hidden"><?= $item->category->name; ?></td>
-			<td align="center">
+			<td class="pos-left">
 						<button 
 						type="button" 
-						class="btn btn-primary adminEdit"  
+						class="btn btn-primary btn-sm adminEdit"  
 						data-toggle="modal" 
 						href="#adminEditItem" 
 						id="adminEditButton<?= $i; ?>"
@@ -91,5 +91,5 @@
 
 {{-- Include File --}}
 
-{{-- @include('showModalApprove') --}}
+@include('modals.adminImportModal')
 

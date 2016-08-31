@@ -9,7 +9,7 @@
 
     <div id="hero-section">
     	<div class="jumbotron jumbotron-fluid">
-    	<h1 class="display-3">Welcome to SMS project</h1>
+    	<h1 class="display-3">Welcome to <strong>SMS</strong> project</h1>
 		<p class="lead">
 			Have not create account yet? 
 		</p>
