@@ -8,17 +8,17 @@
 			</div>
 			<div class="modal-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped tata" id="itemtable1">
+					<table class="table table-hover tata" style="width: 100%;" cellspacing="0" id="itemtable1">
 						<thead class="thead-default">
 							<tr>
-								<th>#</th>
-								<th>Custom Id</th>
-								<th>Item Name</th>
-								<th>Location</th>
-								<th>Category</th>
+								<th class="text-xs-left">#</th>
+								<th class="text-xs-left">Custom Id</th>
+								<th class="text-xs-left">Item Name</th>
+								<th class="text-xs-left">Location</th>
+								<th class="text-xs-left">Category</th>
 								<th style="display:none">Note</th>
 								<th style="display:none">id</th>
-								<th>Action</th>
+								<th class="text-xs-left">Action</th>
 							</tr>
 						</thead>
 						<?php $i =1; ?>
@@ -26,15 +26,15 @@
 							@foreach ($items as $item)
 							@if($item->status == "Available")
 							<tr>
-								<th><?= $i; ?></th>
-								<td>{{ $item->custom_id }}</td>
-								<td>{{ $item->name }}</td>
-								<td>{{ $item->location }}</td>
-								<td>{{ $item->category->name }}</td> 
+								<th class="pos-left"><?= $i; ?></th>
+								<td class="pos-left">{{ $item->custom_id }}</td>
+								<td class="pos-left">{{ $item->name }}</td>
+								<td class="pos-left">{{ $item->location }}</td>
+								<td class="pos-left">{{ $item->category->name }}</td> 
 								{{-- <td>{{ date('Y', strtotime($item->bought_year)) }}</td>  --}}
 								<td style="display:none" id="itemnote<?= $i; ?>">{{  $item->note }}</td>
 								<td style="display:none" id="itemid<?= $i++; ?>">{{  $item->id }}</td>
-								<td align="center"> 
+								<td class="pos-left"> 
 									<button class="btn btn-primary rentbtn hvr-box-shadow-outset"
 									data-toggle="modal" 
 									href="#RentConfirmModal"

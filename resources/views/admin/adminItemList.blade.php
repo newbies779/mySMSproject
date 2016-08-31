@@ -1,5 +1,13 @@
 <table class="table table-hover" style="width: 100%;" cellspacing="0" id="tableItemAdmin">
 	<thead>
+		<div class="btn-group" role="button" arial-label="Import/Export" style="padding: 0.5rem;">
+			<button class="btn btn-primary btn-sm">
+				Import
+			</button>
+			<button class="btn btn-secondary btn-sm">
+				Export
+			</button>
+		</div>
 		<tr>
 			<th class="text-xs-center">#</th>
 			<th class="text-xs-left">Custom ID</th>

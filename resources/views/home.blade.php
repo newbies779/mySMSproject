@@ -22,19 +22,22 @@
 @stop
 
 @section('tableContent')
-<div class="table-responsive">
-    <table class="table table-bordered table-hover table-striped" id="itemtable">
-        <thead class="thead-default">
+<div id="grid-body" class="col-sm-10 offset-sm-1">
+    <div id="table-container" class="card card-block shadow">
+        <h3 class="card-title text-xs-center">Request List</h3>
+            <div class="table-responsive">
+    <table class="table table-hover" style="width: 100%;" cellspacing="0" id="itemtable">
+        <thead>
             <tr>
-                <th>#</th>
-                <th>Item Name</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Rent Date</th>
-                <th>Due Date</th>
-                <th>Rent Status</th>
-                <th>Return Status</th>
-                <th>Action</th>
+                <th class="text-xs-left">#</th>
+                <th class="text-xs-left">Item Name</th>
+                <th class="text-xs-left">Date</th>
+                <th class="text-xs-left">Time</th>
+                <th class="text-xs-left">Rent Date</th>
+                <th class="text-xs-left">Due Date</th>
+                <th class="text-xs-left">Rent Status</th>
+                <th class="text-xs-left">Return Status</th>
+                <th class="text-xs-left">Action</th>
                 <th style="display:none">note</th>
                 <th style="display:none">itemid</th>
             </tr>
@@ -46,24 +49,37 @@
             @foreach ($rentList as $rent)
 
             <tr>
-                <th class="pull-xs-right" scope="row"><?= $i ?></th>
-                <td id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
-                <td>{{date('d/m/y', strtotime($rent->created_at))}}</td>
-                <td>{{date('H:i', strtotime($rent->created_at))}}</td>
-                <td>{{ date('d/m/Y', strtotime($rent->rent_req_date))}}</td>
-                <td>
+                <td class="pos-left" scope="row"><strong><?= $i ?></strong></td>
+                <td class="pos-left" id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
+                <td class="pos-left">{{date('d/m/y', strtotime($rent->created_at))}}</td>
+                <td class="pos-left">{{date('H:i', strtotime($rent->created_at))}}</td>
+                <td class="pos-left">{{ date('d/m/y', strtotime($rent->rent_req_date))}}</td>
+                <td class="pos-left">
                     <?php if($rent->return_date != "") : ?>
                         {{ date('d/m/Y', strtotime($rent->return_req_date)) }}
                     <?php endif ?>
                 </td> 
-                <td style="<?php if($rent->rent_status == "Approved") echo "background-color: #e2ebf7";else echo "background-color: #fcf2e4;" ?>" >{{ $rent->rent_status }}</td> 
-                <td style="<?php if($rent->return_status == "Yes") echo "background-color: #e0f3e7"; 
-                    else echo "background-color: #d8d8d8"; ?> "> <?= $rent->return_status; ?>
+                <td class="pos-left"> 
+                    @if ($rent->rent_status == "Approved")
+                        <span class="tag tag-success">
+                    @elseif ($rent->rent_status == "Pending")
+                        <span class="tag tag-warning">
+                    @endif
+                    {{ $rent->rent_status }}</span></td> 
+                <td class="pos-left">
+                    @if ($rent->return_status == "Yes")
+                        <span class="tag tag-success">
+                    @elseif ($rent->return_status == "Pending")
+                        <span class="tag tag-warning">
+                    @elseif ($rent->return_status == "No")
+                        <span class="tag tag-default">
+                    @endif
+                    {{ $rent->return_status }}</span>
                 </td>
 
                 <!-- Button trigger modal -->
-                <td align="center">
-                    <button type="button" class="btn btn-outline-primary returnBtn"  data-toggle="modal" href="#stack3" data-row="<?= $i ?>" data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled"; 
+                <td class="pos-left">
+                    <button type="button" class="btn btn-primary btn-sm returnBtn"  data-toggle="modal" href="#stack3" data-row="<?= $i ?>" data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled"; 
                         ?>>Return</button>
                     </td>
                     <td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
@@ -74,6 +90,10 @@
             </tbody>
         </table>
     </div>
+    </div>
+</div>
+
+
 
     @include('showerror')
 

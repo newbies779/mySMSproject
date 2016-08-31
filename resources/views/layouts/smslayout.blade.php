@@ -31,7 +31,7 @@
 				</button>
 				<div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
 					<div class="bg-faded p-a-1">
-						<a class="navbar-brand" href="{{ url('/') }}">SMS project</a>
+						<a class="navbar-brand" href="{{ url('/') }}" style="color:#0275d8;">SMS project</a>
 						<ul class="nav navbar-nav">
 							<li class="nav-item">
 								<a class="nav-link" id="homenav" href="{{ url('/home') }}">Home</a>
@@ -59,12 +59,12 @@
 
 							<li class="nav-item pull-xs-right"><a class="nav-link" id="loginnav" href="{{ url('/login') }}">Login</a></li>
 							@else
-							<div class="dropdown pull-xs-right">
+							<div class="dropdown pull-xs-right" style="margin-left: 20px;margin-right: 20px;">
 								<a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-target="#" aria-haspopup="true" aria-expanded="false" id="dropdownMenuLink">
 									{{ Auth::user()->name }}&nbsp;<span class="text-muted"><small>{{ Auth::user()->role }}</small></span> <span class="caret"></span>
 								</a>
 
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-right: 20px;">
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 									<a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
 								</div>
 							</div>
