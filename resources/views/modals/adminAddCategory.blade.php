@@ -12,7 +12,7 @@
 				<div class="modal-body">
 					
 					<div class="form-group">
-						<label for="name">Category Name <?= requireTxt(); ?>:</label>
+						<label for="name"><b>Category Name: <span class="tag tag-warning" style="color: red;"><?= requireTxt(); ?>:</span><b></label>
 						<input name="name" class="form-control" id="name" value="{{ old('name') }}" required>
 					</div>
 

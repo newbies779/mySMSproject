@@ -4,6 +4,14 @@
 </div>
 <h4 class="text-sm-center">Item List</h4>
 	<thead>
+		<div class="btn-group" role="button" arial-label="Import/Export" style="padding: 0.5rem;">
+			<a href="{{ URL::to('export') }}" class="btn btn-primary btn-sm">
+				Import
+			</a>
+			<a class="btn btn-secondary btn-sm" data-toggle="modal" href="#adminImportItem">
+				Export
+			</a>
+		</div>
 		<tr>
 			<th class="text-xs-center">#</th>
 			<th class="text-xs-left">Custom ID</th>
@@ -67,10 +75,10 @@
 				<?php endif ?>
 			</td> -->
 			<td class="pos-left" style="max-height:100px;max-width:150px;word-wrap:break-word;overflow:hidden"><?= $item->category->name; ?></td>
-			<td align="center">
+			<td class="pos-left">
 						<button 
 						type="button" 
-						class="btn btn-primary adminEdit"  
+						class="btn btn-primary btn-sm adminEdit"  
 						data-toggle="modal" 
 						href="#adminEditItem" 
 						id="adminEditButton<?= $i; ?>"
@@ -87,5 +95,5 @@
 
 {{-- Include File --}}
 
-{{-- @include('showModalApprove') --}}
+@include('modals.adminImportModal')
 

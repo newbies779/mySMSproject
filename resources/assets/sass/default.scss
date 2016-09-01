@@ -70,6 +70,60 @@ label:focus {
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
   animation-delay: 0ms;
+  #loginButton {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    width: 60px;
+    height: 60px;
+    transform: translate(0, 50%) scale(1) rotate(0deg);
+    outline: none;
+    border-radius: 50%;
+    -webkit-transition: transform 600ms ease-in-out;
+    -moz-transition: transform 600ms ease-in-out;
+    -ms-transition: transform 600ms ease-in-out;
+    -o-transition: transform 600ms ease-in-out;
+    transition: transform 600ms ease-in-out;
+    &:hover {
+      transform: translate(0, 50%) scale(1.2) rotate(360deg);
+    }
+  }
+}
+
+#regisForm {
+  opacity: 0;
+  transform: scale(0, 0);
+  animation-name: pop;
+  animation-duration: 600ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: 0ms;
+  .card {
+    position: relative;
+    width: 70%;
+    height: 100%;
+    top: 50%;
+    right: 50%;
+    transform: translate(60%,-10%);
+  }
+  #regisButton {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    width: 60px;
+    height: 60px;
+    outline: none;
+    border-radius: 50%;
+    -webkit-transition: transform 300ms ease-in-out;
+    -moz-transition: transform 300ms ease-in-out;
+    -ms-transition: transform 300ms ease-in-out;
+    -o-transition: transform 300ms ease-in-out;
+    transition: transform 300ms ease-in-out;
+    transform: translate(0%, 50%) scale(1);
+    &:hover {
+      transform: translate(0%, 40%) scale(1.2);
+    }
+  }
 }
 
 #hero-section {
@@ -83,6 +137,7 @@ label:focus {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
     > h1 {
       opacity: 0;
       transform: translateY(50%);

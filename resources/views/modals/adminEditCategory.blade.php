@@ -24,7 +24,7 @@
 						</div>
 		
 						<div class="form-group">
-							<label for="Rentable"><strong>Rentable:&nbsp;</strong></label><br>
+							<label for="Rentable"><strong>Rentable:&nbsp;</strong></label>
 
 							<select name="Rentable" id="Rentable">
 								<option value="1">yes</option>
