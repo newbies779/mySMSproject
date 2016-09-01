@@ -7,6 +7,10 @@
 @stop
 
 @section('tableContent')
+@include('modals.adminEditModal')
+@include('modals.adminAddNewItem')
+@include('modals.adminAddCategory')
+@include('modals.adminEditCategory')
 <div id="grid-lside" class="col-sm-2">
     @include('admin.category_component')
 </div>
@@ -36,7 +40,7 @@
     });
 </script>
 <script>
-var data = {};
+    var data = {};
     $(document).ready(function() {
         var modal = $('#adminEditItem');
 
@@ -49,8 +53,8 @@ var data = {};
         })
 
         $('.iconpopover').hover(function() {
-           $(this).popover('toggle');
-        });
+         $(this).popover('toggle');
+     });
 
         $(window).click(function() {
             if($('.new-contextmenu').is(":visible")) {
@@ -60,15 +64,15 @@ var data = {};
 
         $('#adminAddNew').on('show.bs.modal', function(e) {
             $('label.btn').click(function() {
-            data['status'] = $(this).children('input[name="options"]').val();
-            console.log(data["status"]);
+                data['status'] = $(this).children('input[name="options"]').val();
+                console.log(data["status"]);
             });
         });
 
         $('#formForAdminAddNew').submit(function(e) {
             var status = $("<input>")
-               .attr("type", "hidden")
-               .attr("name", "status").val(data.status);
+            .attr("type", "hidden")
+            .attr("name", "status").val(data.status);
             $(this).append($(status));
             return true;
         });
@@ -157,9 +161,6 @@ var data = {};
 @stop
 {{-- Include Modals --}}
 
-@include('modals.adminEditModal')
-@include('modals.adminAddNewItem')
-@include('modals.adminAddCategory')
-@include('modals.adminEditCategory')
+
 
 

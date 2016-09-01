@@ -93,6 +93,7 @@ class excelController extends Controller
 					$userID = User::select('id')
 					->where('name', $value->username)
 					->first();
+					$userID = $userID->id;
 					$item = new Item;
 					if (!is_null($userID)) {
 						$item->item_id = $value->item_id;
@@ -100,7 +101,7 @@ class excelController extends Controller
 						$item->name = $value->itemname;
 						$item->status = $value->status;
 						$item->location = $value->location;
-						$item->assignee_id = $value->assignee_id;
+						$item->assignee_id = $userID;
 						$item->category_id = 10;
 						$item->save();
 					} else {

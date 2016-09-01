@@ -47,7 +47,7 @@
             <?php $i = $rentList->count(); ?>
 
             @foreach ($rentList as $rent)
-
+            
             <tr>
                 <td class="pos-left" scope="row"><strong><?= $i ?></strong></td>
                 <td class="pos-left" id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
@@ -55,8 +55,8 @@
                 <td class="pos-left">{{date('H:i', strtotime($rent->created_at))}}</td>
                 <td class="pos-left">{{ date('d/m/y', strtotime($rent->rent_req_date))}}</td>
                 <td class="pos-left">
-                    <?php if($rent->return_date != "") : ?>
-                        {{ date('d/m/Y', strtotime($rent->return_req_date)) }}
+                    <?php if(!is_null($rent->return_date)) : ?>
+                        {{ date('d/m/Y', strtotime($rent->return_date)) }}
                     <?php endif ?>
                 </td> 
                 <td class="pos-left"> 

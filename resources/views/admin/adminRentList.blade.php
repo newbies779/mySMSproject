@@ -23,51 +23,58 @@
 
 		@foreach ($rentList as $rent)
 
-					<tr>
-						<td class="pos-left" scope="row"><b><?= $i ?></b></td>
-						<td class="pos-left"> {{ date('d/m/y', strtotime($rent->created_at))}} </td>
-						<td class="pos-left">{{ date('H:i', strtotime($rent->created_at))}}</td>
-						<td class="pos-left">{{ $rent->user->name }}</td>
-						<td class="pos-left">{{ $rent->item->name }}</td>
-						<td class="pos-left"> {{ date('d/m/y', strtotime($rent->rent_req_date))}} </td>
-						<td class="pos-left">
-							 @if ($rent->rent_status == "Approved")
-		                        <span class="tag tag-success">
-		                    @elseif ($rent->rent_status == "Pending")
-		                        <span class="tag tag-warning">
-		                    @endif
-		                    {{ $rent->rent_status }}</span>
-						</td>
-						<td class="pos-left"> @if(!is_null($rent->return_req_date)){{ date('d/m/y', strtotime($rent->return_req_date))}} @endif </td>
-						<td class="pos-left">
-							@if ($rent->return_status == "Approved")
-		                        <span class="tag tag-success">
-		                    @elseif ($rent->return_status == "Pending")
-		                        <span class="tag tag-warning">
-		                    @elseif ($rent->return_status == "No")
-		                        <span class="tag tag-default">
-		                    @endif
-		                    {{ $rent->return_status }}</span>
-						</td>
-						<!-- Button Rent Trigger Modal -->
-						
-							<td class="pos-left">
-								<button type="button" class="btn btn-sm btn-primary rent-approve"
-								data-toggle="modal"
-								data-target ="#rentApproveModal" 
-								data-row="<?= $i ?>"
-								data-rent = "{{ $rent }}"
-								data-rentItem = "{{ $rent->item }}"
-								<?php if($rent->rent_status == "Approved") echo "disabled"; ?>>
-										@if ($rent->rent_status == "Pending")
-											Approve
-										@else
-											Approved
-										@endif
+		<tr>
+			<td class="pos-left" scope="row"><b><?= $i ?></b></td>
+			<td class="pos-left"> {{ date('d/m/y', strtotime($rent->created_at))}} </td>
+			<td class="pos-left">{{ date('H:i', strtotime($rent->created_at))}}</td>
+			<td class="pos-left">{{ $rent->user->name }}</td>
+			<td class="pos-left">{{ $rent->item->name }}</td>
+			<td class="pos-left"> {{ date('d/m/y', strtotime($rent->rent_req_date))}} </td>
+			<td class="pos-left">
+				@if ($rent->rent_status == "Approved")
+				<span class="tag tag-success">
+					@elseif ($rent->rent_status == "Pending")
+					<span class="tag tag-warning">
+						@endif
+						{{ $rent->rent_status }}</span>
+					</td>
+					<td class="pos-left"> 
+						@if (!is_null($rent->return_date))
+						{{ date('d/m/y', strtotime($rent->return_date)) }}
+						@else
+							@if(!is_null($rent->return_req_date)){{ date('d/m/y', strtotime($rent->	return_req_date))}} 
+							@endif
+						@endif
+					</td>
+					<td class="pos-left">
+						@if ($rent->return_status == "Approved")
+						<span class="tag tag-success">
+							@elseif ($rent->return_status == "Pending")
+							<span class="tag tag-warning">
+								@elseif ($rent->return_status == "No")
+								<span class="tag tag-default">
+									@endif
+									{{ $rent->return_status }}</span>
+								</td>
+								<!-- Button Rent Trigger Modal -->
+
+								<td class="pos-left">
+									<button type="button" class="btn btn-sm btn-primary rent-approve"
+									data-toggle="modal"
+									data-target ="#rentApproveModal" 
+									data-row="<?= $i ?>"
+									data-rent = "{{ $rent }}"
+									data-rentItem = "{{ $rent->item }}"
+									<?php if($rent->rent_status == "Approved") echo "disabled"; ?>>
+									@if ($rent->rent_status == "Pending")
+									Approve
+									@else
+									Approved
+									@endif
 								</button>
 							</td>
-						
-						<!-- Button Return Approve -->
+
+							<!-- Button Return Approve -->
 							<td class="pos-left">
 								<button type="button" class="btn btn-sm btn-warning return-approve"  
 								data-toggle="modal"
@@ -75,57 +82,57 @@
 								data-row="<?= $i ?>"
 								data-rent = "{{ $rent }}"
 								<?php if($rent->return_status != "Pending") echo " disabled"; ?>>
-									@if ($rent->return_status != "Approved")
-										Approve
-									@else
-										Approved
-									@endif
-								</button>
-							</td>
+								@if ($rent->return_status != "Approved")
+								Approve
+								@else
+								Approved
+								@endif
+							</button>
+						</td>
 
-							{{-- Hidden Information --}}
-							<td style="display:none" id="noteForRent<?= $i; ?>">{{  $rent->item->rent_req_note }}</td>
-							<td style="display:none" id="noteForReturn<?= $i; ?>">{{  $rent->item->return_req_note }}</td>
-							<td style="display:none" id="rentId<?= $i++; ?>">{{  $rent->id }}</td>
+						{{-- Hidden Information --}}
+						<td style="display:none" id="noteForRent<?= $i; ?>">{{  $rent->item->rent_req_note }}</td>
+						<td style="display:none" id="noteForReturn<?= $i; ?>">{{  $rent->item->return_req_note }}</td>
+						<td style="display:none" id="rentId<?= $i++; ?>">{{  $rent->id }}</td>
 					</tr>
 
-				@endforeach
+					@endforeach
 
 
-	</tbody>
-</table>
+				</tbody>
+			</table>
 
-{{-- Include File --}}
+			{{-- Include File --}}
 
-@include('modals.showModalApprove')
+			@include('modals.showModalApprove')
 
-@section('script')
-<script>
-    $(document).ready(function() {
-        $('#table-admin').DataTable({
-            "paging":   true,
-            "ordering": true,
-            "info":     true,
-            "pageLength": 25,
-            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
-        });
-    });
-</script>
+			@section('script')
+			<script>
+				$(document).ready(function() {
+					$('#table-admin').DataTable({
+						"paging":   true,
+						"ordering": true,
+						"info":     true,
+						"pageLength": 25,
+						"lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+					});
+				});
+			</script>
 
-<script>
-    $(document).ready(function() {
+			<script>
+				$(document).ready(function() {
 
-        $('#homenav').addClass("active");
+					$('#homenav').addClass("active");
 
-        setTimeout(function() {
-            $('#flash').fadeOut('slow');
+					setTimeout(function() {
+						$('#flash').fadeOut('slow');
             }, 3000); // <-- time in milliseconds
 
         // on Modal rent approve show
         $('#rentApproveModal').on('show.bs.modal', function(e) {
         	var modal = $(this);
-            var button = $(e.relatedTarget);
-            var rent = button.data('rent');
+        	var button = $(e.relatedTarget);
+        	var rent = button.data('rent');
             //console.log(rent.item.custom_id);
             modal.find('#icustomId').text(rent.item.custom_id);
             modal.find('#iname').text(rent.item.name);
@@ -138,8 +145,8 @@
         // on Modal return approve show
         $('#returnApproveModal').on('show.bs.modal', function(e) {
         	var modal = $(this);
-            var button = $(e.relatedTarget);
-            var rent = button.data('rent');
+        	var button = $(e.relatedTarget);
+        	var rent = button.data('rent');
             //console.log(rent.item.custom_id);
             modal.find('#rcustomId').text(rent.item.custom_id);
             modal.find('#rname').text(rent.item.name);
