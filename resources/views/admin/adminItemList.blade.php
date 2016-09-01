@@ -1,14 +1,11 @@
 <table class="table table-hover" style="width: 100%;" cellspacing="0" id="tableItemAdmin">
-<div>
-	<button>kanor</button>
-</div>
 <h4 class="text-sm-center">Item List</h4>
 	<thead>
 		<div class="btn-group" role="button" arial-label="Import/Export" style="padding: 0.5rem;">
-			<a href="{{ URL::to('export') }}" class="btn btn-primary btn-sm">
+			<a  class="btn btn-primary btn-sm" data-toggle="modal" href="#adminImportItem">
 				Import
 			</a>
-			<a class="btn btn-secondary btn-sm" data-toggle="modal" href="#adminImportItem">
+			<a href="{{ URL::to('export') }}" class="btn btn-secondary btn-sm" >
 				Export
 			</a>
 		</div>

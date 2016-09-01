@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Item;
 use App\User;
 use DB;
 use Illuminate\Http\Request;
@@ -92,30 +93,25 @@ class excelController extends Controller
 					$userID = User::select('id')
 					->where('name', $value->username)
 					->first();
+					$item = new Item;
 					if (!is_null($userID)) {
-						DB::table('items')->insert(
-							[
-							'item_id' => $value->item_id,
-							'custom_id' => $value->custom_id,
-							'name' => $value->itemname,
-							'status' => $value->status,
-							'location' => $value->location,
-							'assignee_id' => $userID->id,
-							'category_id' => 10
-							]
-							);
+						$item->item_id = $value->item_id;
+						$item->custom_id = $value->custom_id;
+						$item->name = $value->itemname;
+						$item->status = $value->status;
+						$item->location = $value->location;
+						$item->assignee_id = $value->assignee_id;
+						$item->category_id = 10;
+						$item->save();
 					} else {
-						DB::table('items')->insert(
-							[
-							'item_id' => $value->item_id,
-							'custom_id' => $value->custom_id,
-							'name' => $value->itemname,
-							'status' => $value->status,
-							'location' => $value->location,
-							'assignee_id' => 1,
-							'category_id' => 10
-							]
-							);
+						$item->item_id = $value->item_id;
+						$item->custom_id = $value->custom_id;
+						$item->name = $value->itemname;
+						$item->status = $value->status;
+						$item->location = $value->location;
+						$item->assignee_id = 1;
+						$item->category_id = 10;
+						$item->save();
 					}
 				}
 			});
