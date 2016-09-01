@@ -49,6 +49,10 @@
 									<li class="nav-item" style="margin-right: 16px;">
 										<a class="nav-link" id="historynav" href="{{ url('/history') }}">History</a>
 									</li>
+
+									<li class="nav-item" style="margin-right: 16px;">
+										<a class="nav-link" href="{{ url('importPage') }}">Import/Export</a>
+									</li>
 								@endif
 							@endif
 

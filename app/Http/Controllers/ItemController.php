@@ -36,7 +36,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all()->load('category');
+        $items = Item::all()->load('category','users');
         $categories = Category::all();
         return view('admin.showItem', compact('items','categories'));
     }

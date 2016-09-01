@@ -1,4 +1,8 @@
 <table class="table table-hover" style="width: 100%;" cellspacing="0" id="tableItemAdmin">
+<div>
+	<button>kanor</button>
+</div>
+<h4 class="text-sm-center">Item List</h4>
 	<thead>
 		<tr>
 			<th class="text-xs-center">#</th>
@@ -52,7 +56,7 @@
 			<td class="pos-left"><?= $item->location; ?></td>
 			<td class="pos-left">
 				@if (!is_null($item->assignee_id))
-					<?= $item->assignee_id ?>
+					<?= $item->users->name ?>
 				@else <?= 'No' ?>
 				@endif
 			</td>
