@@ -3,7 +3,6 @@
 @section('header')
 @include('showerror')
 @include('flash')
-
 @stop
 
 @section('tableContent')

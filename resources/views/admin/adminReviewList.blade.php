@@ -14,7 +14,6 @@
 	<tbody>
 
 		<?php $i = 1; ?>
-
 		@foreach ($reviewItem as $item)
 			<tr>
 				<th class="text-xs-center" scope="row"><?= $i ?></th>
@@ -41,9 +40,11 @@
                     {{ $item->status }}</span>
                 </td>
 				<td class="pos-left"> {{ substr($item->note,0,80) }} </td>
-				<td class="pos-left"> @if (!is_null($item->reviewed_at))
-                    {{ date('d/m/y', strtotime($item->reviewed_at))}}
-                @endif </td>			
+				<td class="pos-left"> 
+                    @if (!is_null($item->reviewed_at))
+                        {{ date('d/m/y', strtotime($item->reviewed_at))}}
+                    @endif 
+                </td>
 				<td class="pos-left">
                     <button class="btn btn-sm btn-primary" 
                     data-toggle="modal" 
@@ -98,6 +99,10 @@ var modal = $('#modalEditReview');
             modal.find('#reviewAssignee').val(assignee.name);
             modal.find('#reviewLocation').val(item.location);
             modal.find('input[value='+ item.status +']').parent('label').addClass('active');
+            if (item.status == "Reserved" || item.status == "ReturnPending" || item.status == "Borrowed") {
+                modal.find('.btn-group').hide();
+                modal.find('label[for="formGroupExampleInput"]').html("<b>Status:</b> <em>This item cannot <b>change</b> status.</em>");
+            }
 
             $('label.btn').click(function() {
                 reviewData["status"] = $(this).children('input[name="options"]').val();
