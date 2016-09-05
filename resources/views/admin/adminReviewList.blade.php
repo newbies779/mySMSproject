@@ -102,6 +102,9 @@ var modal = $('#modalEditReview');
             if (item.status == "Reserved" || item.status == "ReturnPending" || item.status == "Borrowed") {
                 modal.find('.btn-group').hide();
                 modal.find('label[for="formGroupExampleInput"]').html("<b>Status:</b> <em>This item cannot <b>change</b> status.</em>");
+            } else {
+                modal.find('.btn-group').show();
+                modal.find('label[for="formGroupExampleInput"]').html("<b>Status:</b>&nbsp;&nbsp;&nbsp;&nbsp;");
             }
 
             $('label.btn').click(function() {
