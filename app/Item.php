@@ -79,6 +79,8 @@ class Item extends Model
             if ($request->input('assignee_location')) {
                 $item->location = $request->input('assignee_location');
             }
+
+            $item->reviewed_at = Carbon::now();
             
             $item->save();
 

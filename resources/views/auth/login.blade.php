@@ -1,5 +1,4 @@
 @extends('layouts.smslayout')
-
 @section('content')
 <div id="loginForm" class="container">
     <div class="row">

@@ -41,8 +41,8 @@
                     {{ $item->status }}</span>
                 </td>
 				<td class="pos-left"> {{ substr($item->note,0,80) }} </td>
-				<td class="pos-left"> @if (!is_null($item->updated_at))
-                    {{ date('d/m/y', strtotime($item->updated_at))}}
+				<td class="pos-left"> @if (!is_null($item->reviewed_at))
+                    {{ date('d/m/y', strtotime($item->reviewed_at))}}
                 @endif </td>			
 				<td class="pos-left">
                     <button class="btn btn-sm btn-primary" 
