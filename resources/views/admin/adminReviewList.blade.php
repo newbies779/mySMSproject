@@ -95,7 +95,7 @@ var modal = $('#modalEditReview');
             modal.find('#reviewAssignee').val(assignee.name);
             modal.find('#reviewLocation').val(item.location);
             modal.find('input[value='+ item.status +']').parent('label').addClass('active');
-            if (item.status == "Available" || item.status == "ReturnPending" || item.status == "Borrowed") {
+            if (item.status == "Reserved" || item.status == "ReturnPending" || item.status == "Borrowed") {
                 modal.find('.btn-group').hide();
                 modal.find('label[for="formGroupExampleInput"]').html("<b>Status:</b> <em>This item cannot <b>change</b> status.</em>");
             } else {
