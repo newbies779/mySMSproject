@@ -1,8 +1,8 @@
 @extends('layouts.smslayout')
 
 @section('header')
-@include('showerror')
 @include('flash')
+@include('showerror')
 
 <div class="row">
     <div id="header-title" class="col-xs-12 col-sm-8">
@@ -37,7 +37,7 @@
                 <th class="text-xs-left">Due Date</th>
                 <th class="text-xs-left">Rent Status</th>
                 <th class="text-xs-left">Return Status</th>
-                <th class="text-xs-left">Action</th>
+                <th class="text-xs-center">Action</th>
                 <th style="display:none">note</th>
                 <th style="display:none">itemid</th>
             </tr>
@@ -81,7 +81,8 @@
                 <td class="pos-left">
                     <button type="button" class="btn btn-primary btn-sm returnBtn"  data-toggle="modal" href="#stack3" data-row="<?= $i ?>" data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled"; 
                         ?>>Return</button>
-                    </td>
+                    <button type="button" class="btn btn-primary btn-sm btn_show_delete" data-rent="{{ $rent }}" data-toggle="modal" href="#deleteModal">delete</button>
+                </td>
                     <td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
                     <td style="display:none" id="itemidForReturn<?= $i--; ?>">{{  $rent->item->id }}</td>
 
@@ -92,10 +93,6 @@
     </div>
     </div>
 </div>
-
-
-
-    @include('showerror')
 
 
     <!-- Modal3 -->
@@ -145,6 +142,31 @@
         </div>
     </div>
 
+    <!-- delete modal -->
+    <div class="modal hide fade" id="deleteModal" tabindex="-1" role="dialog" data-focus-on="input:first" aria-labelledby="myDeleteModal" aria-hidden="true" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h4>Delete Comfirmation</h4>
+                </div>
+                <form action="" method="POST" id="formForDeleteRent">
+                <div class="modal-body">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <h4>Are you sure you want to delete</h4>
+                        <h4 id="askText"></h4>
+                    </div>
+                    <div class="modal-footer">
+                        <span class="form-group">
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                            <button class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     @endsection
 
     @section('script')
@@ -177,7 +199,6 @@
             $('#RentConfirmModal').on('show.bs.modal', function(e) {
                 var button = $(e.relatedTarget);
                 var item = button.data('item');
-                console.log(item);
                 $('#itemid').html(item.custom_id);
                 $('#itemname').html(item.name);
                 $('#itemsnote').html(item.note);
@@ -197,8 +218,6 @@
                 $('#rentListModal').modal('show');
             });
 
-            
-
             $('.returnBtn').click(function () {
 
                 var row = ($(this).data('row'));
@@ -207,7 +226,6 @@
                 $('#itemnameReturn').html($('#tditemname'+row).html());
 
                 $("#itemtable #itemnoteForReturn"+row).each(function(){
-                 console.log($(this));
                  $('textarea#itemNoteReturn').html($(this).html()); 
                     // console.log('itemsnote: ' + $('p#itemsnote').html());
                 });
@@ -217,6 +235,27 @@
                     $('form#formforreturn').attr('action','return/'+$(this).html()); 
                 });
             });
+
+            $('.btn_show_delete').click(function () {
+                var rent = $(this).data('rent');
+                $('#askText').replaceWith("<h4 id='askText'><strong>" + rent.item.name + "</strong></h4>");
+                $('#formForDeleteRent').attr('action','/rent/'+rent.id);
+
+            });
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+             if(dd<10){
+                    dd='0'+dd
+                } 
+                if(mm<10){
+                    mm='0'+mm
+                } 
+
+            today = yyyy+'-'+mm+'-'+dd;
+            document.getElementById("RentDate").setAttribute("min", today);
 
         });
 
@@ -232,8 +271,6 @@
             });
 
         })();
-
-
 
     </script>
 

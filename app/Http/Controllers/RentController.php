@@ -18,7 +18,7 @@ class RentController extends Controller
 	public function validation($request){
 		return [
 		   	'RentDate' => 'date|required',
-		   	'ReturnDate' => 'date'
+		   	'ReturnDate' => 'date|after:RentDate'
 		];
 	}
 
@@ -59,7 +59,6 @@ class RentController extends Controller
 
 	public function approveRent(RentListItem $rent)
 	{
-
 		$this->itemStatus = 'Borrowed';
 		$returnStatus = $rent->setRentApprove($rent,$this->itemStatus);
 
@@ -75,6 +74,24 @@ class RentController extends Controller
 		flash($returnStatus['message'],'warning');
 		return redirect('/home');
 
+	}
+
+	public function destroy(Request $request, $rentId)
+	{	
+		$rent = RentListItem::findorfail($rentId);
+		\DB::table('rent_list_items')->where('id',$rent->id)->delete();
+		
+		$item = $rent->item;
+		if($item->status == "Reserved"){
+			$item->status = "Available";
+			$item->save();
+			flash("Delete Rent information completed". 'info');
+			event(new RentApprove($item->status,Auth::user()->id,$item->id));
+			return back();
+		}else{
+			flash("Item's status is not reserved. Cannot delete". 'warning');
+			return back();
+		}
 	}
 
 	

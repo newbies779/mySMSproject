@@ -6,7 +6,7 @@ use App\Events\ReturnApprove;
 use App\Events\ReturnItem;
 use App\Http\Requests;
 use App\RentListItem;
-use App\item;
+use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;

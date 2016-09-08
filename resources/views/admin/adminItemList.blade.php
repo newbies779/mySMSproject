@@ -18,7 +18,7 @@
 			<th class="text-xs-left">Assignee</th>
 			<th class="text-xs-left">Note</th>
 			{{-- <th class="text-xs-left">Bought date</th> --}}
-			<th class="text-xs-left">Category</th>
+			<th class="text-xs-left category">Category</th>
 			<th class="text-xs-left">Action</th>
 		</tr>
 	</thead>

@@ -18,9 +18,9 @@ class CreateItemsTable extends Migration
             $table->string('custom_id');
             $table->string('name');
             $table->string('status');
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->integer('assignee_id')->unsigned()->nullable();
-            $table->string('note');
+            $table->string('note')->nullable();
             $table->date('bought_year')->nullable();
             $table->timestamp('reviewed_at')->nullable();
 

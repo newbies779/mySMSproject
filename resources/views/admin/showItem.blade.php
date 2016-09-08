@@ -131,14 +131,23 @@
         $('.cate_hover').click(function(e){
             $('.showall').removeClass('active');
             $('.cate_hover').removeClass('active');
-            table.search($(this).children().find('label').html()).draw();
+            // table.search($(this).children().find('label').html()).draw();
+            table
+                .columns( '.category' )
+                .search( $(this).children().find('label').html(),false,true,false )
+                .draw();
+
             $(this).addClass('active');
         });
 
         $('.showall').click(function(e){
             $('.showall').removeClass('active');
             $('.cate_hover').removeClass('active');
-            table.search('').draw();
+            table
+                .columns( '.category' )
+                .search('')
+                .draw();
+
             $(this).addClass('active');
         });
 

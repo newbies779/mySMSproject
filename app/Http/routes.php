@@ -33,6 +33,8 @@ Route::patch('/return/approve/{rent}', 'ReturnController@approveReturn');
 
 Route::patch('/rent/{item}', 'RentController@rentValidateandUpdate');
 
+Route::delete('/rent/{item}', 'RentController@destroy');
+
 Route::patch('/return/{item}', 'ReturnController@returnValidateandUpdate');
 
 Route::patch('/review/update', 'ReviewController@updateData');
