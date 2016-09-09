@@ -54,7 +54,10 @@
                 <td class="pos-left">{{date('d/m/y', strtotime($rent->created_at))}}</td>
                 <td class="pos-left">{{date('H:i', strtotime($rent->created_at))}}</td>
                 <td class="pos-left">{{ date('d/m/y', strtotime($rent->rent_req_date))}}</td>
-                <td class="pos-left">
+                <td class="pos-left" 
+                <?php if(strtotime('now') >= strtotime($rent->return_date)) : ?>
+                    style = "color:red"
+                <?php endif ?>>
                     <?php if(!is_null($rent->return_date)) : ?>
                         {{ date('d/m/Y', strtotime($rent->return_date)) }}
                     <?php endif ?>
@@ -69,12 +72,14 @@
                 <td class="pos-left">
                     @if ($rent->return_status == "Yes")
                         <span class="tag tag-success">
+                        {{ $rent->return_status }}
                     @elseif ($rent->return_status == "Pending")
                         <span class="tag tag-warning">
+                        {{ $rent->return_status }}
                     @elseif ($rent->return_status == "No")
-                        <span class="tag tag-default">
+                        {{-- <span class="tag tag-default"> --}}
                     @endif
-                    {{ $rent->return_status }}</span>
+                    </span>
                 </td>
 
                 <!-- Button trigger modal -->

@@ -61,6 +61,8 @@ Route::get('export', 'excelController@export');
 
 Route::get('importPage', 'excelController@importPage');
 
+Route::get('/sendMail/{id}','UserController@sendEmailNotifyUserReturnDue');
+
 Route::get('pusher', function () {
     return view('pusher');
 });
