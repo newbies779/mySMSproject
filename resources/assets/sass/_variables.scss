@@ -1,0 +1,85 @@
+@import "bower_components/bootstrap/scss/variables";
+@import "mixins";
+/* ---------- System ------------------- */
+$enable-flex			   : true;
+/*  --------- Color variables ---------- */
+
+//Button and Tags
+$default                   : #f5f6f7;
+$default-text              : #676767;
+// $default-stroke         : #d8d9d8; //same color with $black-stroke
+$primary                   : #17b5be;
+$success                   : #4fbc78;
+$info                      : #5c90d2;
+$warning                   : #f1b563;
+$error                     : #d3645a;
+$link                      : #17b5be;
+//Alert
+$alert-primary             : #e9f5fa;
+$alert-primary-text        : #17b5be;
+$alert-success             : #e0f3e7;
+$alert-success-text        : #37a364;
+$alert-info                : #e2ebf7;
+$alert-info-text           : #5c90d2;
+$alert-warning             : #fcf2e4;
+$alert-warning-text        : #f1b563;
+$alert-error               : #f7e4e2;
+$alert-error-text          : #b3473e;
+//Back and white
+$white                     : #ffffff;
+$black-lighter             : #f9fafb;
+$black-light               : #f5f6f7;
+$black-stroke              : #d8d9d8;
+$black                     : #909190;
+$black-dark                : #676767;
+$black-darker              : #333333;
+//Menu
+$primary-darker            : #2c343f;
+$primary-dark              : #789696;
+
+/*  --------- Bootstrap Custom Variables ---------- */
+
+$font-size-base            : 1.25rem;
+$font-size-h1              : 3.563rem;
+$font-size-h2              : 2.6rem;
+$font-size-h3              : 2rem;
+$font-size-h4              : 1.344rem;
+$font-size-h5              : 1.344rem;
+$font-size-h6              : 0.969rem;
+$line-height               : 1.1;
+$dropdown_border_radius    : rem(2px);
+$dropdown-link-hover-bg    : $black-light;
+$dropdown-link-hover-color : $primary-darker;
+$dropdown-border-color     : $black-stroke;
+$breadcrumb-bg             : transparent;
+$breadcrumb-active-color   : $black;
+$pagination-color          : $primary;
+$pagination-border-width   : 0;
+$pagination-active-color   : $white;
+$pagination-active-bg      : $primary;
+$pagination-hover-color    : $primary;
+$pagination-hover-bg       : $gray-lighter !default;
+
+/*  --------- Rem Setup Variables ---------- */
+
+$rem-baseline              : 16px;
+/*  --------- Shared variables ---------- */
+
+$page-min-width            : 48rem;
+
+/*Button*/
+$btn-primary-bg            : $primary;
+$btn-primary-border        : $primary;
+$btn-success-bg            : $success;
+$btn-success-border        : $success;
+$btn-info-bg               : $info;
+$btn-info-border           : $info;
+$btn-warning-bg            : $warning;
+$btn-warning-border        : $warning;
+$btn-danger-bg             : $error;
+$btn-danger-border         : $error;
+$btn-secondary-bg          : $black-light;
+
+$label-primary-bg          : $primary;
+$label-success-bg          : $success;
+$label-info-bg             : $info;

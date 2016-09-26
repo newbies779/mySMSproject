@@ -1,0 +1,114 @@
+@import "variables";
+@import "bower_components/bootstrap/scss/bootstrap";
+
+h1, .h1 {
+	font-weight: 100;
+}
+
+h2, .h2 {
+	font-weight: bold;
+}
+
+h3, .h3 {
+	font-weight: bold;
+}
+
+h4, .h4 {
+	font-weight: bold;
+}
+
+h5, .h5 {
+	font-weight: normal;
+}
+
+h6, .h6 {
+	font-weight: normal;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	margin: 0;
+}
+
+select.form-control {
+	padding: 4px 0.75rem;
+}
+
+.container {
+	min-width: $page-min-width;
+}
+
+.dropdown-menu {
+	margin-top: 0;
+	@include border-radius($dropdown_border_radius);	
+	.delete{
+		&:hover,&:focus {		
+			background-color: $error !important;
+			color: $white !important;
+		}
+	}	
+	.txt-group-label {
+		color: $black;
+	}
+}
+
+.breadcrumb {
+	color: $primary;
+	padding-left: 0;
+	padding-right: 0;
+	font: {
+		size: 1rem;
+	}
+}
+
+.modal-content {
+	border-radius: 0;
+	
+	.modal-header {
+		height: rem(48px);
+		.modal-title {
+			line-height: 1.1;
+		}
+		a {
+			color: inherit;
+			opacity: 1;
+			font-size: rem(18px);
+			padding-top: rem(2px);
+
+			&:hover {
+				color: inherit;
+				opacity: inherit;
+			}
+		}
+	}
+
+	.modal-header {
+	    padding-left: rem(30px);
+	    padding-right: rem(30px);
+	}
+	.modal-body {
+	    padding-left: rem(30px);
+	    padding-right: rem(30px);
+	}
+
+	.modal-footer {
+		border: none;
+		padding-left : rem(30px);
+	    padding-right: rem(30px);
+	    padding-bottom: rem(30px);
+	}
+}
+
+.nav-tabs .nav-link {
+	border: none;
+}
+
+.modal-sm {
+	width: 400px;
+}
+
+button, .btn {
+	outline: 0 !important;
+}
+
+input[type="checkbox"], input[type="radio"]{
+    vertical-align: middle;
+}
