@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['users', 'categories', 'items', 'logs', 'rent_list_items'];
+    protected $toTruncate = ['users', 'categories', 'items', 'logs', 'rent_list_items', 'tracking'];
     /**
      * Run the database seeds.
      *
