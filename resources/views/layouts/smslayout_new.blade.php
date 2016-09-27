@@ -34,17 +34,11 @@
 				    <a class="col-xs-10 col-sm navbar-brand" href="#">Responsive navbar</a>
 				    <div class="col-xs-12 col-sm collapse navbar-toggleable-xs" id="topCollapsingNavbar">
 				        <ul class="nav navbar-nav">
-				          <li class="nav-item active">
-				            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				          <li class="nav-item">
+				            <a class="nav-link" href="#">Not a member? <span class="sr-only">(register)</span></a>
 				          </li>
 				          <li class="nav-item">
-				            <a class="nav-link" href="#">Home</a>
-				          </li>
-				          <li class="nav-item">
-				            <a class="nav-link" href="#">Home</a>
-				          </li>
-				          <li class="nav-item">
-				            <a class="nav-link" href="#">Home</a>
+				            <button type="button" class="btn btn-outline-primary">Sign Up</button>
 				          </li>
 				        </ul>
 				    </div>
@@ -53,14 +47,45 @@
 			</div>
 		</section>
 	</header>
-	
+	<section class="body">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs">
+					<div class="logo">
+						<h1>SMS</h1>
+					</div>
+					<div class="seperator"></div>
+					<form>
+						<div class="form-group row">
+						  <div class="col-xs">
+						    <input style="display:none;" type="text" name="somefakename" />
+							<input class="form-control" type="text" id="emailInput" required>
+						    <label for="emailInput" class="col-xs-2 col-form-label">email</label>
+						  </div>
+						</div>
+						<div class="form-group row">
+						  <div class="col-xs">
+							<input style="display:none;" type="password" name="anotherfakename" />
+							<input class="form-control" type="password" id="passwordInput">
+						    <label for="passwordInput" class="col-xs-2 col-form-label">Password</label>
+						  </div>
+						</div>
+						<div class="form-group row">
+							<div class="col-xs">
+								<button type="submit" class="btn btn-block btn-secondary">Sign in</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</row>
+		</div>
+	</section>
 
 	{{-- jQuery --}}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
-	<link href="{{ asset('/js/app.js') }}">
-
+	<script src="{{ asset('/js/app.js') }}"></script>
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>

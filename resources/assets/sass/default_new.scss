@@ -1,0 +1,108 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	-webkit-text-fill-color: #c2d5db !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+.from-group {
+	>div {
+		position: relative;
+	}
+}
+input.form-control {
+	background-color: transparent;
+    background-image: none;
+    border: 0;
+    border-bottom: 1px solid rgba(194, 213, 219, 0.4);
+    cursor: text;
+    padding: 10px 0;
+    padding-bottom: 0;
+    margin-top: 10px;
+    color: #c2d5db;
+    & ~ label.col-form-label {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	text-transform: uppercase;
+	color: #c2d5db;
+	font-size: 14px;
+    line-height: 1.42857;
+	transition: all 0.2s;
+    }
+    &:focus{
+	    background-color: transparent;
+	    outline: 0;
+    }
+    &:focus + label,&:valid + label {
+		top: -18px;
+		margin-top: 25px;
+		font-size: 11px;
+		line-height: 1.07143;
+		color: #8abca7;
+    }
+}
+.nav-link {
+	color: #fff;
+	&:hover{
+		color: #37435a;
+	}
+}
+.btn {
+	border-radius: 0.3rem;
+	&.btn-secondary {
+		color: #1e698d;
+	    border-color: #c2d5db;
+	    background-color: #c2d5db;
+	    opacity: 0.8;
+	    transition: all 0.2s;
+	    &:hover {
+    	    opacity: 1;
+	    	border-color: #c6cdd0;
+	    	background-color: #c6cdd0;
+	    }
+	    &:focus {
+			opacity: 1;
+    	    border-color: #bdbdbd;
+	    	background-color: #bdbdbd;
+	    }
+	    &:active{
+			opacity: 1;
+    	    border-color: #bdbdbd;
+	    	background-color: #bdbdbd;
+	    }
+	}
+	&.btn-outline-primary {
+		color: #fff;
+	    border-color: #fff;
+	    opacity: 0.8;
+	    transition: all 0.2s;
+	    &:hover {
+    	    opacity: 0.8;
+    	    color: #37435a;
+	    	border-color: #37435a;
+	    	background-image: none;
+    		background-color: transparent;
+	    }
+	    &:focus {
+			opacity: 1;
+    	    color: #131925;
+	    	border-color: #131925;
+	    	background-image: none;
+    		background-color: transparent;
+	    }
+	    &:active{
+			opacity: 1;
+    	    color: #131925;
+	    	border-color: #131925;
+	    	background-image: none;
+    		background-color: transparent;
+	    }
+	}
+}
+.seperator {
+	border: 0;
+	border-top: 1px solid rgba(194, 213, 219, 0.4);
+	margin: 10px -10px;
+}

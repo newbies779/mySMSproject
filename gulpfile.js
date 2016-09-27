@@ -50,6 +50,7 @@ elixir(function(mix) {
         ], 'public/js/app.js')
         .compass([
             'default.scss',
+            'default_new.scss',
             'home.scss',
             'review.scss',
             'history.scss',
@@ -63,6 +64,7 @@ elixir(function(mix) {
         })
         .styles([
             'default.css',
+            'default_new.css',
             'home.css',
             'review.css',
             'history.css',
