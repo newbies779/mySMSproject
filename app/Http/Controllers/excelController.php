@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Http\Requests;
 use App\Item;
+use App\Tracking;
 use App\User;
 use DB;
-use Illuminate\Http\Request;
 use Faker\Factory as Faker;
+use Illuminate\Http\Request;
 
 class excelController extends Controller
 {
@@ -33,11 +34,13 @@ class excelController extends Controller
 		->orderBy('items.category_id','asc')
 		->get();
 
+		$category_name = DB::table('categories')->select('name')->get();
+		array_unshift($category_name, 'dummy');
 		if(empty($items))return back()->withErrors(['Error Message', 'No Data to export']);
 
-		\Excel::create('Item List Report', function ($excel) use ($items, $categories) {
+		\Excel::create('Item List Report', function ($excel) use ($items, $categories, $category_name) {
 			foreach ($categories as $category) {
-				$excel->sheet($category->name, function ($sheet) use ($items, $category) {
+				$excel->sheet($category->name, function ($sheet) use ($items, $category, $category_name) {
             	    // $sheet->loadView('excel.itemListTable',compact('items'));
 					$data = array(
 						"#" => '0',
@@ -46,6 +49,7 @@ class excelController extends Controller
 						"ItemName" => '0',
 						"status" => '0',
 						"location" => '0',
+						"category_name" => '0',
 						"UserName" => '0'
 						);
 
@@ -60,6 +64,7 @@ class excelController extends Controller
 							$data["ItemName"] = $item->itemName;
 							$data["status"] = $item->status;
 							$data["location"] = $item->location;
+							$data["category_name"] = $category_name[$item->category_id]->name;
 							if ($item->UserName != null) {
 								$data["UserName"] = $item->UserName;
 							} else {
@@ -124,6 +129,7 @@ class excelController extends Controller
 					$faker = Faker::create();
 					DB::beginTransaction();
 					try {
+						$last_itemid = '';
 						
 						//create category according to excel files
 						$category = Category::where('name', $sheet->gettitle())->first();
@@ -148,14 +154,43 @@ class excelController extends Controller
 							->where('name', $row->assignee)
 							->first();
 
+							
+							$tracking = null;
+
 							if(!is_null($userID)) $userID = $userID->id;
 
 							if(is_null($row->id)){
 								$item->item_id 		= 	$faker->bankAccountNumber;
 								$item->custom_id 	= 	$item->item_id;
 							}else{
-								$item->item_id 		= 	$row->id;
-								$item->custom_id 	= 	$row->id;
+								if($row->id == $last_itemid){
+									if (!Tracking::where('item_id', '=', $row->id)->exists()) {
+									    DB::table('tracking')->insert(['item_id' => $row->id, 'tracking' => '01']);
+									    $update_item = Item::where('custom_id', $row->id)->first();
+									    $update_item->custom_id = $update_item->custom_id.'_00';
+									    $update_item->save();
+									}
+									//get Tracking Object
+									$tracking = Tracking::where('item_id', '=', $row->id)->first();
+									$last_tracking = $tracking->tracking;
+
+									$item->item_id 		= 	$row->id;
+									$item->custom_id 	= 	$row->id.'_'.$last_tracking;
+
+									//update tracking No
+									if((int)$last_tracking<10){
+										$tracking->tracking = '0'.strval(intval($tracking->tracking)+1);
+									}else{
+										$tracking->tracking = strval(intval($tracking->tracking)+1);
+									}
+									
+									$tracking->save();
+								}else{
+									$item->item_id 		= 	$row->id;
+									$item->custom_id 	= 	$row->id;
+								}
+								$last_itemid = $row->id;
+								
 							}
 							$item->name 		= 	$row->subject;
 							$item->status 		= 	"Available";
@@ -167,6 +202,7 @@ class excelController extends Controller
 							}
 							$item->category_id 	= 	$category->id;
 							$item->save();
+							
 						}
 						
 						DB::commit();

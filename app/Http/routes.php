@@ -2,6 +2,7 @@
 
 use App\Events\AdminRentApprove;
 use App\Events\ItemCreate;
+use App\User;
 use Maatwebsite\Excel\Facades\Excel;
 use Vinkla\Pusher\Facades\Pusher;
 
@@ -64,5 +65,6 @@ Route::get('importPage', 'excelController@importPage');
 Route::get('/sendMail/{id}','UserController@sendEmailNotifyUserReturnDue');
 
 Route::get('pusher', function () {
+	// dd(User::where('id',1)->first()->name);
     return view('pusher');
 });
