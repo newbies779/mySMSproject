@@ -47,7 +47,7 @@
 			</div>
 		</section>
 	</header>
-	<section class="body">
+	<section class="login-form">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs">
@@ -58,16 +58,14 @@
 					<form>
 						<div class="form-group row">
 						  <div class="col-xs">
-						    <input style="display:none;" type="text" name="somefakename" />
-							<input class="form-control" type="text" id="emailInput" required>
+							<input class="form-control" type="email" id="email" value="" required/>
 						    <label for="emailInput" class="col-xs-2 col-form-label">email</label>
 						  </div>
 						</div>
 						<div class="form-group row">
 						  <div class="col-xs">
-							<input style="display:none;" type="password" name="anotherfakename" />
-							<input class="form-control" type="password" id="passwordInput">
-						    <label for="passwordInput" class="col-xs-2 col-form-label">Password</label>
+							<input class="form-control" type="text" id="password" value="" required/>
+						    <label for="password" class="col-xs-2 col-form-label">password</label>
 						  </div>
 						</div>
 						<div class="form-group row">

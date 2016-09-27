@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "sass-rem": "^1.2.2",
-    "jquery-form": "^3.46.0"
+    "jquery-form": "^3.46.0",
+    "animejs": "^1.1.1"
   }
 }
