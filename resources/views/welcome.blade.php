@@ -1,4 +1,4 @@
-@extends('layouts.smslayout')
+@extends('layouts.smslayout_new')
 
 @section('header')
 	@include('showerror')
