@@ -50,9 +50,11 @@ elixir(function(mix) {
         ], 'public/js/app.js')
         .compass([
             'default.scss',
+            'default_new.scss',
             'home.scss',
             'review.scss',
             'history.scss',
+            'smslayout_new.scss'
 
         ], 'public/css', {
             sass: 'resources/assets/sass',
@@ -62,10 +64,13 @@ elixir(function(mix) {
         })
         .styles([
             'default.css',
+            'default_new.css',
             'home.css',
             'review.css',
-            'history.css'
+            'history.css',
+            'smslayout_new.css'
 
         ], 'public/css/app.css', 'public/css')
+        .browserSync()
     
 });
