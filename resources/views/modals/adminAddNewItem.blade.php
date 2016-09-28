@@ -3,7 +3,7 @@
 		<div class="modal-content ">
 			<div class="modal-header">
 	                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-	                    <span aria-hidden="true" style="color: #fff;">
+	                    <span aria-hidden="true" style="color: #fff;" data-dismiss="modal">
 	                        ×
 	                    </span>
 	                </button>
@@ -16,16 +16,15 @@
 				{{ csrf_field() }}
 				
 				<div class="modal-body">
-					<button type="button" class="btn-close close" data-dismiss="modal" aria-hidden="true">×</button>
 					<div class="form-group">
-						<label for="itemid"><strong>Item ID: <span class="tag tag-warning" style="color: red;"><?= requireTxt(); ?></span></strong></label>
-						<input name="itemid" class="form-control" id="itemid" required value="{{ old('itemid') }}">
+						<label for="itemid"><strong>Item ID: <span class="tag tag-warning" style="color: red;"></span></strong></label>
+						<input name="itemid" class="form-control" id="itemid" value="{{ old('itemid') }}">
 					</div>
 
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="customid"><strong>Custom ID: </strong></label>
 						<input name="customid" class="form-control" id="customid" value="{{ old('customid') }}">
-					</div>
+					</div> --}}
 
 					<div class="form-group">
 						<label for="itemname"><strong>Item name: <span class="tag tag-warning" style="color: red;"><?= requireTxt(); ?></span></strong></label>
@@ -33,7 +32,7 @@
 					</div>
 
 
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="status"><strong>Item status: </strong></label><br>
 						<div aria-label="Status Button Group" class="btn-group" data-toggle="buttons" role="group">
                             <label class="btn btn-outline-info">
@@ -72,20 +71,20 @@
                                 </input>
                             </label>
                         </div>
-					</div>
+					</div> --}}
 
 					<div class="form-group">
 						<label for="category"><strong>Item category: </strong></label><br>
 						<select name="category" id="categorySelector">
 
 							@foreach ($categories as $category)
-							<option value="<?= $category->id ?>"><?= $category->name ?></option>
+							<option value="{{  $category->id }} "> {{ $category->name }} </option>
 							@endforeach
 						</select>
 					</div>
 
 					<div class="form-group">
-						<label for="location"><strong>item location: <span class="tag tag-warning" style="color: red;"><?= requireTxt(); ?></span></strong></label>
+						<label for="location"><strong>item location: <span class="tag tag-warning" style="color: red;"> <?= requireTxt(); ?> </span></strong></label>
 						<input name="location" class="form-control" id="location" value="{{ old('location') }}" required>
 					</div>
 

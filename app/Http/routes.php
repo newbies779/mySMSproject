@@ -42,6 +42,11 @@ Route::patch('/review/update', 'ReviewController@updateData');
 
 Route::resource('item', 'ItemController');
 
+// Route::get('/{category}/generateId', [
+// 	'as' => 'item.generateId',
+// 	'uses' => 'ItemController@generateId'
+// 	]);
+
 Route::post('/category', 'CategoryController@store');
 
 Route::patch('/category/{category}', 'CategoryController@update');

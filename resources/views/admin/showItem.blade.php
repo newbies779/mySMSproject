@@ -52,8 +52,8 @@
         })
 
         $('.iconpopover').hover(function() {
-         $(this).popover('toggle');
-     });
+            $(this).popover('toggle');
+        });
 
         $(window).click(function() {
             if($('.new-contextmenu').is(":visible")) {
@@ -64,7 +64,6 @@
         $('#adminAddNew').on('show.bs.modal', function(e) {
             $('label.btn').click(function() {
                 data['status'] = $(this).children('input[name="options"]').val();
-                console.log(data["status"]);
             });
         });
 
@@ -122,20 +121,14 @@
 
         var table = $('#tableItemAdmin').DataTable();
 
-        // $('.cate_hover').click(function(e){
-        //     $('.cate_hover').removeClass('active');
-        //     table.search($(this).children().find('label').html()).draw();
-        //     $(this).addClass('active');
-        // });
-
         $('.cate_hover').click(function(e){
             $('.showall').removeClass('active');
             $('.cate_hover').removeClass('active');
             // table.search($(this).children().find('label').html()).draw();
             table
-                .columns( '.category' )
-                .search( $(this).children().find('label').html(),false,true,false )
-                .draw();
+            .columns( '.category' )
+            .search( $(this).children().find('label').html(),false,true,false )
+            .draw();
 
             $(this).addClass('active');
         });
@@ -144,16 +137,15 @@
             $('.showall').removeClass('active');
             $('.cate_hover').removeClass('active');
             table
-                .columns( '.category' )
-                .search('')
-                .draw();
+            .columns( '.category' )
+            .search('')
+            .draw();
 
             $(this).addClass('active');
         });
 
         $('.categoryEdit').click(function(e){
             var category = $(this).data("category");
-            console.log(category);
             $('#adminEditCategory').find('#name').val($(this).parent().find('label').html());
             $('#formForEditCategory').attr('action','category/'+category.id);
             $('#adminEditCategory').find('option[value="'+ category.rentable+'"]').prop("selected",true);
@@ -162,6 +154,23 @@
         $('#button-new').click(function(e) {
             e.stopPropagation();
             $('.new-contextmenu').removeClass('invisible').show();
+        });
+
+        $('#categorySelector').change(function(){
+            url = $(this).data('url');
+            $.get(url, function(result) {
+                toggle_loading();
+                if (result.status == "ok") {
+                    if ($('#modal-add-lo').length > 0) $('#modal-add-lo').remove();
+                    content = result.content;
+                    $("body").append(content);
+                    $('#modal-add-lo').modal();
+                    $('#modal-add-lo').modal('show');
+                    $('#add-edit-lo-title').text(Lang.get('plan.title-header-add-lo'));
+                }else {
+                    $.notify(result.err_msg);
+                }
+            });
         });
     });
 </script>

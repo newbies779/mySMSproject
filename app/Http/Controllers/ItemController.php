@@ -6,6 +6,8 @@ use App\Category;
 use App\Events\ItemGetEdit;
 use App\Http\Requests;
 use App\Item;
+use App\Tracking;
+use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -23,7 +25,8 @@ class ItemController extends Controller
         $this->middleware('adminOnly');
     }
 
-    public function validation($request){
+    public function validation($request)
+    {
         return [
         ];
     }
@@ -36,9 +39,10 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all()->load('category','users');
+        $items = Item::orderBy('custom_id')->get();
+        $items = $items->load('category', 'users');
         $categories = Category::all();
-        return view('admin.showItem', compact('items','categories'));
+        return view('admin.showItem', compact('items', 'categories'));
     }
 
     /**
@@ -60,49 +64,80 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'itemid' => 'required|max:100|min:5',
-            'customid' => 'unique:items,custom_id|max:100|min:5',
-            'itemname' => 'required|max:64|min:2',
+            // 'itemid' => 'required|max:100|min:5',
+            // 'customid' => 'unique:items,custom_id|max:100|min:5',
+            'itemname' => 'required|max:64|min:2|unique:items,name',
             'location' => 'required|max:128|min:2',
             'note' => 'max:512',
             'bought_year' => 'date'
-        ]);
+            ]);
 
         $res=["status" => ""];
         \DB::beginTransaction();
 
-        try{
+        $itemid = trim($request->input('itemid'));
+        $itemname = trim($request->input('itemname'));
+        $location = trim($request->input('location'));
+
+        try {
+            $tracking = null;
             $item = new Item;
-            $item->item_id = $request->input('itemid');
-            if($request->input('customid')===''){
-                $item->custom_id = $request->input('itemid');
-            }else{
-                $item->custom_id = $request->input('customid');
+            if ($itemid=='') {
+                //If user doesn't put any ID
+                $item->item_id = $this->generateRandomId();
+                $item->custom_id = $item->item_id;
+            } else { 
+                if (Item::where('item_id', $itemid)->exists()) {
+                    $item->item_id = $itemid;
+                    if (Tracking::where('item_id', $itemid)->exists()) {
+
+                        //This itemid is already tracked.
+                        $tracking = Tracking::where('item_id', $itemid)->first();
+                        $item->custom_id = $itemid.'_'.$tracking->tracking;
+
+                        //update tracking No
+                        if ((int)$tracking->tracking<10) {
+                            $tracking->tracking = '0'.strval(intval($tracking->tracking)+1);
+                        } else {
+                            $tracking->tracking = strval(intval($tracking->tracking)+1);
+                        }
+                        $tracking->save();
+                    } else {
+                        //This itemid is not tracked yet.
+                        \DB::table('tracking')->insert(['item_id' => $itemid, 'tracking' => '02']);
+                        \DB::table('items')
+                            ->where('item_id', $itemid)
+                            ->update(['custom_id' => $itemid.'_00']);
+                        $item->custom_id = $itemid.'_01';
+                    }
+                } else {
+                    $item->item_id = $itemid;
+                    $item->custom_id = $itemid;
+                }
             }
-            $item->name = $request->input('itemname');
-            $item->status = $request->input('status');
-            $item->location = $request->input('location');
+            $item->name = $itemname;
+            $item->status = 'Available';
+            $item->location = $location;
             $item->category_id = $request->input('category');
-            $item->note = $request->input('note');
-            if($request->input('bought_year') != ""){
-                $item->bought_year = $request->input('bought_year');
+            $item->note = trim($request->input('note'));
+            if ($request->input('bought_year') != "") {
+                $item->bought_year = trim($request->input('bought_year'));
             }
             
             $item->save();
             \DB::commit();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             \DB::rollback();
             $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
-            flash($res['message'],$res['status']);
+            flash($res['message'], $res['status']);
             return redirect()->route('item.index');
         }
-       
+
         $res['status'] = "success";
         $res['message'] = "Create Item Success";
 
-        flash($res['message'],$res['status']);
+        flash($res['message'], $res['status']);
         return redirect()->route('item.index');
-
     }
 
     /**
@@ -143,16 +178,15 @@ class ItemController extends Controller
             ->withErrors($validator)
             ->withInput();
         }
-        $returnStatus = $item->updateItem($item,$request);
-        if($returnStatus['status'] == "success"){
-            flash($returnStatus['message'],'info');
-            event(new ItemGetEdit($item->status,Auth::user()->id,$item->id));
+        $returnStatus = $item->updateItem($item, $request);
+        if ($returnStatus['status'] == "success") {
+            flash($returnStatus['message'], 'info');
+            event(new ItemGetEdit($item->status, Auth::user()->id, $item->id));
             return redirect('/item');
         }
 
-        flash($returnStatus['message'],'warning');
+        flash($returnStatus['message'], 'warning');
         return redirect('/home');
-
     }
 
     /**
@@ -165,4 +199,26 @@ class ItemController extends Controller
     {
         //
     }
+
+    /**
+     * generate random id if user doesn't put the ID when create new item
+     * @return [type] [description]
+     */
+    public function generateRandomId()
+    {
+        $faker = Faker::create();
+
+        $creditNumber = $faker->creditCardNumber;
+
+        if (Item::where('custom_id', $creditNumber)->exists()) {
+            $creditNumber = generateRandomId();
+        }
+
+        return $creditNumber;
+    }
+
+    // public function generateId($category_id)
+    // {
+    //     $categorySelector
+    // }
 }
