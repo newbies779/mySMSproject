@@ -1,14 +1,14 @@
-@import "bower_components/bootstrap/scss/variables";
+@import "../bower_components/bootstrap/scss/variables";
 @import "mixins";
 /* ---------- System ------------------- */
 $enable-flex			   : true;
 /*  --------- Color variables ---------- */
 
 //Button and Tags
-$default                   : #f5f6f7;
+$default                   : #c2d5db;
 $default-text              : #676767;
 // $default-stroke         : #d8d9d8; //same color with $black-stroke
-$primary                   : #17b5be;
+$primary                   : #2BBBAD;
 $success                   : #4fbc78;
 $info                      : #5c90d2;
 $warning                   : #f1b563;
@@ -36,6 +36,7 @@ $black-darker              : #333333;
 //Menu
 $primary-darker            : #2c343f;
 $primary-dark              : #789696;
+$default-dark			   : #00695c;
 
 /*  --------- Bootstrap Custom Variables ---------- */
 
