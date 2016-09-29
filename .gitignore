@@ -9,6 +9,7 @@ Homestead.json
 .DS_Store
 Thumbs.db
 /bower_components
+/bootstrap
 /resources/assets/bower_components
 .sass-cache
 all.css
