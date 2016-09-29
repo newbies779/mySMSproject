@@ -7,20 +7,23 @@ $enable-flex			   : true;
 //Button and Tags
 $default                   : #c2d5db;
 $default-text              : #676767;
+$info-text				   : #131925;
 // $default-stroke         : #d8d9d8; //same color with $black-stroke
 $primary                   : #2BBBAD;
 $success                   : #4fbc78;
-$info                      : #5c90d2;
+$info                      : #1e698d;
 $warning                   : #f1b563;
 $error                     : #d3645a;
 $link                      : #17b5be;
+//focus
+$focus-info				   : #789fbb;
 //Alert
 $alert-primary             : #e9f5fa;
 $alert-primary-text        : #17b5be;
 $alert-success             : #e0f3e7;
 $alert-success-text        : #37a364;
 $alert-info                : #e2ebf7;
-$alert-info-text           : #5c90d2;
+$alert-info-text           : #1e698d;
 $alert-warning             : #fcf2e4;
 $alert-warning-text        : #f1b563;
 $alert-error               : #f7e4e2;
