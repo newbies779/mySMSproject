@@ -1,21 +1,19 @@
-<table>
-	<caption>SendMail</caption>
-	<thead>
-		<tr>
-			<th>header</th>
-			<th>header1</th>
-			<th>header2</th>
-			<th>header3</th>
-			<th>header4</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>data</td>
-			<td>data1</td>
-			<td>data2</td>
-			<td>data3</td>
-			<td>data4</td>
-		</tr>
-	</tbody>
-</table>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div>
+		<div>
+			<?= "Hello, K.$user->name"; ?>
+		</div>
+			<?php
+			echo $description;
+			?>
+	</div>
+</body>
+</html>

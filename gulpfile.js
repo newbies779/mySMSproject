@@ -53,7 +53,6 @@ elixir(function(mix) {
             'home.scss',
             'review.scss',
             'history.scss',
-            'smslayout_new.scss',
             'default_new.scss'
 
         ], 'public/css', {
