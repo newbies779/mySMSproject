@@ -4,7 +4,6 @@ use App\Events\AdminRentApprove;
 use App\Events\ItemCreate;
 use App\User;
 use Maatwebsite\Excel\Facades\Excel;
-use Vinkla\Pusher\Facades\Pusher;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +15,7 @@ use Vinkla\Pusher\Facades\Pusher;
 | and give it the controller to call when that URI is requested.
 |
 */
+
 Route::get('/', 'LandingController@index');
 
 Route::auth();
@@ -68,6 +68,8 @@ Route::get('export', 'excelController@export');
 Route::get('importPage', 'excelController@importPage');
 
 Route::get('/sendMail/{id}','UserController@sendEmailNotifyUserReturnDue');
+
+Route::get('/sendMail2/{id}','UserController@sendEmailNotifyAdminReturnDue');
 
 Route::get('pusher', function () {
 	// dd(User::where('id',1)->first()->name);

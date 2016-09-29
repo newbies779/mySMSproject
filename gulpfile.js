@@ -50,20 +50,11 @@ elixir(function(mix) {
         ], 'public/js/app.js')
         .compass([
             'default.scss',
-<<<<<<< HEAD
-            'default_new.scss',
-            'home.scss',
-            'review.scss',
-            'history.scss',
-            'smslayout_new.scss'
-=======
-            // 'MDBootstrap/sass/mdb.scss',
             'home.scss',
             'review.scss',
             'history.scss',
             'smslayout_new.scss',
             'default_new.scss'
->>>>>>> c2d560c0bb1b582bd05c4d7c9e7f7dc0f3c861f4
 
         ], 'public/css', {
             sass: 'resources/assets/sass',
@@ -73,22 +64,13 @@ elixir(function(mix) {
         })
         .styles([
             'default.css',
-<<<<<<< HEAD
-            'default_new.css',
-            'home.css',
-            'review.css',
-            'history.css',
-            'smslayout_new.css'
-=======
-            // 'MDBootstrap/sass/mdb.css',
             'home.css',
             'review.css',
             'history.css',
             'smslayout_new.css',
-            'default_new.css'
->>>>>>> c2d560c0bb1b582bd05c4d7c9e7f7dc0f3c861f4
+            'default_new.css' 
 
         ], 'public/css/app.css', 'public/css')
-        .browserSync()
+        //.browserSync()
     
 });
