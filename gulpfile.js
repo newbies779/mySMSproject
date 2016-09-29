@@ -15,13 +15,13 @@ require('laravel-elixir-sass-compass');
  */
 
 var paths = {
-    'jquery': './bower_components/jquery/',
-    'bootstrap': './bower_components/bootstrap/',
-    'tether': './bower_components/tether/',
+    'jquery': './resources/assets/bower_components/jquery/',
+    'bootstrap': './resources/assets/bower_components/bootstrap/',
+    'tether': './resources/assets/bower_components/tether/',
     'assets': './resources/assets/',
-    'moment': './bower_components/moment/',
-    'datetimepicker': './bower_components/eonasdan-bootstrap-datetimepicker/',
-    'jqueryForm': './bower_components/jquery-form/',
+    'moment': './resources/assets/bower_components/moment/',
+    'datetimepicker': './resources/assets/bower_components/eonasdan-bootstrap-datetimepicker/',
+    'jqueryForm': './resources/assets/bower_components/jquery-form/',
     'js': './resources/assets/js/'
 }
 
@@ -50,11 +50,20 @@ elixir(function(mix) {
         ], 'public/js/app.js')
         .compass([
             'default.scss',
+<<<<<<< HEAD
             'default_new.scss',
             'home.scss',
             'review.scss',
             'history.scss',
             'smslayout_new.scss'
+=======
+            // 'MDBootstrap/sass/mdb.scss',
+            'home.scss',
+            'review.scss',
+            'history.scss',
+            'smslayout_new.scss',
+            'default_new.scss'
+>>>>>>> c2d560c0bb1b582bd05c4d7c9e7f7dc0f3c861f4
 
         ], 'public/css', {
             sass: 'resources/assets/sass',
@@ -64,11 +73,20 @@ elixir(function(mix) {
         })
         .styles([
             'default.css',
+<<<<<<< HEAD
             'default_new.css',
             'home.css',
             'review.css',
             'history.css',
             'smslayout_new.css'
+=======
+            // 'MDBootstrap/sass/mdb.css',
+            'home.css',
+            'review.css',
+            'history.css',
+            'smslayout_new.css',
+            'default_new.css'
+>>>>>>> c2d560c0bb1b582bd05c4d7c9e7f7dc0f3c861f4
 
         ], 'public/css/app.css', 'public/css')
         .browserSync()
