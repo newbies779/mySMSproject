@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	
+
 	<title>Dashboard</title>
 
 	<!-- Font Awesome -->
@@ -26,7 +26,7 @@
 
 	<script src="https://use.fontawesome.com/ac129b77f2.js"></script>
 
-	
+
 
 </head>
 <body class="fixed-sn blue-skin @if($errors->has(['regis_email']) || $errors->has(['regis_name']) || $errors->has(['regis_password']))reveal-regis @endif">
@@ -179,12 +179,12 @@
 					        <button type="submit" class="btn btn-default btn-lg btn-block">Login</button>
 					    </div>
 				    </div>
-					    
+
 				</div>
 			</form>
 		</section>
 		<section class="page page-overlay">
-			
+
 		</section>
 		<a href="#" id="backtoLogin" class="animated pulse infinite">
 			<div><small class="text-muted">Back to login</small></div>
@@ -231,9 +231,9 @@
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
 
-    <!-- MDB core JavaScript -->    
+    <!-- MDB core JavaScript -->
 	<script src="{{ asset('/js/mdb.js') }}"></script>
-	
+
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap4.min.js"></script>
@@ -243,6 +243,6 @@
 	<script src="{{ asset('/js/app.js') }}"></script>
 
 	@yield('script')
-	
+
 </body>
 </html>

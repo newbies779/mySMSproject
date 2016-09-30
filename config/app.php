@@ -123,44 +123,42 @@ return [
 
     'providers' => [
 
-        /*
-         * Laravel Framework Service Providers...
-         */
-        Illuminate\Auth\AuthServiceProvider::class,
-        Illuminate\Broadcasting\BroadcastServiceProvider::class,
-        Illuminate\Bus\BusServiceProvider::class,
-        Illuminate\Cache\CacheServiceProvider::class,
-        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-        Illuminate\Cookie\CookieServiceProvider::class,
-        Illuminate\Database\DatabaseServiceProvider::class,
-        Illuminate\Encryption\EncryptionServiceProvider::class,
-        Illuminate\Filesystem\FilesystemServiceProvider::class,
-        Illuminate\Foundation\Providers\FoundationServiceProvider::class,
-        Illuminate\Hashing\HashServiceProvider::class,
-        Illuminate\Mail\MailServiceProvider::class,
-        Illuminate\Pagination\PaginationServiceProvider::class,
-        Illuminate\Pipeline\PipelineServiceProvider::class,
-        Illuminate\Queue\QueueServiceProvider::class,
-        Illuminate\Redis\RedisServiceProvider::class,
-        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
-        Illuminate\Session\SessionServiceProvider::class,
-        Illuminate\Translation\TranslationServiceProvider::class,
-        Illuminate\Validation\ValidationServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
+           /*
+            * Laravel Framework Service Providers...
+            */
+           Illuminate\Auth\AuthServiceProvider::class,
+           Illuminate\Broadcasting\BroadcastServiceProvider::class,
+           Illuminate\Bus\BusServiceProvider::class,
+           Illuminate\Cache\CacheServiceProvider::class,
+           Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+           Illuminate\Cookie\CookieServiceProvider::class,
+           Illuminate\Database\DatabaseServiceProvider::class,
+           Illuminate\Encryption\EncryptionServiceProvider::class,
+           Illuminate\Filesystem\FilesystemServiceProvider::class,
+           Illuminate\Foundation\Providers\FoundationServiceProvider::class,
+           Illuminate\Hashing\HashServiceProvider::class,
+           Illuminate\Mail\MailServiceProvider::class,
+           Illuminate\Pagination\PaginationServiceProvider::class,
+           Illuminate\Pipeline\PipelineServiceProvider::class,
+           Illuminate\Queue\QueueServiceProvider::class,
+           Illuminate\Redis\RedisServiceProvider::class,
+           Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
+           Illuminate\Session\SessionServiceProvider::class,
+           Illuminate\Translation\TranslationServiceProvider::class,
+           Illuminate\Validation\ValidationServiceProvider::class,
+           Illuminate\View\ViewServiceProvider::class,
+           // Collective\Bus\BusServiceProvider::class,
+           // Collective\Html\HtmlServiceProvider::class,
+           /*
+            * Application Service Providers...
+            */
+           App\Providers\AppServiceProvider::class,
+           App\Providers\AuthServiceProvider::class,
+           App\Providers\EventServiceProvider::class,
+           App\Providers\RouteServiceProvider::class,
+           Maatwebsite\Excel\ExcelServiceProvider::class,
 
-        /*
-         * Application Service Providers...
-         */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        Vinkla\Pusher\PusherServiceProvider::class,
-        Collective\Bus\BusServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-
-    ],
+       ],
 
     /*
     |--------------------------------------------------------------------------
@@ -205,9 +203,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        // 'Form' => Collective\Html\FormFacade::class,
+        // 'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];
