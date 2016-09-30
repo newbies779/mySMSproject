@@ -11,6 +11,7 @@ use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class ItemController extends Controller
 {
@@ -90,13 +91,12 @@ class ItemController extends Controller
                 if (Item::where('item_id', $itemid)->exists()) {
                     $item->item_id = $itemid;
                     if (Tracking::where('item_id', $itemid)->exists()) {
-
                         //This itemid is already tracked.
                         $tracking = Tracking::where('item_id', $itemid)->first();
                         $item->custom_id = $itemid.'_'.$tracking->tracking;
 
                         //update tracking No
-                        if ((int)$tracking->tracking<10) {
+                        if ((int)$tracking->tracking<9) {
                             $tracking->tracking = '0'.strval(intval($tracking->tracking)+1);
                         } else {
                             $tracking->tracking = strval(intval($tracking->tracking)+1);
@@ -206,19 +206,25 @@ class ItemController extends Controller
      */
     public function generateRandomId()
     {
-        $faker = Faker::create();
+        $searchPattern = 'AUTOGEN_'.Carbon::now()->year; //AUTOGEN_2016
+        $generateID = '';
+        if(Tracking::where('item_id', $searchPattern)->exists()){
+            $track = Tracking::where('item_id', $searchPattern)->first();
+            $generateID = $track->tracking;
+            $track->tracking += 1;
+            $track->save();
+        }else{
+            //Add new tracking
+            $track = new Tracking;
+            $track->item_id = $searchPattern;
+            $track->tracking = Carbon::now()->format('Y') + 543 - 2500 . Carbon::now()->format('md').'000'; //591021000
+            $track->save();
+            $generateID = $track->tracking;
 
-        $creditNumber = $faker->creditCardNumber;
-
-        if (Item::where('custom_id', $creditNumber)->exists()) {
-            $creditNumber = generateRandomId();
+            //Update Tracking
+            $track->tracking += 1;
+            $track->save();
         }
-
-        return $creditNumber;
+        return $generateID;
     }
-
-    // public function generateId($category_id)
-    // {
-    //     $categorySelector
-    // }
 }

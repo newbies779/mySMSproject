@@ -16,7 +16,7 @@
 		<?php $i = 1; ?>
 		@foreach ($reviewItem as $item)
 			<tr>
-				<th class="text-xs-center" scope="row"><?= $i ?></th>
+				<th class="text-xs-center" scope="row"> {{ $i }} </th>
 				<td class="pos-left"> {{ $item->custom_id }} </td>
 				<td class="pos-left">{{ $item->name }}</td>
 				<td class="pos-left">
@@ -39,7 +39,7 @@
                     @endif
                     {{ $item->status }}</span>
                 </td>
-				<td class="pos-left"> {{ substr($item->note,0,80) }} </td>
+				<td class="pos-left"> {{ substr($item->note,0,70) }} </td>
 				<td class="pos-left"> 
                     @if (!is_null($item->reviewed_at))
                         {{ date('d/m/y', strtotime($item->reviewed_at))}}

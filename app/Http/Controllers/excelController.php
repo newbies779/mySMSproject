@@ -10,6 +10,7 @@ use App\User;
 use DB;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class excelController extends Controller
 {
@@ -108,9 +109,8 @@ class excelController extends Controller
 				
 
 				foreach ($sheets as $sheet) {
-
 					$firstrow = $sheet->first()->toArray();
-
+					
 					if(!array_key_exists('subject', $firstrow)){
 						return back()->withErrors(['Error Message', "No Subject Column in " . $sheet->gettitle()]);
 					}
@@ -129,7 +129,6 @@ class excelController extends Controller
 					$faker = Faker::create();
 					DB::beginTransaction();
 					try {
-						$last_itemid = '';
 						
 						//create category according to excel files
 						$category = Category::where('name', $sheet->gettitle())->first();
@@ -153,58 +152,72 @@ class excelController extends Controller
 							$userID = User::select('id')
 							->where('name', $row->assignee)
 							->first();
-
 							
 							$tracking = null;
 
 							if(!is_null($userID)) $userID = $userID->id;
 
 							if(is_null($row->id)){
-								$item->item_id 		= 	$faker->bankAccountNumber;
-								$item->custom_id 	= 	$item->item_id;
+								$searchPattern = 'AUTOGEN_'.Carbon::now()->year; //AUTOGEN_2016
+								if(Tracking::where('item_id', $searchPattern)->exists()){
+									$track = Tracking::where('item_id', $searchPattern)->first();
+									$item->item_id 		= 	$track->tracking;
+									$item->custom_id 	= 	$item->item_id;
+									$track->tracking = $track->tracking + 1;
+									$track->save();
+								}else{
+									//Add new tracking
+									$track = new Tracking;
+									$track->item_id = $searchPattern;
+									$track->tracking = Carbon::now()->format('Y') + 543 - 2500 . Carbon::now()->format('md').'000'; //591021000
+									$track->save();
+									$item->item_id 		= 	$track->tracking;
+									$item->custom_id 	= 	$item->item_id;
+
+									//Update Tracking
+									$track->tracking = $track->tracking + 1;
+									$track->save();
+								}
 							}else{
-								if($row->id == $last_itemid){
-									if (!Tracking::where('item_id', '=', $row->id)->exists()) {
-									    DB::table('tracking')->insert(['item_id' => $row->id, 'tracking' => '01']);
-									    $update_item = Item::where('custom_id', $row->id)->first();
-									    $update_item->custom_id = $update_item->custom_id.'_00';
-									    $update_item->save();
-									}
-									//get Tracking Object
+								if (!Tracking::where('item_id', '=', $row->id)->exists()) {
+									DB::table('tracking')->insert(['item_id' => $row->id, 'tracking' => '01']);		
+									$item->item_id 		= 	$row->id;
+									$item->custom_id 	= 	$row->id;							
+									
+								}else{
 									$tracking = Tracking::where('item_id', '=', $row->id)->first();
 									$last_tracking = $tracking->tracking;
-
 									$item->item_id 		= 	$row->id;
 									$item->custom_id 	= 	$row->id.'_'.$last_tracking;
 
+									if((int)$last_tracking == 1){
+										$update_item = Item::where('custom_id', $row->id)->first();
+										$update_item->custom_id = $update_item->custom_id.'_00';
+										$update_item->save();
+									}
 									//update tracking No
-									if((int)$last_tracking<10){
+									if((int)$last_tracking<9){
 										$tracking->tracking = '0'.strval(intval($tracking->tracking)+1);
 									}else{
 										$tracking->tracking = strval(intval($tracking->tracking)+1);
 									}
-									
 									$tracking->save();
-								}else{
-									$item->item_id 		= 	$row->id;
-									$item->custom_id 	= 	$row->id;
 								}
-								$last_itemid = $row->id;
-								
 							}
+							
 							$item->name 		= 	$row->subject;
 							$item->status 		= 	"Available";
 							$item->location 	= 	$row->address;
 							if(!is_null($userID)){
 								$item->assignee_id 	= 	$userID;
 							}else{
-								$item->note 		= 	$row->assignee;
+								$item->note 		= 	$row->note;
 							}
 							$item->category_id 	= 	$category->id;
 							$item->save();
-							
+
 						}
-						
+
 						DB::commit();
 					} catch (exception $e) {
 						DB::rollback();
@@ -239,10 +252,10 @@ class excelController extends Controller
 				// 	}
 				// }
 			});
-		}else{
-			return back()->withErrors(['Error Message', 'No File to import']);
-		}
+}else{
+	return back()->withErrors(['Error Message', 'No File to import']);
+}
 
-		return back();
-	}
+return back();
+}
 }

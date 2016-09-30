@@ -49,7 +49,7 @@
             @foreach ($rentList as $rent)
             
             <tr>
-                <td class="pos-left" scope="row"><strong><?= $i ?></strong></td>
+                <td class="pos-left" scope="row"><strong> {{ $i }} </strong></td>
                 <td class="pos-left" id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
                 <td class="pos-left">{{date('d/m/y', strtotime($rent->created_at))}}</td>
                 <td class="pos-left">{{date('H:i', strtotime($rent->created_at))}}</td>
@@ -84,9 +84,11 @@
 
                 <!-- Button trigger modal -->
                 <td class="pos-left">
-                    <button type="button" class="btn btn-primary btn-sm returnBtn"  data-toggle="modal" href="#stack3" data-row="<?= $i ?>" data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled"; 
+                    <button type="button" class="btn btn-primary btn-sm returnBtn"  data-toggle="modal" href="#stack3" data-row=" {{ $i }} " data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled"; 
                         ?>>Return</button>
-                    <button type="button" class="btn btn-primary btn-sm btn_show_delete" data-rent="{{ $rent }}" data-toggle="modal" href="#deleteModal">delete</button>
+                    <button type="button" class="btn btn-primary btn-sm btn_show_delete" data-rent="{{ $rent }}" data-toggle="modal" href="#deleteModal" @if ($rent->rent_status != "Pending")
+                        disabled 
+                    @endif>delete</button>
                 </td>
                     <td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
                     <td style="display:none" id="itemidForReturn<?= $i--; ?>">{{  $rent->item->id }}</td>

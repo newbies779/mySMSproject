@@ -142,4 +142,4 @@ $factory->define(App\Logs::class, function (Faker\Generator $faker) {
 //         'return_status' => $faker->randomElement($statusReturn),
 //         'item_id' => $faker->randomElement($itemArray),
 //     ];
-// });
+// }); 

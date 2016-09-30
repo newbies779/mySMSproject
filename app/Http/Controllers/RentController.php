@@ -24,11 +24,6 @@ class RentController extends Controller
 
 	public function rentValidateandUpdate(Request $request, item $item){
 
-		// $this->validate($request, [
-		// 	'Rent Date' => 'date|required',
-		// 	'Return Date' => 'date'
-		// 	]);
-
 		$validator = Validator::make($request->all(), $this->validation($request));
 
 		if ($validator->fails()) {
@@ -38,13 +33,6 @@ class RentController extends Controller
 		}
 
 		$this->itemStatus = 'Reserved';
-
-		// dd(
-		// 	$request->input('hiddenid'),
-		// 	$request->input('RentDate'),
-		// 	$request->input('ReturnDate'),
-		// 	$request->input('Note')
-		// );
 
 		$returnStatus = $item->updateItem($item,$request,$this->itemStatus);
 		if($returnStatus['status'] == "success"){

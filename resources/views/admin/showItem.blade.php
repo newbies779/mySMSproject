@@ -35,6 +35,10 @@
             "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
             "scrollY":        "48vh",
             "scrollCollapse": true,
+            "columnDefs": [
+                        { width: 150, targets: 1 },
+                        { width: 220, targets: 2 }
+                    ],
         });
     });
 </script>
