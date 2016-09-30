@@ -1,4 +1,4 @@
-@extends('layouts.smslayout')
+@extends('layouts.smslayout_new')
 
 @section('header')
 	@include('showerror')
@@ -11,7 +11,7 @@
     	<div class="jumbotron jumbotron-fluid">
     	<h1 class="display-3">Welcome to <strong>SMS</strong> project</h1>
 		<p class="lead">
-			Have not create account yet? 
+			Have not create account yet?
 		</p>
         <div class="btn-group" role="group" aria-label="Button Hero">
           <a href="{{ url('/register') }}" role="button" class="btn btn-primary"><strong>Join Us</strong></a>

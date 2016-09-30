@@ -64,41 +64,43 @@
 			<div class="logo">
 				<h1>SMS</h1>
 			</div>
-			<form>
-			<div class="container">
-				<div class="row">
-					<!--Email validation-->
-					<div class="md-form col-xs">
-					    <i class="fa fa-envelope prefix"></i>
-					    <input type="email" id="email" class="form-control validate">
-					    <label for="email" data-error="wrong" data-success="right">Type your email</label>
-					    @if ($errors->has('email'))
-	                        <span class="help-block text-warning">
-	                            <strong>{{ $errors->first('email') }}</strong>
-	                        </span>
-	                    @endif
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+				{{ csrf_field() }}
+				<div class="container">
+					<div class="row">
+						<!--Email validation-->
+						<div class="md-form col-xs">
+						    <i class="fa fa-envelope prefix"></i>
+							<i class="fa fa-question-circle prefix" data-toggle="tooltip" data-placement="right" title="HINT: this is a hint!"></i>
+						    <input type="email" id="email" name="email" class="form-control" required>
+						    <label for="email" data-error="wrong" data-success="right">Type your email</label>
+						    @if ($errors->has('email'))
+		                        <span class="help-block text-warning">
+		                            <strong>{{ $errors->first('email') }}</strong>
+		                        </span>
+		                    @endif
+						</div>
+						<!--Password validation-->
+						<div class="md-form col-xs">
+						    <i class="fa fa-lock prefix"></i>
+						    <input type="password" id="password" name="password" class="form-control" required>
+						    <label for="password" data-error="wrong" data-success="right">Type your password</label>
+						    @if ($errors->has('password'))
+	                            <span class="help-block text-warning">
+	                                <strong>{{ $errors->first('password') }}</strong>
+	                            </span>
+	                        @endif
+						</div>
+						<label class="custom-control custom-checkbox col-xs pull-xs-right">
+						  <input type="checkbox" name="remember" class="custom-control-input">
+						  <span class="custom-control-indicator"></span>
+						  <span class="custom-control-description">remember me</span>
+						</label>
+						<div class="md-form form-group col-xs">
+					        <button type="submit" class="btn btn-default btn-lg btn-block" id="login">Login</button>
+					    </div>
 					</div>
-					<!--Password validation-->
-					<div class="md-form col-xs">
-					    <i class="fa fa-lock prefix"></i>
-					    <input type="password" id="password" class="form-control validate">
-					    <label for="password" data-error="wrong" data-success="right">Type your password</label>
-					    @if ($errors->has('password'))
-                            <span class="help-block text-warning">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
-					</div>
-					<label class="custom-control custom-checkbox col-xs pull-xs-right">
-					  <input type="checkbox" name="remember" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">remember me</span>
-					</label>
-					<div class="md-form form-group col-xs">
-				        <a href="#" class="btn btn-default btn-lg btn-block" id="login">Login</a>
-				    </div>
 				</div>
-			</div>
 			</form>
 		</section>
 		<section class="page regis-form">
@@ -117,9 +119,9 @@
 							<div class="md-form">
 								<i class="fa fa-user prefix"></i>
 				            	<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
-				            	@if ($errors->has('name'))
+				            	@if ($errors->has('regis_name'))
 									<span class="help-block text-warning">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('regis_name') }}</strong>
                                     </span>
 								@endif
 				                <label for="name">What's your name?</label>
@@ -130,9 +132,9 @@
 				            <div class="md-form">
 				                <i class="fa fa-envelope prefix"></i>
 				                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-				                @if ($errors->has('email'))
+				                @if ($errors->has('regis_email'))
                                    	<span class="help-block text-warning">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('regis_email') }}</strong>
                                     </span>
                                 @endif
 								<label for="email" data-error="wrong" data-success="right">Type your email</label>
@@ -148,9 +150,9 @@
 				            <div class="md-form">
 				                <i class="fa fa-lock prefix"></i>
 				                <input id="password" type="password" class="form-control" name="password">
-				                @if ($errors->has('password'))
+				                @if ($errors->has('regis_password'))
                                     <span class="help-block text-warning">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('regis_password') }}</strong>
                                     </span>
                                 @endif
 				                <label for="password" data-error="wrong" data-success="right">Type your password</label>
@@ -190,7 +192,7 @@
 			<div><small class="text-muted">Back to login</small></div>
 			<i class="fa fa-arrow-down fa-2x prefix"></i>
 		</a>
-		<a class="btn btn-link" id="forgetPassword" href="#"><small>Forgot Your Password?</small></a>
+		<a class="btn btn-link" id="forgetLink" href="#"><small class="link-text">Forgot Your Password?</small></a>
 	</div>
 	<!--Card-->
 	<div class="card forget-card">
@@ -199,20 +201,25 @@
 	    <div class="card-block">
 	    	<div class="container">
 	    		<div class="row">
-					<div class="col-xs-6">
+					<div class="col-xs-12 col-md-6">
 		    			<h4 class="card-title">Reset password</h4>
-		    			<p class="card-text">Can't remember your password, right?<br> It's ok. We will send an email back to you.</p>
+		    			<p class="card-text">Can't remember your password, right?<br> It's ok. We will send an email back!!</p>
 		    		</div>
-		    		<div class="col-xs-6">
-		    			<form class="form-inline" role="form" method="POST" action="{{ url('/password/reset') }}">
-				        	<div class="md-form form-group">
-						        <i class="fa fa-envelope prefix"></i>
-						        <input type="email" id="form91" class="form-control">
-						        <label for="form91" data-error="wrong" data-success="right">Type your email</label>
-						    </div>
-						    <div class="md-form form-group">
-						        <a href="#" class="btn btn-primary">Send</a>
-						    </div>
+		    		<div class="col-xs-12 col-md-6" style="padding: 60px 0;min-width:50%;">
+		    			<form class="form-horizontal form-inline" id="formReset" role="form" method="POST" action="{{ url('/password/email') }}">
+							{{ csrf_field() }}
+							<div class="container">
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="md-form form-group">
+									        <i class="fa fa-envelope prefix"></i>
+											<a id="resetSubmit" href="#"><i class="fa  fa-send-o prefix" style="right: -20%;font-size: 20px;top: 10%;"></i></a>
+									        <input type="email" id="resetEmail" name="email" class="form-control">
+									        <label for="resetEmail" data-error="wrong" data-success="right">Type your email</label>
+									    </div>
+									</div>
+								</div>
+							</div>
 				        </form>
 		    		</div>
 		    	</div>
@@ -220,6 +227,10 @@
 	    </div>
 	    <!--/.Card content-->
 
+	</div>
+		{{-- Alert Reset Content --}}
+	<div class="alert alert-info fade in" role="alert">
+	  <strong>An email has been sent.</strong> Please check your inbox, Thank you.
 	</div>
 
 	<!-- JQuery -->

@@ -144,7 +144,7 @@ section.regis-form
         	margin-bottom: 2rem;
         }
         &:last-child {
-        	margin-top: 2rem;
+        	margin-top: 4rem;
         }
     }
     .custom-control {
@@ -160,7 +160,16 @@ section.regis-form
 				    outline: none;
 				}
     }
+    i.fa-question-circle {
+        right: -8%;
+        top: 20%;
+        font-size: 16px;
+        &:hover {
+            color: $info;
+        }
+    }
 }
+
 section.regis-form
 {
     top: 100%;
@@ -185,6 +194,40 @@ section.regis-form
         flex-flow: column wrap;
         justify-content: center;
         align-items: center;
+        .md-form
+        {
+            margin-bottom: 1rem;
+            .fa,
+            label
+            {
+                color: $default;
+                &.active
+                {
+                    color: $primary;
+                }
+            }
+
+            input[type=email]:not([readonly]),
+            input[type=password]:not([readonly]),
+            textarea.md-textarea:not([readonly])
+            {
+                border-bottom: rem(1px) solid $default;
+                box-shadow: 0 rem(1px) 0 0 $default;
+            }
+            input[type=email]:focus:not([readonly]),
+            input[type=password]:focus:not([readonly]),
+            textarea.md-textarea:focus:not([readonly])
+            {
+                border-bottom: rem(1px) solid $primary;
+                box-shadow: 0 rem(1px) 0 0 $primary;
+            }
+            &:nth-child(2) {
+            	margin-bottom: 1rem;
+            }
+            &:last-child {
+            	margin-top: 1rem;
+            }
+        }
         .regis-title,
         .fa,
         label,
@@ -251,7 +294,7 @@ section.page-overlay {
 	transition: all 0.6s ease-in-out;
 	color: $primary!important;
 }
-#forgetPassword {
+#forgetLink {
 	color: #fff!important;
 	position: absolute;
 	bottom: 2%;
@@ -267,6 +310,18 @@ section.page-overlay {
 		bottom: 10%;
 		right: 2%;
 		opacity: 0;
+        .fa,
+        label,
+        input,
+        strong {
+            color: darken($primary, 10%)!important;
+            border-color: darken($primary, 10%)!important;
+            &.active {
+                color: $primary!important;
+                border-color: $primary!important;
+            }
+        }
+        visibility: hidden;
 		.card-title {
 			padding: rem(15px) 0;
 		}
@@ -277,8 +332,33 @@ section.page-overlay {
 		}
 		&.is-showing {
 			opacity: 1;
+            visibility: visible;
 		}
 	}
+}
+.tooltip {
+    .tooltip-inner {
+        color: $info-text!important;
+        background-color: $default!important;
+    }
+    .tooltip-arrow {
+        border-color: $default!important;
+    }
+}
+.alert {
+    width: 35vw;
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translate(-50%,0);
+    z-index: 9999;
+    transition: all 0.6s;
+    &.is-showing {
+        top: 0;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+    }
 }
 
 .reveal-regis
@@ -297,7 +377,7 @@ section.page-overlay {
     	bottom: 2%;
     	transition: all 0.6s 0.3s ease-in-out;
     }
-    #forgetPassword {
+    #forgetLink {
     	right: -20%;
     }
 }

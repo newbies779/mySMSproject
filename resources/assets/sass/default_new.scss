@@ -33,6 +33,12 @@ input:-webkit-autofill:active {
 	}
 
 }
+.hide {
+	opacity: 0;
+}
+.show {
+	opacity: 1;
+}
 .seperator {
 	border: 0;
 	border-top: 1px solid rgba(194, 213, 219, 0.4);
