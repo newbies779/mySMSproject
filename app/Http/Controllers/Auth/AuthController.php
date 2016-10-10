@@ -7,6 +7,11 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Validation\ValidationException;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\UrlGenerator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -49,9 +54,9 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'regis_name' => 'required|max:255|unique:users',
-            'regis_email' => 'required|email|max:255|unique:users',
-            'regis_password' => 'required|min:6|confirmed',
+            'name' => 'required|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
         ]);
     }
 
@@ -68,5 +73,81 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Throw the failed validation exception.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     *
+     * @throws \Illuminate\Foundation\Validation\ValidationException
+     */
+    protected function throwRegisValidationException(Request $request, $validator)
+    {
+        throw new ValidationException($validator, $this->buildRegisFailedValidationResponse(
+            $request, $this->formatRegisValidationErrors($validator)
+        ));
+    }
+
+    /**
+     * Format the validation errors to be returned.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return array
+     */
+    protected function formatRegisValidationErrors($validator)
+    {
+        return $validator->errors()->getMessages();
+    }
+
+    /**
+     * Get the URL we should redirect to.
+     *
+     * @return string
+     */
+    protected function getRedirectUrl()
+    {
+        return app(UrlGenerator::class)->previous();
+    }
+
+    /**
+     * Create the response for when a request fails validation.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $errors
+     * @return \Illuminate\Http\Response
+     */
+    protected function buildRegisFailedValidationResponse(Request $request, array $errors)
+    {
+        if (($request->ajax() && ! $request->pjax()) || $request->wantsJson()) {
+            return new JsonResponse($errors, 422);
+        }
+        
+        return redirect()->to($this->getRedirectUrl())
+                        ->withInput($request->input())
+                        ->withErrors($errors,'regis');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwRegisValidationException(
+                $request, $validator
+            );
+        }
+
+        Auth::guard($this->getGuard())->login($this->create($request->all()));
+
+        return redirect($this->redirectPath());
     }
 }

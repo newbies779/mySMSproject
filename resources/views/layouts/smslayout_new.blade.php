@@ -29,7 +29,7 @@
 
 
 </head>
-<body class="fixed-sn blue-skin @if($errors->has(['regis_email']) || $errors->has(['regis_name']) || $errors->has(['regis_password']))reveal-regis @endif">
+<body class="fixed-sn blue-skin @if($errors->regis->has(['email']) || $errors->regis->has(['name']) || $errors->regis->has(['password']))reveal-regis @endif">
 	<header>
 	    <!--Navbar-->
 		<nav class="navbar navbar-full navbar-fixed-top navbar-dark bg-transparent">
@@ -119,9 +119,9 @@
 							<div class="md-form">
 								<i class="fa fa-user prefix"></i>
 				            	<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
-				            	@if ($errors->has('regis_name'))
+				            	@if ($errors->regis->has('name'))
 									<span class="help-block text-warning">
-                                        <strong>{{ $errors->first('regis_name') }}</strong>
+                                        <strong>{{$errors->regis->first('name') }}</strong>
                                     </span>
 								@endif
 				                <label for="name">What's your name?</label>
@@ -132,9 +132,9 @@
 				            <div class="md-form">
 				                <i class="fa fa-envelope prefix"></i>
 				                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-				                @if ($errors->has('regis_email'))
+				                @if ($errors->regis->has('email'))
                                    	<span class="help-block text-warning">
-                                        <strong>{{ $errors->first('regis_email') }}</strong>
+                                        <strong>{{ $errors->regis->first('email') }}</strong>
                                     </span>
                                 @endif
 								<label for="email" data-error="wrong" data-success="right">Type your email</label>
@@ -150,9 +150,9 @@
 				            <div class="md-form">
 				                <i class="fa fa-lock prefix"></i>
 				                <input id="password" type="password" class="form-control" name="password">
-				                @if ($errors->has('regis_password'))
+				                @if ($errors->regis->has('password'))
                                     <span class="help-block text-warning">
-                                        <strong>{{ $errors->first('regis_password') }}</strong>
+                                        <strong>{{$errors->regis->first('password') }}</strong>
                                     </span>
                                 @endif
 				                <label for="password" data-error="wrong" data-success="right">Type your password</label>
@@ -163,9 +163,9 @@
 				            <div class="md-form">
 				                <i class="fa fa-lock prefix"></i>
 				                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-                                @if ($errors->has('password_confirmation'))
+                                @if ($errors->regis->has('password_confirmation'))
                                     <span class="help-block text-warning">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        <strong>{{$errors->regis->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
 				                <label for="password_confirmation" data-error="wrong" data-success="right">Confirm your password</label>
