@@ -310,6 +310,7 @@ section.page-overlay {
 		bottom: 10%;
 		right: 2%;
 		opacity: 0;
+        z-index: 999;
         .fa,
         label,
         input,

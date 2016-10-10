@@ -55,6 +55,7 @@ elixir(function(mix) {
             'review.scss',
             'history.scss',
             'smslayout_new.scss',
+            'app_layout.scss',
             'default_new.scss'
         ], 'public/css', {
             sass: 'resources/assets/sass',
@@ -69,6 +70,7 @@ elixir(function(mix) {
             'review.css',
             'history.css',
             'smslayout_new.css',
+            'app_layout.css',
             'default_new.css'
         ], 'public/css/app.css', 'public/css')
         .browserSync()

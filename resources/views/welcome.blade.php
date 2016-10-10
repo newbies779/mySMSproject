@@ -3,22 +3,26 @@
 @section('header')
 	@include('showerror')
 	@include('flash')
+	@include('layouts.nav-fix-top')
 @stop
 
 @section('content')
-
-    <div id="hero-section">
-    	<div class="jumbotron jumbotron-fluid">
-    	<h1 class="display-3">Welcome to <strong>SMS</strong> project</h1>
-		<p class="lead">
-			Have not create account yet?
-		</p>
-        <div class="btn-group" role="group" aria-label="Button Hero">
-          <a href="{{ url('/register') }}" role="button" class="btn btn-primary"><strong>Join Us</strong></a>
-        </div>
-    	</div>
-    </div>
-
+	<div class="pages">
+		@include('auth.login')
+		@include('auth.register')
+		<section class="page page-overlay"></section>
+		<a href="#" id="backtoLogin" class="animated pulse infinite">
+			<div><small class="text-muted">Back to login</small></div>
+			<i class="fa fa-arrow-down fa-2x prefix"></i>
+		</a>
+		<a class="btn btn-link" id="forgetLink" href="#"><small class="link-text">Forgot Your Password?</small></a>
+		@include('auth.passwords.email')
+		@include('alert.alert_fix_top', [
+			'type' => 'info',
+			'message' => '<strong>An email has been sent.</strong> Please check your inbox, Thank you.',
+		])
+	</div>
+@stop
 @include('showerror')
 
 @section('script')
@@ -26,4 +30,3 @@
 		$('#homenav').hide();
 	</script>
 @stop
-@endsection

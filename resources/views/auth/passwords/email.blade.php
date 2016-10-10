@@ -1,41 +1,26 @@
-@extends('layouts.smslayout')
-
-<!-- Main Content -->
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+<!--Card-->
+<div class="card forget-card">
+    <!--Card content-->
+    <div class="card-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <h4 class="card-title">Reset password</h4>
+                    <p class="card-text">Can't remember your password, right?<br> It's ok. We will send an email back!!</p>
+                </div>
+                <div class="col-xs-12 col-md-6" style="padding: 60px 0;min-width:50%;">
+                    <form class="form-horizontal form-inline" id="formReset" role="form" method="POST" action="{{ url('/password/email') }}">
                         {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-envelope"></i> Send Password Reset Link
-                                </button>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="md-form form-group">
+                                        <i class="fa fa-envelope prefix"></i>
+                                        <a id="resetSubmit" href="#"><i class="fa  fa-send-o prefix" style="right: -20%;font-size: 20px;top: 10%;"></i></a>
+                                        <input type="email" id="resetEmail" name="email" class="form-control">
+                                        <label for="resetEmail" data-error="wrong" data-success="right">Type your email</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -43,12 +28,5 @@
             </div>
         </div>
     </div>
+    <!--/.Card content-->
 </div>
-@endsection
-
-@section('script')
-    <script>
-        $('#loginnav').addClass("active");
-        $('#homenav').hide();
-    </script>
-@stop

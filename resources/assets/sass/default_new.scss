@@ -2,6 +2,45 @@
 a {
 	font-family: 'Roboto', sans-serif;
 }
+html {
+  font-size: 12px;
+}
+
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 14px;
+  }
+  #dropdownMenuLink, .dropdown-menu .dropdown-item {
+  	font-size: 14px;
+  }
+  .dropdown-menu {
+  	margin-left: rem(6px);
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 15px;
+  }
+  #dropdownMenuLink, .dropdown-menu .dropdown-item {
+  	font-size: 14px;
+  }
+  .dropdown-menu {
+  	margin-left: rem(10px);
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 16px;
+  }
+  #dropdownMenuLink, .dropdown-menu .dropdown-item {
+  	font-size: 12px;
+  }
+  .dropdown-menu {
+  	margin-left: rem(6px);
+  }
+}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

@@ -1,0 +1,56 @@
+@import "variables";
+
+#app-layout {
+	#app-sidebar {
+		display: flex;
+		flex-flow: column wrap;
+		height: 100vh;
+		width: 10%;
+		justify-content: flex-start;
+		align-items: center;
+		.navbar-brand {
+			margin-right: 0;
+		}
+	    .name {
+	    	width: rem(30px);
+	    	height: rem(30px);
+		    border-radius: 50%;
+		    background-color: $primary;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+	    }
+		#centralNav, #bottomNav {
+			display: flex;
+			flex-flow: column wrap;
+			padding: rem(5px) rem(5px);
+		}
+		#centralNav {
+			flex: 1;
+			justify-content: center;
+		}
+		#bottomNav {
+			justify-content: flex-end;
+		}
+		.navbar-nav, .nav-item, .nav-link {
+			width: 100%;
+		}
+		.nav-item {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;
+			padding: rem(10px) 0;
+			&.active {
+				background-color: transparent;
+				border-right: 2px solid $primary;
+				.nav-link {
+					color: $primary;
+				}
+			}
+			.nav-link {
+				display: flex;
+    			justify-content: flex-start;
+			}
+		}
+	}
+}
