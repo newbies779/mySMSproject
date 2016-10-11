@@ -6,9 +6,51 @@ html {
   font-size: 12px;
 }
 
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-down(sm) {
   html {
     font-size: 14px;
+  }
+  #topNav {
+    .name {
+      width: rem(50px)!important;
+      height: rem(50px)!important;
+    }
+  }
+  #centralNav, #bottomNav {
+    .side-nav {
+      padding-top: rem(20px);
+      right: 50%!important;
+      transform: translate(50%, 0)!important;
+    }
+  }
+  #app-sidebar.is-opening {
+    width: 100%!important;
+    font-size: rem(28px);
+    .navbar-toggler, .name {
+      font-size: rem(40px);
+    }
+    .nav-item {
+      padding: 2rem 2rem!important;
+    }
+    .nav-link {
+      overflow: visible;
+    }
+    #topNav {
+      .name {
+        width: rem(100px)!important;
+        height: rem(100px)!important;
+      }
+    }
+    #centralNav, #bottomNav {
+      span.fa {
+        right: 50%!important;
+        top: -20%!important;
+        transform: translate(50%, 0);
+      }
+      .side-nav {
+        transform: translate(50%, 10%)!important;
+      }
+    }
   }
   #dropdownMenuLink, .dropdown-menu .dropdown-item {
   	font-size: 14px;
@@ -22,6 +64,12 @@ html {
   html {
     font-size: 15px;
   }
+  #topNav {
+    .name {
+      width: rem(50px)!important;
+      height: rem(50px)!important;
+    }
+  }
   #dropdownMenuLink, .dropdown-menu .dropdown-item {
   	font-size: 14px;
   }
@@ -33,6 +81,12 @@ html {
 @include media-breakpoint-up(lg) {
   html {
     font-size: 16px;
+  }
+  #topNav {
+    .name {
+      width: rem(50px)!important;
+      height: rem(50px)!important;
+    }
   }
   #dropdownMenuLink, .dropdown-menu .dropdown-item {
   	font-size: 12px;

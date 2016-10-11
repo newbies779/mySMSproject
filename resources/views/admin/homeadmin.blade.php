@@ -17,24 +17,29 @@
 
 		<ul id="centralNav" class="nav navbar-nav">
 			<li class="nav-item active">
-				<a class="nav-link" href="#"><i class="fa fa-btn fa-desktop"></i>&nbsp;&nbsp;Home <span class="sr-only">(current)</span></a>
+				<a class="nav-link nav-icon" href="#"><span class="fa fa-btn fa-lg fa-desktop"></span>&nbsp;&nbsp;</a>
+				<a class="nav-link side-nav nav-link-1" href="#">Home</a>
 			</li>
 			<li class="nav-item">
 				
-				<a class="nav-link" href="#"><i class="fa fa-btn fa-th-list"></i>&nbsp;&nbsp;Collection</a>
+				<a class="nav-link nav-icon" href="#"><span class="fa fa-btn fa-lg fa-th-list"></span>&nbsp;&nbsp;</a>
+				<a class="nav-link side-nav nav-link-2" href="#">Collection</a>
 			</li>
 			<li class="nav-item">
 				
-				<a class="nav-link" href="#"><i class="fa fa-btn fa-star"></i>&nbsp;&nbsp;Review</a>
+				<a class="nav-link nav-icon" href="#"><span class="fa fa-btn fa-lg fa-star"></span>&nbsp;&nbsp;</a>
+				<a class="nav-link side-nav nav-link-3" href="#">Review</a>
 			</li>
 			<li class="nav-item">
 				
-				<a class="nav-link" href="#"><i class="fa fa-btn fa-history"></i>&nbsp;&nbsp;History</a>
+				<a class="nav-link nav-icon" href="#"><span class="fa fa-btn fa-lg fa-history"></span>&nbsp;&nbsp;</a>
+				<a class="nav-link side-nav nav-link-4" href="#">History</a>
 			</li>
 		</ul>
 		<ul id="bottomNav" class="nav navbar-nav">
 			<li class="nav-item">
-				<a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>&nbsp;&nbsp;Logout</a>
+				<a class="nav-link" href="{{ url('/logout') }}"><span class="fa fa-btn fa-lg fa-sign-out"></span>&nbsp;&nbsp;</a>
+				<a class="nav-link side-nav nav-link-out" href="#">Logout</a>
 			</li>
 		</ul>
 	</nav>

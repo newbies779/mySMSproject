@@ -103,6 +103,9 @@ section.regis-form
         min-width: 30vw;
         transform: translateY(-10%);
     }
+    .form-control {
+        color: $primary;
+    }
     .logo,
     .regis-title
     {

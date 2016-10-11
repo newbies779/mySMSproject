@@ -72,4 +72,34 @@ $(function() {
 		})
 	};
 
+	if ($('body#app-layout').length > 0) {
+		var isOpening = false;
+		
+		function openOrNot() {
+			if (isOpening) {
+				console.log('toggle');
+				$('#app-sidebar').toggleClass('is-opening');
+			}
+		}
+		$(document).on('click', 'body#app-layout .navbar-toggler', function(e) {
+			isOpening = true;
+			openOrNot();
+		});
+		// Prevent window detected click
+		$(document).on('click','#app-sidebar', function(e){
+			e.stopPropagation();
+		});
+		// window click detect
+		$(window).on('click',function(e) {
+			// Start forget-card detect click outside
+			if ($('#app-sidebar').hasClass('is-opening') && isOpening) {
+				openOrNot();
+				setTimeout(function() {
+					isOpening = false;
+				}, 600)
+			}
+			// End forget-card detect click outside
+		})
+	}
+
 })
