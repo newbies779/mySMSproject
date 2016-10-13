@@ -19,6 +19,8 @@
 
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('/css/decolines.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap4.min.css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
@@ -28,7 +30,7 @@
 <body id="app-layout">
     <div class="container-fluid">
         <div class="row">
-             <header>
+             <header class="col-xs-1">
                 @yield('header')
             </header>
             @yield('content')

@@ -1,16 +1,10 @@
 @import 'variables';
 
-html,
 body
 {
-    width: 100vw;
-}
+    overflow: hidden;
 
-body
-{
-    overflow-x: hidden;
-
-    height: 100vh;
+    min-height: 100vh;
 
     background: #1cd8d2; /* fallback for old browsers */
     background: -webkit-linear-gradient(-45deg, #085078, #85d8ce);
