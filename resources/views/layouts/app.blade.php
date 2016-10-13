@@ -44,6 +44,10 @@
 
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
+    {{-- line Javascript --}}
+    <script type="text/javascript" src="{{ asset('/js/line.js') }}"></script>
+    {{-- anime.min Javascript --}}
+    <script type="text/javascript" src="{{ asset('/js/anime.min.js') }}"></script>
 
     <!-- MDB core JavaScript -->
     <script src="{{ asset('/js/mdb.js') }}"></script>
