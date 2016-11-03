@@ -64,7 +64,7 @@
 	</div>
 	<div class="row" id="panel-tab-btn">
     		<ul class="list-group col-xs-2">
-			  <li class="list-group-item">Rent Request</li>
+			  <li class="list-group-item active">Rent Request</li>
 			  <li class="list-group-item">Return Request</li>
 			</ul>
     	<div class="card-block col-xs-10">

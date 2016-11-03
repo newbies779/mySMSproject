@@ -23,7 +23,9 @@
 
 	@foreach ($rentList as $rent)
 
-	<tr>
+	<tr @if ($rent->rent_status == "Approved")
+		style="display:none;" 
+	@endif>
 		<td class="pos-left" scope="row"><b><?= $i ?></b></td>
 		<td class="pos-left"> {{ date('d/m/y', strtotime($rent->created_at))}} </td>
 		<td class="pos-left">{{ date('H:i', strtotime($rent->created_at))}}</td>
