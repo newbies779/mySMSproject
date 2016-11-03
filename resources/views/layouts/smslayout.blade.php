@@ -24,62 +24,58 @@
 </head>
 <body>
 	<header id="layout-header">
-		<nav id="nav-header" class="navbar navbar-fixed-top navbar-full navbar-light bg-faded nav-shadow">
-			<div class="container">
-				<button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
-					&#9776;
-				</button>
-				<div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-					<div class="bg-faded p-a-1">
-						<a class="navbar-brand" href="{{ url('/') }}" style="color:#0275d8;">SMS project</a>
-						<ul class="nav navbar-nav">
+		<nav id="nav-header" class="navbar navbar-fixed-top navbar-full navbar-light bg-faded">
+		  <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation"></button>
+		  <div class="collapse navbar-toggleable-xs" id="myNavbar">
+			<div class="bg-faded pa-1">
+				<a class="navbar-brand" href="{{ url('/') }}" style="color:#0275d8;">SMS project</a>
+				<ul class="nav navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" id="homenav" href="{{ url('/home') }}">Home</a>
+					</li>
+					@if (!Auth::guest())
+						@if (Auth::user()->role == "Admin")
 							<li class="nav-item">
-								<a class="nav-link" id="homenav" href="{{ url('/home') }}">Home</a>
+								<a class="nav-link" id="editnav" href="{{ url('/item') }}">Edit</a>
 							</li>
-							@if (!Auth::guest())
-								@if (Auth::user()->role == "Admin")
-									<li class="nav-item">
-										<a class="nav-link" id="editnav" href="{{ url('/item') }}">Edit</a>
-									</li>
 
-									<li class="nav-item">
-										<a class="nav-link" id="reviewnav" href="{{ url('/review') }}">Review</a>
-									</li>
+							<li class="nav-item">
+								<a class="nav-link" id="reviewnav" href="{{ url('/review') }}">Review</a>
+							</li>
 
-									<li class="nav-item" style="margin-right: 16px;">
-										<a class="nav-link" id="historynav" href="{{ url('/history') }}">History</a>
-									</li>
+							<li class="nav-item" style="margin-right: 16px;">
+								<a class="nav-link" id="historynav" href="{{ url('/history') }}">History</a>
+							</li>
 
-									{{-- <li class="nav-item" style="margin-right: 16px;">
-										<a class="nav-link" href="{{ url('importPage') }}">Import/Export</a>
-									</li> --}}
-								@endif
-							@endif
+							{{-- <li class="nav-item" style="margin-right: 16px;">
+								<a class="nav-link" href="{{ url('importPage') }}">Import/Export</a>
+							</li> --}}
+						@endif
+					@endif
 
-							<!--Right Side of NavBar -->
-							@if (Auth::guest())
+					<!--Right Side of NavBar -->
+					@if (Auth::guest())
 
-							<li class="nav-item pull-xs-right" style="margin-right: 16px;"><a class="nav-link" id="regisnav" href="{{ url('/register') }}">Register</a></li>
+					<li class="nav-item float-xs-right"><a class="nav-link" id="regisnav" href="{{ url('/register') }}">Register</a></li>
 
-							<li class="nav-item pull-xs-right"><a class="nav-link" id="loginnav" href="{{ url('/login') }}">Login</a></li>
-							@else
-							<div class="dropdown pull-xs-right" style="margin-left: 20px;margin-right: 20px;">
-								<a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-target="#" aria-haspopup="true" aria-expanded="false" id="dropdownMenuLink">
-									{{ Auth::user()->name }}&nbsp;<span class="text-muted"><small>{{ Auth::user()->role }}</small></span> <span class="caret"></span>
-								</a>
+					<li class="nav-item float-xs-right"><a class="nav-link" id="loginnav" href="{{ url('/login') }}">Login</a></li>
+					@else
+					<div class="dropdown float-xs-right" style="margin-left: 20px;margin-right: 20px;">
+						<a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-target="#" aria-haspopup="true" aria-expanded="false" id="dropdownMenuLink">
+							{{ Auth::user()->name }}&nbsp;<span class="text-muted"><small>{{ Auth::user()->role }}</small></span> <span class="caret"></span>
+						</a>
 
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-									<a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
-								</div>
-							</div>
-							@endif
-						</ul>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+						</div>
 					</div>
-				</div>
+					@endif
+				</ul>
 			</div>
+		</div>
 		</nav>
 
-		<div id="header-body" class="container" style="margin-top: 100px;padding-right:30px">
+		<div id="header-body" class="container navbar-fixed-top">
 			@yield('header')
 			
 		</div>

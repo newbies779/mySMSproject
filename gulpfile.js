@@ -15,9 +15,9 @@ require('laravel-elixir-sass-compass');
  */
 
 var paths = {
-    'jquery': './resources/assets/bower_components/jquery/',
-    'bootstrap': './resources/assets/bower_components/bootstrap/',
-    'tether': './resources/assets/bower_components/tether/',
+    'jquery': './node_modules/jquery/',
+    'bootstrap': './node_modules/bootstrap/',
+    'tether': './node_modules/tether/',
     'assets': './resources/assets/',
     'moment': './resources/assets/bower_components/moment/',
     'datetimepicker': './resources/assets/bower_components/eonasdan-bootstrap-datetimepicker/',
@@ -28,9 +28,9 @@ var paths = {
 elixir(function(mix) {
     mix.sass("bootstrap.scss", 'public/css/', { includePaths: [paths.bootstrap + 'scss/'] })
         .scripts([
-            paths.jquery + "dist/jquery.min.js",
-            paths.tether + "dist/js/tether.min.js",
-            paths.bootstrap + "dist/js/bootstrap.min.js",
+            paths.jquery + "dist/jquery.js",
+            paths.tether + "dist/js/tether.js",
+            paths.bootstrap + "dist/js/bootstrap.js",
             paths.moment + "min/moment-with-locales.min.js",
             paths.moment + "locale/th.js",
             paths.datetimepicker + "build/js/bootstrap-datetimepicker.min.js",
@@ -54,8 +54,8 @@ elixir(function(mix) {
             'home.scss',
             'review.scss',
             'history.scss',
-            'smslayout_new.scss',
-            'default_new.scss'
+            // 'smslayout_new.scss',
+            // 'default_new.scss'
         ], 'public/css', {
             sass: 'resources/assets/sass',
             font: 'public/fonts',
@@ -68,9 +68,9 @@ elixir(function(mix) {
             'home.css',
             'review.css',
             'history.css',
-            'smslayout_new.css',
-            'default_new.css'
+            // 'smslayout_new.css',
+            // 'default_new.css'
         ], 'public/css/app.css', 'public/css')
-        //.browserSync()
+        .browserSync()
 
 });
