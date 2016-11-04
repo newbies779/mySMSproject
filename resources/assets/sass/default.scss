@@ -1,15 +1,23 @@
-// @import "MDBootstrap/sass/mdb";
+/* @import "MDBootstrap/sass/mdb";*/
+@import "variables";
+
 html,
 body {
-  width: 100vw;
+  @extend .full-page;
+}
+body {
+
 }
 
-label:focus {
-  outline: none;
+label {
+  margin-top: .4rem;
+  &:focus {
+    outline: none;
+  }
 }
 .full-page {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 .btn {
   border-radius: .8rem;
@@ -31,28 +39,29 @@ label:focus {
   animation-fill-mode: forwards;
   animation-delay: 0ms;
 }
-
 #nav-header {
   padding: 1rem;
-  background-color: transparent;
 }
 
+#content, #tableContent {
+  // position: relative;
+  // display: -ms-flexbox;
+  // display: flex;
+  // -ms-flex-flow: column wrap;
+  //     flex-flow: column wrap;
+}
 #content {
   @extend .full-page;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  -ms-flex-pack: space-around;
+      justify-content: space-around;
 }
-
 #tableContent {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 5rem;
 }
 
-#loginForm {
+#loginForm, #regisForm {
+  max-height: 20rem;
+  min-width: 22.5rem;
   opacity: 0;
   transform: scale(0, 0);
   animation-name: pop;
@@ -60,70 +69,52 @@ label:focus {
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
   animation-delay: 0ms;
-  #loginButton {
+  .forget-link {
+    font-size: 0.7rem;
+    color: $black-stroke;
     position: absolute;
-    bottom: 0;
-    right: 50%;
-    width: 60px;
-    height: 60px;
-    transform: translate(0, 50%) scale(1) rotate(0deg);
-    outline: none;
-    border-radius: 50%;
-    -webkit-transition: transform 600ms ease-in-out;
-    -moz-transition: transform 600ms ease-in-out;
-    -ms-transition: transform 600ms ease-in-out;
-    -o-transition: transform 600ms ease-in-out;
-    transition: transform 600ms ease-in-out;
-    &:hover {
-      transform: translate(0, 50%) scale(1.2) rotate(360deg);
-    }
-  }
-}
-
-#regisForm {
-  opacity: 0;
-  transform: scale(0, 0);
-  animation-name: pop;
-  animation-duration: 600ms;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-  animation-delay: 0ms;
-  .card {
-    position: relative;
-    width: 70%;
-    height: 100%;
+    right: 0;
     top: 50%;
-    right: 50%;
-    transform: translate(60%,-10%);
+    transform: translate(-20%, -50%);
   }
-  #regisButton {
+  #loginButton, #regisButton {
     position: absolute;
-    bottom: 0;
-    right: 50%;
+    bottom: -10%;
+    left: 50%;
     width: 60px;
     height: 60px;
     outline: none;
     border-radius: 50%;
-    -webkit-transition: transform 300ms ease-in-out;
-    -moz-transition: transform 300ms ease-in-out;
-    -ms-transition: transform 300ms ease-in-out;
-    -o-transition: transform 300ms ease-in-out;
-    transition: transform 300ms ease-in-out;
-    transform: translate(0%, 50%) scale(1);
-    &:hover {
-      transform: translate(0%, 40%) scale(1.2);
-    }
+  }
+}
+#loginButton {
+  transform: translate(-50%, 0%) scale(1) rotate(0deg);
+  transition: transform 600ms ease-in-out;
+  &:hover {
+    transform: translate(-50%, 10%) scale(1.2) rotate(360deg);
+  }
+}
+#regisButton {
+  transition: transform 300ms ease-in-out;
+  transform: translate(-50%, 0%) scale(1);
+  &:hover {
+    transform: translate(-50%, 10%) scale(1.2);
   }
 }
 
 #hero-section {
   background-color: #fff;
   > .jumbotron {
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    -ms-flex-flow: column;
+        flex-flow: column;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
     background-color: #fff;
     > h1 {
       opacity: 0;
@@ -154,22 +145,16 @@ label:focus {
     }
   }
 }
-
+.help-block {
+  font-size: 0.8rem;
+}
 @keyframes showY {
   0% {
     opacity: 0;
-    -webkit-transform: translateY(50%);
-    -moz-transform: translateY(50%);
-    -ms-transform: translateY(50%);
-    -o-transform: translateY(50%);
     transform: translateY(50%);
   }
   100% {
     opacity: 1;
-    -webkit-transform: translateY(0%);
-    -moz-transform: translateY(0%);
-    -ms-transform: translateY(0%);
-    -o-transform: translateY(0%);
     transform: translateY(0%);
   }
 }
@@ -177,18 +162,10 @@ label:focus {
 @keyframes showX {
   0% {
     opacity: 0;
-    -webkit-transform: translateX(50%);
-    -moz-transform: translateX(50%);
-    -ms-transform: translateX(50%);
-    -o-transform: translateX(50%);
     transform: translateX(50%);
   }
   100% {
     opacity: 1;
-    -webkit-transform: translateX(0%);
-    -moz-transform: translateX(0%);
-    -ms-transform: translateX(0%);
-    -o-transform: translateX(0%);
     transform: translateX(0%);
   }
 }
@@ -196,49 +173,25 @@ label:focus {
 @keyframes pop {
   0% {
     opacity: 0;
-    -webkit-transform: scale(0, 0);
-    -moz-transform: scale(0, 0);
-    -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   80% {
-    -webkit-transform: scale(1.2, 1.2);
-    -moz-transform: scale(1.2, 1.2);
-    -ms-transform: scale(1.2, 1.2);
-    -o-transform: scale(1.2, 1.2);
     transform: scale(1.2, 1.2);
   }
   100% {
     opacity: 1;
-    -webkit-transform: scale(1, 1);
-    -moz-transform: scale(1, 1);
-    -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
 
 @keyframes send {
   0% {
-    -webkit-transform: translateY(0%);
-    -moz-transform: translateY(0%);
-    -ms-transform: translateY(0%);
-    -o-transform: translateY(0%);
     transform: translateY(0%);
   }
   10% {
-    -webkit-transform: translateY(-20%);
-    -moz-transform: translateY(-20%);
-    -ms-transform: translateY(-20%);
-    -o-transform: translateY(-20%);
     transform: translateY(-20%);
   }
   100% {
-    -webkit-transform: translateY(100%);
-    -moz-transform: translateY(100%);
-    -ms-transform: translateY(100%);
-    -o-transform: translateY(100%);
     transform: translateY(100%);
   }
 }
@@ -263,10 +216,14 @@ label:focus {
       padding: 0.7rem;
       padding-left: 0;
       > a {
+        display: -ms-flexbox;
         display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-start;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -ms-flex-align: center;
+            align-items: center;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
         cursor: pointer;
         i {
           color: #909090;
@@ -464,15 +421,12 @@ label:focus {
 .hvn-btn-shadow-outset {
   display: inline-block;
   vertical-align: middle;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  -webkit-transition-property: box-shadow;
   transition-property: box-shadow;
   &:hover {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.6);
@@ -482,15 +436,12 @@ label:focus {
 .hvr-box-shadow-outset {
   display: inline-block;
   vertical-align: middle;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  -webkit-transition-property: box-shadow;
   transition-property: box-shadow;
   &:hover {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
@@ -502,10 +453,6 @@ label:focus {
   .panel-heading {
     background-color: #CE2704;
     color: white;
-    -webkit-transform: scale(1.1, 1.1);
-    -moz-transform: scale(1.1, 1.1);
-    -ms-transform: scale(1.1, 1.1);
-    -o-transform: scale(1.1, 1.1);
     transform: scale(1.1, 1.1);
     h3 {
       padding: 0.625rem 0;
@@ -513,7 +460,102 @@ label:focus {
   }
 }
 
-// Media Query
+/* Share*/
+
+/* Flexbox */
+
+.flex-container {
+    /* Safari */
+    display: -ms-flexbox;
+    display: flex;
+}
+flex {
+  -ms-flex: 1;
+      flex: 1;
+}
+.fxf-rw {
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+
+.fxf-rnw {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+}
+
+.fxf-colw {
+    -ms-flex-flow: column wrap;
+    flex-flow: column wrap;
+}
+
+.fxf-colnw {
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+}
+
+.f-ai- {
+    &fs {
+        -ms-flex-align: start;
+        align-items: flex-start;
+    }
+    &fe {
+        -ms-flex-align: end;
+        align-items: flex-end;
+    }
+    &bl {
+        -ms-flex-align: baseline;
+        align-items: baseline;
+    }
+    &c {
+        -ms-flex-align: center;
+        align-items: center;
+    }
+}
+
+.f-as- {
+    &fs {
+        -ms-flex-item-align: start;
+        align-self: flex-start;
+    }
+    &fe {
+        -ms-flex-item-align: end;
+        align-self: flex-end;
+    }
+    &bl {
+        -ms-flex-item-align: baseline;
+        align-self: baseline;
+    }
+    &c {
+        -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    }
+}
+
+.f-jc- {
+    &fs {
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+    &fe {
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+    }
+    &c {
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+    &sb {
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+    &sa {
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+    }
+}
+
+/* Media Query*/
 @media (max-width: 845px) {
   #header-title,
   #header-body {

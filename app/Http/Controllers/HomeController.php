@@ -35,6 +35,7 @@ class HomeController extends Controller
 
         if ($user->role === "Admin") {
             $rentList = $rent->getRentRequest();
+            // dd($rentList);
             return view('admin.homeadmin', compact('user','items','rentList'));
         }
         

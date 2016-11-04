@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-
+<div class="container-fluid" id="content">
     <div id="hero-section">
     	<div class="jumbotron jumbotron-fluid">
     	<h1 class="display-3">Welcome to <strong>SMS</strong> project</h1>
@@ -18,7 +18,7 @@
         </div>
     	</div>
     </div>
-
+</div>
 @include('showerror')
 
 @section('script')
