@@ -71,6 +71,8 @@ elixir(function(mix) {
             // 'smslayout_new.css',
             // 'default_new.css'
         ], 'public/css/app.css', 'public/css')
-        .browserSync()
+        .browserSync({
+            proxy: 'sms.dev'
+        })
 
 });

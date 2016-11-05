@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Application Routesbower
 |--------------------------------------------------------------------------
 |
 | Here is where you can register all of the routes for an application.
@@ -59,7 +59,7 @@ Route::get('broadcast', function () {
     //event(new AdminRentApprove('123'));
     //event(new ItemCreate('Available','2','200'));
     // Pusher::trigger('test1', 'testEvent', ['message' => '555']);
-    // 
+    //
 
 });
 
@@ -97,7 +97,7 @@ Route::get('pusher', function () {
 	// 			if((int)$datediff == 3 || (int)$datediff <=0){
 	//                             //store who, days, itemname to array
 	// 				$arr_rent_to_mail[$i++] = [
-	// 				'user_id' => $user->id, 
+	// 				'user_id' => $user->id,
 	// 				'days' => $datediff,
 	// 				'itemname' => $rent->item->name
 	// 				];
@@ -119,7 +119,7 @@ Route::get('pusher', function () {
 	// 			$m->from('Newbies780@gmail.com', 'Anupong Chuen-Im');
 
 	// 			$m->to($user->email, $user->name)->subject('Your Notification');
-	// 		});  
+	// 		});
 	// 	}
 	// }
 

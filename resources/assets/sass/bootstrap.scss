@@ -1,5 +1,5 @@
 @import "variables";
-@import "bower_components/bootstrap/scss/bootstrap";
+@import "./node_modules/bootstrap/scss/bootstrap";
 
 h1, .h1 {
 	font-weight: 100;
@@ -38,13 +38,13 @@ select.form-control {
 
 .dropdown-menu {
 	margin-top: 0;
-	@include border-radius($dropdown_border_radius);	
+	@include border-radius($dropdown_border_radius);
 	.delete{
-		&:hover,&:focus {		
+		&:hover,&:focus {
 			background-color: $error !important;
 			color: $white !important;
 		}
-	}	
+	}
 	.txt-group-label {
 		color: $black;
 	}
@@ -61,7 +61,7 @@ select.form-control {
 
 .modal-content {
 	border-radius: 0;
-	
+
 	.modal-header {
 		height: rem(48px);
 		.modal-title {
