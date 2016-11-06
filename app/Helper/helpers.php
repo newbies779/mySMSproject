@@ -1,8 +1,9 @@
 <?php
 
-function flash($message, $status = 'info'){
+function flash($message, $status = 'info', $tab = 'rent'){
 	session()->flash('status', $status);
 	session()->flash('message', $message);
+	session()->flash('tab', $tab);
 }
 
 function dump_db(){

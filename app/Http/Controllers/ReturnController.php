@@ -34,7 +34,7 @@ class ReturnController extends Controller
     	$this->itemStatus = 'ReturnPending';
 
     	$returnStatus = $item->updateItem($item,$request,$this->itemStatus);
-    	
+
     	if($returnStatus['status'] == "success"){
     		flash($returnStatus['message'],'info');
             event(new ReturnItem($item->status,Auth::user()->id,$item->id));
@@ -54,12 +54,12 @@ class ReturnController extends Controller
         $item = $item->getItemObject($rent->item_id);
 
         if($returnStatus['status'] == "success"){
-            flash($returnStatus['message'],'info');
+            flash($returnStatus['message'],'info',$returnStatus['tab']);
             event(new ReturnApprove($item->status,Auth::user()->id,$item->id));
             return redirect('/home');
         }
 
-        flash($returnStatus['message'],'warning');
+        flash($returnStatus['message'],'warning',$returnStatus['tab']);
         return redirect('/home');
     }
 }

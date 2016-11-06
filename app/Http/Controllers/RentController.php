@@ -52,7 +52,7 @@ class RentController extends Controller
 
 		$item = new item;
 		$item = $item->getItemObject($rent->item_id);
-		
+
 		if($returnStatus['status'] == "success"){
 			flash($returnStatus['message'],'info');
 			event(new RentApprove($item->status,Auth::user()->id,$item->id));
@@ -65,10 +65,10 @@ class RentController extends Controller
 	}
 
 	public function destroy(Request $request, $rentId)
-	{	
+	{
 		$rent = RentListItem::findorfail($rentId);
 		\DB::table('rent_list_items')->where('id',$rent->id)->delete();
-		
+
 		$item = $rent->item;
 		if($item->status == "Reserved"){
 			$item->status = "Available";
@@ -82,5 +82,5 @@ class RentController extends Controller
 		}
 	}
 
-	
+
 }

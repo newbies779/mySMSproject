@@ -21,6 +21,9 @@
   }
 }
 
+.dt-bootstrap4 {
+  transition: opacity .3s, visibility .3s;
+}
 
 #header-button .btn {
   border-radius: .25rem;
@@ -32,11 +35,8 @@
   color: #fff;
 }
 
-.table {
-  td,
-  th {
-    border-color: #ccc;
-  }
+.tab-content {
+  width: 100%;
 }
 
 .modal-inform {

@@ -40,7 +40,8 @@ $factory->define(App\RentListItem::class, function (Faker\Generator $faker) {
 
   $statusReturn = [
   Null,
-  'Yes'
+  'Pending',
+  'Approved'
   ];
 
   $theItem = $faker->randomElement($itemArray);

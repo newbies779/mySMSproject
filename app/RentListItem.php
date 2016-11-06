@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RentListItem extends Model
 {
-   
+
      /**
      * The attributes that are mass assignable.
      *
@@ -33,7 +33,7 @@ class RentListItem extends Model
     {
         return $this->orderBy('id','desc')->get();
     }
-    
+
     public function getRentOrderDesc($user_id){
         // dd($this->where('user_id',$user_id)->orderBy('id','desc')->get());
         return $this->where('user_id',$user_id)->orderBy('id','desc')->get();
@@ -62,10 +62,10 @@ class RentListItem extends Model
                 DB::commit();
             } catch (exception $e){
                 DB::rollback();
-                $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
+                $res = ["status" => "error_exception", "err_msg" => $e->getMessage(), "tab" => "rent"];
             }
 
-            $res = ["status" => "success", 'message' => "Approve Rent Success"];
+            $res = ["status" => "success", 'message' => "Approve Rent Success", "tab" => "rent"];
             return $res;
     }
 
@@ -86,10 +86,10 @@ class RentListItem extends Model
                 DB::commit();
             } catch (exception $e){
                 DB::rollback();
-                $res = ["status" => "error_exception", "err_msg" => $e->getMessage()];
+                $res = ["status" => "error_exception", "err_msg" => $e->getMessage(), "tab" => "return"];
             }
 
-            $res = ["status" => "success", 'message' => "Approve Return Success"];
+            $res = ["status" => "success", "message" => "Approve Return Success", "tab" => "return"];
             return $res;
     }
 }
