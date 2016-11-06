@@ -1,4 +1,4 @@
-<table class="table table-hover" style="width: 100%; cellspacing="0" id="table-rent-admin">
+<table class="table table-hover" style="width: 100%;" cellspacing="0" id="table-rent-admin">
     <thead>
         <tr>
             <th class="text-xs-left">#</th>
@@ -7,8 +7,8 @@
             <th class="text-xs-left">User</th>
             <th class="text-xs-left">Item</th>
             <th class="text-xs-left">Rent Date</th>
-            <th class="text-xs-left">Rent Status</th>
-            <th class="text-xs-left">Rent Action</th>
+            <th class="text-xs-left" style="display:none">Rent Status</th>
+            <th class="text-xs-left" style="display:none">Rent Action</th>
             <th style="display:none">noterent</th>
             <th style="display:none">rentid</th>
         </tr>
@@ -25,7 +25,7 @@
             <td class="pos-left">{{ $rent->user->name }}</td>
             <td class="pos-left">{{ $rent->item->name }}</td>
             <td class="pos-left"> {{ date('d/m/y', strtotime($rent->rent_req_date))}} </td>
-            <td class="pos-left">
+            <td class="pos-left" style="display:none;">
                 @if ($rent->rent_status == "Approved")
                 <span class="tag tag-success">
                     @elseif ($rent->rent_status == "Pending")

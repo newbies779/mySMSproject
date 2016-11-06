@@ -27,7 +27,6 @@ $returnTable = $rentList->where('return_status', 'Pending');
             var tab_wrapper = $('.card-header-tabs');
             var current;
             var showTab = function() {
-                console.log('{{ $tab }}');
                 tab_wrapper.find('a[href="#{{ $tab }}"]').tab('show');
             }
 
@@ -50,7 +49,7 @@ $returnTable = $rentList->where('return_status', 'Pending');
                         "paging":   true,
                         "ordering": true,
                         "info":     true,
-                        "pageLength": 10,
+                        "pageLength": 5,
                         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
                     });
                     // after that call callback function
@@ -61,7 +60,9 @@ $returnTable = $rentList->where('return_status', 'Pending');
             function bind_events() {
                 // on Modal rent approve show
                 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-
+                    var newTab = $(e.target).attr('href'); // newly activated tab
+                    var oldTab = $(e.relatedTarget).attr('href'); // newly activated tab
+                    setColor(newTab, oldTab);
                 })
                 $('#rentApproveModal').on('show.bs.modal', function(e) {
                     var modal = $(this);
@@ -92,7 +93,21 @@ $returnTable = $rentList->where('return_status', 'Pending');
 
                 init_table();
             }
-
+            function findColor(keyword) {
+                if (keyword === '#rent') return 'primary';
+                if (keyword === '#return') return 'warning';
+            }
+            function setColor(newTab, oldTab) {
+                changeColorFrom(findColor(newTab),findColor(oldTab), function() {
+                    console.log('changes success.');
+                });
+            }
+            function changeColorFrom(newColor, oldColor, callback) {
+                console.log(newColor);
+                console.log(oldColor);
+                $('.card-header').removeClass('bg-'+oldColor).addClass('bg-'+newColor);
+                callback();
+            }
             bind_events();
         });
     </script>

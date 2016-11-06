@@ -21,7 +21,21 @@
   }
 }
 
-.dt-bootstrap4 {
+.paginate_button {
+  &.active {
+    a {
+      &[aria-controls='table-return-admin'] {
+        background-color: $warning !important;
+        border-color: $warning !important;
+        color: $white !important;
+      }
+    }
+  }
+  a {
+    &[aria-controls='table-return-admin'] {
+      color: $warning;
+    }
+  }
   transition: opacity .3s, visibility .3s;
 }
 
@@ -36,6 +50,11 @@
 }
 
 .tab-content {
+  .table {
+    th {
+      border: 0;
+    }
+  }
   width: 100%;
 }
 

@@ -7,8 +7,8 @@
             <th class="text-xs-left">User</th>
             <th class="text-xs-left">Item</th>
             <th class="text-xs-left">Return Date</th>
-            <th class="text-xs-left">Return Status</th>
-            <th class="text-xs-left">Return Action</th>
+            <th class="text-xs-left" style="display:none;">Return Status</th>
+            <th class="text-xs-left" style="display:none;">Return Action</th>
             <th style="display:none">notereturn</th>
             <th style="display:none">rentid</th>
         </tr>
@@ -26,7 +26,7 @@
                 <td class="pos-left">{{ $return->user->name }}</td>
                 <td class="pos-left">{{ $return->item->name }}</td>
                 <td class="pos-left"> {{ date('d/m/y', strtotime($return->rent_req_date))}} </td>
-                <td class="pos-left">
+                <td class="pos-left" style="display:none;">
                 @if ($return->return_status == "Approved")
                     <span class="tag tag-success">
                     @elseif ($return->return_status == "Pending")
