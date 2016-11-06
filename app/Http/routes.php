@@ -29,6 +29,11 @@ Route::get('/review', 'ReviewController@index');
 
 Route::get('/history', 'HistoryController@index');
 
+Route::get('/api/rent', [
+	'as' => 'api.getRent',
+	'uses' => 'ApiController@getRent'
+]);
+
 Route::get('/review/get', 'ReviewController@getData');
 
 Route::patch('/rent/approve/{rent}', 'RentController@approveRent');

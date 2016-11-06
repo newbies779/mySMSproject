@@ -1,75 +1,58 @@
-@extends('layouts.smslayout')
-@section('content')
-<div id="loginForm" class="container">
-    <div class="row">
-        <div class="card card-slide col-md-6 offset-md-3 shadow">
-            <div class="panel panel-default">
-                <div class="panel-heading text-md-center"><p class=" display-4" style="color:#0275d8;">Login</p></div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
-                        
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" style="padding: 0.4rem;padding-bottom:1.5rem;">
-                            <label for="email" class="col-sm-4 control-label" style="color:#0275d8;">E-Mail Address</label>
-
-                            <div class="col-sm-7">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block text-warning">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+@extends('layouts.smslayout') @section('content')
+<div class="container-fluid" id="content">
+    <div id="loginForm" class="row">
+        <div class="card card-slide col-xs-8 col-md-6 col-lg-4 offset-xs-2 offset-md-3 offset-lg-4 shadow">
+            <div class="card-block">
+                <h1 class="card-title" style="color:#0275d8;">Login</h1>
+            </div>
+            <div class="card-block">
+                <form role="form" method="POST" action="{{ url('/login') }}">
+                    {{ csrf_field() }}
+                    <div class="form-group row {{ $errors->has('email') ? ' has-error' : '' }}">
+                        <label for="email" class="col-xs-3 form-control-label">Email</label>
+                        <div class="col-xs-9">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                        </div>
+                        <div class="col-xs-9 offset-xs-3">
+                            @if ($errors->has('email'))
+                            <span class="help-block text-warning">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span> @endif
+                        </div>
+                    </div>
+                    <div class="form-group row {{ $errors->has('password') ? ' has-error' : '' }}">
+                        <label for="password" class="col-xs-3 form-control-label">Password</label>
+                        <div class="col-xs-9">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            <a class="card-link forget-link pull-xs-right" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                        </div>
+                        <div class="col-xs-9 offset-xs-3">
+                            @if ($errors->has('password'))
+                            <span class="help-block text-warning">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span> @endif
+                        </div>
+                    </div>
+                    <div class="form-group row pull-xs-right">
+                        <div class="col-xs-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember"> Remember me
+                                </label>
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}" style="padding: 0.4rem;padding-bottom:1.5rem;">
-                            <label for="password" class="col-md-4 control-label" style="color:#0275d8;">Password</label>
-
-                            <div class="col-md-7">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block text-warning">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <a class="btn btn-link col-md-4 offset-md-4" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="checkbox">
-                                    <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="remember" class="custom-control-input"> 
-                                        <span class="custom-control-indicator"></span>
-  <span class="custom-control-description">Remember Me</span>
-
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group" style="padding: 1rem;">
-                            <div class="col-md-6 offset-md-4" style="padding-top: 2.5rem;">
-                                <button id="loginButton" type="submit" class="btn btn-primary shadow">
-                                    <i class="fa fa-btn fa-sign-in fa-lg"></i>
-                                </button>
-
-                                
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <button id="loginButton" type="submit" class="btn btn-primary shadow">
+                        <i class="fa fa-btn fa-sign-in fa-lg"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-@endsection
-@section('script')
-    <script>
-        $('#loginnav').addClass("active");
-        $('#homenav').hide();
-    </script>
+@endsection @section('script')
+<script>
+$('#loginnav').addClass("active");
+$('#homenav').hide();
+</script>
 @stop
