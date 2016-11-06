@@ -15,14 +15,13 @@ require('laravel-elixir-sass-compass');
  */
 
 var paths = {
-    'jquery': './node_modules/jquery/',
-    'bootstrap': './node_modules/bootstrap/',
-    'tether': './node_modules/tether/',
+    'jquery': './resources/assets/bower_components/jquery/',
+    'bootstrap': './resources/assets/bower_components/bootstrap/',
+    'tether': './resources/assets/bower_components/tether/',
     'assets': './resources/assets/',
     'moment': './resources/assets/bower_components/moment/',
     'datetimepicker': './resources/assets/bower_components/eonasdan-bootstrap-datetimepicker/',
-    'jqueryForm': './resources/assets/bower_components/jquery-form/',
-    'js': './resources/assets/js/'
+    'jqueryForm': './resources/assets/bower_components/jquery-form/'
 }
 
 elixir(function(mix) {
