@@ -11,6 +11,6 @@ class RentListTableSeeder extends Seeder
      */
     public function run()
     {
-            factory('App\RentListItem', 50)->create();
+        factory('App\RentListItem', 20)->create();
     }
 }

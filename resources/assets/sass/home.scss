@@ -1,25 +1,26 @@
 @import "variables";
 
-#tableContent {
-  #grid-body {
-    .card-table {
-      margin-bottom: 0;
+
+.card-table {
+  .card-title {
+    color: $white;
+  }
+}
+
+.card-header-tabs {
+  .nav-link {
+    transition: all .3s;
+    color: $white;
+    &:hover {
+      color: $black-darker;
+      background-color: $white;
     }
-    .card-header-tabs {
-      .nav-link {
-        color: $white;
-        transition: all 0.3s;
-        &:hover {
-          color: $black-darker;
-          background-color: $white;
-        }
-        &.active {
-          color: $black-darker;
-        }
-      }
+    &.active {
+      color: $black-darker;
     }
   }
 }
+
 
 #header-button .btn {
   border-radius: .25rem;

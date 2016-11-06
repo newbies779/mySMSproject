@@ -15,11 +15,11 @@ use Carbon\Carbon;
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->firstName,
-        'email' => $faker->email,
-        'password' => bcrypt('12341234'),
-        'role' => $faker->randomElement($array = array('Admin','Guest')),
-        'remember_token' => str_random(10),
+    'name' => $faker->firstName,
+    'email' => $faker->email,
+    'password' => bcrypt('12341234'),
+    'role' => $faker->randomElement($array = array('Admin','Guest')),
+    'remember_token' => str_random(10),
     ];
 });
 
@@ -34,70 +34,70 @@ $factory->define(App\RentListItem::class, function (Faker\Generator $faker) {
 	$ends_at= Carbon::createFromFormat('Y-m-d H:i:s', $starts_at)->addDays( $faker->numberBetween( 1, 8 ) );
 
 	$statusArray = [
-		'Pending',
-		'Approved'
-	];
+  'Pending',
+  'Approved'
+  ];
 
-    $statusReturn = [
-        'Not yet',
-        'Yes'
-    ];
+  $statusReturn = [
+  Null,
+  'Yes'
+  ];
 
-    $theItem = $faker->randomElement($itemArray);
-    DB::table('items')->where('id','=',$theItem)->update(array('status' => 'Borrowed'));
-    
-    return [
-        'rent_date' => Carbon::now()->toDateTimeString(),
-        'rent_req_date' => Carbon::now()->addDays( $faker->numberBetween( 1, 8 )),
-        'rent_approve_date' => Carbon::now()->addDays( $faker->numberBetween( 1, 3 )),
+  $theItem = $faker->randomElement($itemArray);
+  DB::table('items')->where('id','=',$theItem)->update(array('status' => 'Borrowed'));
+
+  return [
+  'rent_date' => Carbon::now()->toDateTimeString(),
+  'rent_req_date' => Carbon::now()->addDays( $faker->numberBetween( 1, 8 )),
+  'rent_approve_date' => Carbon::now()->addDays( $faker->numberBetween( 1, 3 )),
 
 
-        'return_date' => Carbon::now()->addMonths( $faker->numberBetween( 1, 3 )),
-        'return_req_date' => Carbon::now()->addMonths( $faker->numberBetween( 1, 3)),
-        'return_approve_date' => Carbon::now()->addMonths( $faker->numberBetween( 1, 3 )),
+  'return_date' => Carbon::now()->addMonths( $faker->numberBetween( 1, 3 )),
+  'return_req_date' => Carbon::now()->addMonths( $faker->numberBetween( 1, 3)),
+  'return_approve_date' => Carbon::now()->addMonths( $faker->numberBetween( 1, 3 )),
 
-        'rent_req_note' => $faker->paragraph,
-        'return_req_note' => $faker->paragraph,
+  'rent_req_note' => $faker->paragraph,
+  'return_req_note' => $faker->paragraph,
 
-        'rent_status' => $faker->randomElement($statusArray),
-        'return_status' => $faker->randomElement($statusReturn),
+  'rent_status' => $faker->randomElement($statusArray),
+  'return_status' => $faker->randomElement($statusReturn),
 
-        'user_id' => $faker->randomElement($userArray),
-        'item_id' => $theItem,
-    ];
+  'user_id' => $faker->randomElement($userArray),
+  'item_id' => $theItem,
+  ];
 });
 
 $factory->define(App\Item::class, function (Faker\Generator $faker) {
 	$categoryArray = DB::table('categories')->lists('id');
-        $itemstatusArray = [
-            'Available',
-            'Repairing',
+    $itemstatusArray = [
+    'Available',
+    'Repairing',
             //'Borrowed',
-            'Broken',
-            'Lost'
+    'Broken',
+    'Lost'
             //'Reserved'
-        ];
+    ];
 
-        $custom_id = $faker->creditCardNumber;
-        $status = $faker->randomElement($itemstatusArray);
- 
-        return [
-            'name' => $faker->colorName,
-            'status' => $status,
-            'item_id' => $faker->creditCardNumber,
-            'custom_id' => $custom_id,
-            'category_id' => $faker->randomElement($categoryArray),
-            'location' => $faker->city,
-            'note' => $faker->paragraph,
-            'reviewed_at' => Carbon::now(),
-            'bought_year' => Carbon::now()->addYears( $faker->numberBetween( -4,-1 )),
-        ];
+    $custom_id = $faker->creditCardNumber;
+    $status = $faker->randomElement($itemstatusArray);
+
+    return [
+    'name' => $faker->colorName,
+    'status' => $status,
+    'item_id' => $faker->creditCardNumber,
+    'custom_id' => $custom_id,
+    'category_id' => $faker->randomElement($categoryArray),
+    'location' => $faker->city,
+    'note' => $faker->paragraph,
+    'reviewed_at' => Carbon::now(),
+    'bought_year' => Carbon::now()->addYears( $faker->numberBetween( -4,-1 )),
+    ];
 });
 
 $factory->define(App\Category::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->company,
-        'rentable' => $faker->boolean,
+    'name' => $faker->company,
+    'rentable' => $faker->boolean,
     ];
 });
 
@@ -116,7 +116,7 @@ $factory->define(App\Logs::class, function (Faker\Generator $faker) {
 
 // $factory->define(App\RentListItem::class, function (Faker\Generator $faker) {
 
-    
+
 //     $itemArray = DB::table('items')->lists('item_id');
 
 
@@ -142,4 +142,4 @@ $factory->define(App\Logs::class, function (Faker\Generator $faker) {
 //         'return_status' => $faker->randomElement($statusReturn),
 //         'item_id' => $faker->randomElement($itemArray),
 //     ];
-// }); 
+// });
