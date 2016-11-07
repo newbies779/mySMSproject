@@ -47,7 +47,7 @@
                     <div class="form-group row {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                         <label for="password_confirmation" class="col-xs-3 form-control-label">Confirm Password</label>
                         <div class="col-xs-9 flex-container f-ai-c">
-                            <input type="password" class="form-control" id="password_confirmation" placeholder="Confirm Password">
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"placeholder="Confirm Password">
                         </div>
                         <div class="col-xs-9 offset-xs-3">
                             @if ($errors->has('password_confirmation'))

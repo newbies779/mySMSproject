@@ -103,14 +103,14 @@
                         <textarea class="form-control" cols="50" id="reviewNote" placeholder="Type your note" rows="4" type="text">
                         </textarea>
                     </fieldset>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal" type="button">
-                            Close
-                        </button>
-                        <button class="btn btn-primary" type="submit">
-                            Save changes
-                        </button>
-                    </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">
+                    Close
+                </button>
+                <button class="btn btn-primary" type="submit">
+                    Save changes
+                </button>
                 </form>
             </div>
         </div>

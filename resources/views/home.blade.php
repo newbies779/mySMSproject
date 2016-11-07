@@ -3,104 +3,103 @@
 @section('header')
 @include('flash')
 @include('showerror')
-
-<div class="row">
-    <div id="header-title" class="col-xs-12 col-sm-8">
-        <h3>
-            <strong>{{ $user->name }}'s</strong> Items List
-        </h3>
-    </div>
-    <div id="header-button" class="col-xs-12 col-sm-4 pull-md-right">
-     <!-- Button trigger modal -->
-     <a role="button" class="btn btn-primary btn-block btn-circle shadow hvr-box-shadow-outset"  data-toggle="modal" href="#rentListModal">
-        <span><b>Rent</b></span>           
-    </a>
-</div>
-</div>
-
-@include('modals.showAvailableItemModal')
 @stop
 
 @section('tableContent')
-<div id="grid-body" class="col-sm-10 offset-sm-1">
-    <div id="table-container" class="card card-block shadow">
-        <h3 class="card-title text-xs-center">Request List</h3>
-            <div class="table-responsive">
-    <table class="table table-hover" style="width: 100%;" cellspacing="0" id="itemtable">
-        <thead>
-            <tr>
-                <th class="text-xs-left">#</th>
-                <th class="text-xs-left">Item Name</th>
-                <th class="text-xs-left">Date</th>
-                <th class="text-xs-left">Time</th>
-                <th class="text-xs-left">Rent Date</th>
-                <th class="text-xs-left">Due Date</th>
-                <th class="text-xs-left">Rent Status</th>
-                <th class="text-xs-left">Return Status</th>
-                <th class="text-xs-center">Action</th>
-                <th style="display:none">note</th>
-                <th style="display:none">itemid</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <?php $i = $rentList->count(); ?>
-
-            @foreach ($rentList as $rent)
-            
-            <tr>
-                <td class="pos-left" scope="row"><strong> {{ $i }} </strong></td>
-                <td class="pos-left" id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
-                <td class="pos-left">{{date('d/m/y', strtotime($rent->created_at))}}</td>
-                <td class="pos-left">{{date('H:i', strtotime($rent->created_at))}}</td>
-                <td class="pos-left">{{ date('d/m/y', strtotime($rent->rent_req_date))}}</td>
-                <td class="pos-left" 
-                <?php if(strtotime('now') >= strtotime($rent->return_date)) : ?>
-                    style = "color:red"
-                <?php endif ?>>
-                    <?php if(!is_null($rent->return_date)) : ?>
-                        {{ date('d/m/Y', strtotime($rent->return_date)) }}
-                    <?php endif ?>
-                </td> 
-                <td class="pos-left"> 
-                    @if ($rent->rent_status == "Approved")
-                        <span class="tag tag-success">
-                    @elseif ($rent->rent_status == "Pending")
-                        <span class="tag tag-warning">
-                    @endif
-                    {{ $rent->rent_status }}</span></td> 
-                <td class="pos-left">
-                    @if ($rent->return_status == "Yes")
-                        <span class="tag tag-success">
-                        {{ $rent->return_status }}
-                    @elseif ($rent->return_status == "Pending")
-                        <span class="tag tag-warning">
-                        {{ $rent->return_status }}
-                    @elseif ($rent->return_status == "No")
-                        {{-- <span class="tag tag-default"> --}}
-                    @endif
-                    </span>
-                </td>
-
-                <!-- Button trigger modal -->
-                <td class="pos-left">
-                    <button type="button" class="btn btn-primary btn-sm returnBtn"  data-toggle="modal" href="#stack3" data-row=" {{ $i }} " data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled"; 
-                        ?>>Return</button>
-                    <button type="button" class="btn btn-primary btn-sm btn_show_delete" data-rent="{{ $rent }}" data-toggle="modal" href="#deleteModal" @if ($rent->rent_status != "Pending")
-                        disabled 
-                    @endif>delete</button>
-                </td>
-                    <td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
-                    <td style="display:none" id="itemidForReturn<?= $i--; ?>">{{  $rent->item->id }}</td>
-
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+<div class="containe-fluid" id="tableContent" style="margin-top: 7rem;">
+    <div class="grid-header card card-primary panel-shadow card-block col-sm-10 offset-sm-1">
+        <div id="header-title" class="col-xs-12 col-sm-10">
+            <p class="h3">
+                <strong>{{ $user->name }}'s</strong> Items List
+            </p class="h3">
+        </div>
+        <div id="header-button" class="col-xs-12 col-sm-2 pull-md-right">
+         <!-- Button trigger modal -->
+         <a role="button" class="btn btn-secondary btn-block shadow hvr-box-shadow-outset flex-container f-ai-c f-jc-c"  data-toggle="modal" href="#rentListModal">
+            <span><b>Rent</b></span>           
+        </a>
+        </div>
     </div>
+    <div id="grid-body" class="col-sm-10 offset-sm-1">
+        <div id="table-container" class="card card-block shadow">
+            <h3 class="card-title text-xs-center">Request List</h3>
+                <div class="table-responsive">
+        <table class="table table-hover" style="width: 100%;" cellspacing="0" id="itemtable">
+            <thead>
+                <tr>
+                    <th class="text-xs-left">#</th>
+                    <th class="text-xs-left">Item Name</th>
+                    <th class="text-xs-left">Date</th>
+                    <th class="text-xs-left">Time</th>
+                    <th class="text-xs-left">Rent Date</th>
+                    <th class="text-xs-left">Due Date</th>
+                    <th class="text-xs-left">Rent Status</th>
+                    <th class="text-xs-left">Return Status</th>
+                    <th class="text-xs-center">Action</th>
+                    <th style="display:none">note</th>
+                    <th style="display:none">itemid</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php $i = $rentList->count(); ?>
+
+                @foreach ($rentList as $rent)
+                
+                <tr>
+                    <td class="pos-left" scope="row"><strong> {{ $i }} </strong></td>
+                    <td class="pos-left" id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
+                    <td class="pos-left">{{date('d/m/y', strtotime($rent->created_at))}}</td>
+                    <td class="pos-left">{{date('H:i', strtotime($rent->created_at))}}</td>
+                    <td class="pos-left">{{ date('d/m/y', strtotime($rent->rent_req_date))}}</td>
+                    <td class="pos-left" 
+                    <?php if(strtotime('now') >= strtotime($rent->return_date)) : ?>
+                        style = "color:red"
+                    <?php endif ?>>
+                        <?php if(!is_null($rent->return_date)) : ?>
+                            {{ date('d/m/Y', strtotime($rent->return_date)) }}
+                        <?php endif ?>
+                    </td> 
+                    <td class="pos-left"> 
+                        @if ($rent->rent_status == "Approved")
+                            <span class="tag tag-success">
+                        @elseif ($rent->rent_status == "Pending")
+                            <span class="tag tag-warning">
+                        @endif
+                        {{ $rent->rent_status }}</span></td> 
+                    <td class="pos-left">
+                        @if ($rent->return_status == "Yes")
+                            <span class="tag tag-success">
+                            {{ $rent->return_status }}
+                        @elseif ($rent->return_status == "Pending")
+                            <span class="tag tag-warning">
+                            {{ $rent->return_status }}
+                        @elseif ($rent->return_status == "No")
+                            {{-- <span class="tag tag-default"> --}}
+                        @endif
+                        </span>
+                    </td>
+
+                    <!-- Button trigger modal -->
+                    <td class="pos-left">
+                        <button type="button" class="btn btn-primary btn-sm returnBtn"  data-toggle="modal" href="#stack3" data-row=" {{ $i }} " data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled"; 
+                            ?>>Return</button>
+                        <button type="button" class="btn btn-primary btn-sm btn_show_delete" data-rent="{{ $rent }}" data-toggle="modal" href="#deleteModal" @if ($rent->rent_status != "Pending")
+                            disabled 
+                        @endif>delete</button>
+                    </td>
+                        <td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
+                        <td style="display:none" id="itemidForReturn<?= $i--; ?>">{{  $rent->item->id }}</td>
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        </div>
     </div>
 </div>
-
+    @include('modals.showAvailableItemModal')
 
     <!-- Modal3 -->
     <div class="modal hide fade" id="stack3" tabindex="-1" role="dialog" data-focus-on="input:first" aria-labelledby="myModalLabel3" aria-hidden="true" >

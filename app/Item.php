@@ -160,10 +160,17 @@ class Item extends Model
                 $item->custom_id = $request->itemid;
                 $item->name = $request->itemname;
                 $item->status = $request->status;
-                $item->location = $request->location;
-                $item->note = $request->note;
+                if ($request->location !== "") {
+                    $item->location = $request->location;
+                }
+                if ($request->assignee_id !== "") {
+                    $item->assignee_id = $request->assignee_id;
+                }
+                if ($request->note !== "") {
+                    $item->note = $request->note;
+                }
                 $item->category_id = $request->category;
-                if ($request->bought_year != "") {
+                if ($request->bought_year !== "") {
                     $item->bought_year = $request->bought_year;
                 } else {
                     $item->bought_year = null;

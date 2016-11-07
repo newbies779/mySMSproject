@@ -7,6 +7,7 @@ use App\Events\ItemGetEdit;
 use App\Http\Requests;
 use App\Item;
 use App\Tracking;
+use App\User;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,8 +43,9 @@ class ItemController extends Controller
     {
         $items = Item::orderBy('custom_id')->get();
         $items = $items->load('category', 'users');
+        $assignees  = User::roleUser()->orderBy('name')->get();
         $categories = Category::all();
-        return view('admin.showItem', compact('items', 'categories'));
+        return view('admin.showItem', compact('items', 'categories', 'assignees'));
     }
 
     /**
@@ -64,6 +66,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $this->validate($request, [
             // 'itemid' => 'required|max:100|min:5',
             // 'customid' => 'unique:items,custom_id|max:100|min:5',
@@ -116,11 +119,13 @@ class ItemController extends Controller
                 }
             }
             $item->name = $itemname;
-            $item->status = 'Available';
+            $item->status = $request->input('status');
             $item->location = $location;
             $item->category_id = $request->input('category');
-            $item->note = trim($request->input('note'));
-            if ($request->input('bought_year') != "") {
+            if ($request->input('note') !== "") {
+                $item->note = trim($request->input('note'));
+            }
+            if ($request->input('bought_year') !== "") {
                 $item->bought_year = trim($request->input('bought_year'));
             }
             
@@ -171,6 +176,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
+        // dd($request);
         $validator = Validator::make($request->all(), $this->validation($request));
 
         if ($validator->fails()) {

@@ -1,4 +1,5 @@
 <?php
+// dd($rentList);
 $rentTable = $rentList->where('rent_status', 'Pending');
 $returnTable = $rentList->where('return_status', 'Pending');
 // dd($returnTable);
@@ -49,7 +50,7 @@ $returnTable = $rentList->where('return_status', 'Pending');
                         "paging":   true,
                         "ordering": true,
                         "info":     true,
-                        "pageLength": 5,
+                        "pageLength": 10,
                         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
                     });
                     // after that call callback function

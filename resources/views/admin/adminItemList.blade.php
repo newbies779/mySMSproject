@@ -1,5 +1,4 @@
 <table class="table table-hover" style="width: 100%;" cellspacing="0" id="tableItemAdmin">
-<h4 class="text-sm-center">Item List</h4>
 	<thead>
 		<div class="btn-group" role="button" arial-label="Import/Export" style="padding: 0.5rem;">
 			<a  class="btn btn-primary btn-sm" data-toggle="modal" href="#adminImportItem">
@@ -18,8 +17,8 @@
 			<th class="text-xs-left">Assignee</th>
 			<th class="text-xs-left">Note</th>
 			{{-- <th class="text-xs-left">Bought date</th> --}}
-			<th class="text-xs-left category">Category</th>
-			<th class="text-xs-left">Action</th>
+			<th class="text-xs-left category" style="display:none;">Category</th>
+			<th class="text-xs-left"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -36,7 +35,7 @@
 		<tr>
 			<td class="pos-left"><?= $i; ?></td>
 			<td class="pos-left"><?= $item->custom_id; ?></td>
-			<td class="pos-left" style="max-height:100px;max-width: 100px;word-wrap:break-word;overflow:hidden"><?= $item->name; ?></td>
+			<td class="pos-left limit-text"><?= $item->name; ?></td>
 			<td class="pos-left">
 				@if ($item->status == "Reserved")
                     <span class="tag tag-success">
@@ -61,18 +60,18 @@
 			<td class="pos-left"><?= $item->location; ?></td>
 			<td class="pos-left">
 				@if (!is_null($item->assignee_id))
-					<?= $item->users->name ?>
-				@else <?= 'No' ?>
+					{{ $item->users->name }}
+				@else {{ 'No' }}
 				@endif
 			</td>
 			{{-- <td class="pos-left iconpopover" data-toggle="popover" data-container="body" data-placement="bottom" data-content="{{ $item->note }}" title="Note"><i class="fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i></td> --}}
-			<td style="max-height:100px;max-width:150px;word-wrap:break-word;overflow:hidden">{{ $item->note }}</td>
+			<td>{{ $item->note }}</td>
 			<!-- <td class="pos-left"> 
 				<?php if($item->bought_year != "") : ?>
 					{{-- {{ date('d/m/y',strtotime($item->bought_year)) }}  --}}
 				<?php endif ?>
 			</td> -->
-			<td class="pos-left" style="max-height:100px;max-width:150px;word-wrap:break-word;overflow:hidden"><?= $item->category->name; ?></td>
+			<td class="pos-left" style="max-height:100px;max-width:150px;word-wrap:break-word;overflow:hidden;display:none;"><?= $item->category->name; ?></td>
 			<td class="pos-left">
 						<button 
 						type="button" 

@@ -84,8 +84,6 @@ var modal = $('#modalEditReview');
             "info":     true,
             "pageLength": 25,
             "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
-            "scrollY":        "56vh",
-            "scrollCollapse": true,
         });
 
         $('#modalEditReview').on('show.bs.modal', function(e) {

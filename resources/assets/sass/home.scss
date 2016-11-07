@@ -1,6 +1,4 @@
-@import "variables";
-
-
+@import 'variables';
 .card-table {
   .card-title {
     color: $white;
@@ -22,12 +20,13 @@
 }
 
 .paginate_button {
+  transition: opacity .3s, visibility .3s;
   &.active {
     a {
       &[aria-controls='table-return-admin'] {
-        background-color: $warning !important;
-        border-color: $warning !important;
         color: $white !important;
+        border-color: $warning !important;
+        background-color: $warning !important;
       }
     }
   }
@@ -36,30 +35,34 @@
       color: $warning;
     }
   }
-  transition: opacity .3s, visibility .3s;
-}
-
-#header-button .btn {
-  border-radius: .25rem;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .modal-header {
-  background-color: #0275d8;
   color: #fff;
+  background-color: #0275d8;
 }
 
 .tab-content {
+  width: 100%;
   .table {
     th {
       border: 0;
     }
   }
-  width: 100%;
+  .modal {
+    .col-form-label {
+      padding-top: 0;
+      padding-bottom: .5rem;
+    }
+  }
 }
 
-.modal-inform {
-  margin-bottom: 10px;
-  padding-bottom: 0;
-  border-bottom: 1px solid #666;
+// User view
+.grid-header {
+  p {
+    color: $black-lighter;
+  }
+  position: absolute;
+  z-index: 2;
+  transform: translate(0, -25%);
 }

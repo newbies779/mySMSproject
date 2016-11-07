@@ -1,6 +1,6 @@
 <div class="col-sm-10 offset-sm-1 pull-xs-center" id="header-button">
     <!-- Button trigger modal -->
-    <button id="button-new" class="btn btn-primary btn-block hvn-btn-shadow-outset" role="button">
+    <button id="button-new" class="btn btn-primary btn-block" role="button">
         <span style="margin-top: 10px;">
             <b>
                 NEW
@@ -23,15 +23,13 @@
 
     @foreach ($categories as $category)
     <div class="list-group-item list-group-item-action cate_hover">
-
         <div class="row">
-            <label class="pull-sm-left" style="max-width: 17ch;
-        word-wrap:break-word;
-        display: inline-block;
-        text-overflow: ellipsis;
-        overflow:hidden;"><?= $category->name ?></label>
-        
-        <button class="btn pull-xs-right categoryEdit" style="font-size: 6px;background-color: #5c90d2;" data-toggle="modal" href="#adminEditCategory" data-category='<?= str_replace('\'', '\\\'', $category); ?>'><i class="fa fa-cog" aria-hidden="true" style="font-size:10px;color:white"></i></button>
+            <div class="col-xs-12 flex-container f-ai-c f-jc-sb">
+                <label class="limit-text pull-sm-left">{{ $category->name }}</label>
+                <button class="btn pull-xs-right categoryEdit" style="font-size: 6px;background-color: #5c90d2;" data-toggle="modal" href="#adminEditCategory" data-category='<?= str_replace('\'', '\\\'', $category); ?>'>
+                    <i class="fa fa-cog" aria-hidden="true" style="font-size:10px;color:white"></i>
+                </button>
+            </div>
         </div>
     </div>
     @endforeach

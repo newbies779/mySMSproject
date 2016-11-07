@@ -17,7 +17,6 @@ label {
   height: 100%;
 }
 .btn {
-  border-radius: .8rem;
   &:focus,
   &:active,
   &:hover {
@@ -195,7 +194,7 @@ label {
 
 #grid-lside {
   position: fixed;
-  height: 94%;
+  height: 100vh;
   z-index: 999;
   #header-button {
     .btn {
@@ -262,8 +261,10 @@ label {
     margin-bottom: 16px;
   }
   .list-group-item {
+    font-size: .8rem;
     border-top: 4px solid #fff;
     border-bottom: 4px solid #fff;
+    padding: .4rem 1rem;
     border-right: 0;
     cursor: pointer;
     label,
@@ -271,11 +272,11 @@ label {
       cursor: pointer;
     }
     &:hover {
-      background-color: #d8d8d8;
-      border-left: 8px solid #909090;
+      background-color: $black-stroke;
+      border-left: 6px solid #909090;
     }
     &.active {
-      border-left: 8px solid #5c90d2;
+      border-left: 6px solid #0275d8;
       background-color: #fff;
       color: #333333;
       font-weight: bold;
@@ -293,6 +294,13 @@ label {
       z-index: 1000;
     }
   }
+}
+.limit-text {
+  max-width: 17ch;
+  word-wrap:break-word;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow:hidden;
 }
 
 .btn-outline-default {
@@ -413,21 +421,6 @@ label {
 .float-shadow {
   transition-property: box-shadow;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
-}
-
-.hvn-btn-shadow-outset {
-  display: inline-block;
-  vertical-align: middle;
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  transition-duration: 0.3s;
-  transition-property: box-shadow;
-  &:hover {
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.6);
-  }
 }
 
 .hvr-box-shadow-outset {
@@ -570,12 +563,5 @@ flex {
 @media (min-width: 992px) {
   .container {
     max-width: 940px;
-  }
-}
-
-@media (min-width: 846px) {
-  #header-button,
-  #grid-menu a {
-    max-width: 11.25rem;
   }
 }

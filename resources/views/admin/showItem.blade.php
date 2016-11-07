@@ -6,18 +6,20 @@
 @stop
 
 @section('tableContent')
-@include('modals.adminEditModal')
-@include('modals.adminAddNewItem')
-@include('modals.adminAddCategory')
-@include('modals.adminEditCategory')
-<div id="grid-lside" class="col-sm-2">
-    @include('admin.category_component')
-</div>
+<div class="container-fluid" id="tableContent">
+    @include('modals.adminEditModal')
+    @include('modals.adminAddNewItem')
+    @include('modals.adminAddCategory')
+    @include('modals.adminEditCategory')
+    <div id="grid-lside" class="col-sm-2">
+        @include('admin.category_component')
+    </div>
 
-<div class="col-sm-10 offset-sm-2" id="grid-body">
-    <div class="card card-block shadow" id="table-container" style="height: 85%;">
-        <div class="table-responsive">
-            @include('admin.adminItemList')
+    <div class="col-sm-10 offset-sm-2" id="grid-body">
+        <div class="card card-block shadow" id="table-container" style="height: 85%;">
+            <div class="table-responsive">
+                @include('admin.adminItemList')
+            </div>
         </div>
     </div>
 </div>
@@ -36,8 +38,7 @@
             "scrollY":        "48vh",
             "scrollCollapse": true,
             "columnDefs": [
-                        { width: 150, targets: 1 },
-                        { width: 220, targets: 2 }
+                        { width: 300, targets: 6 }
                     ],
         });
     });
@@ -66,62 +67,52 @@
         });
 
         $('#adminAddNew').on('show.bs.modal', function(e) {
-            $('label.btn').click(function() {
-                data['status'] = $(this).children('input[name="options"]').val();
-            });
+            var modal = $(this);
+            modal.find('input[value="Available"]').parent('label').addClass('active').click();
+            // Assignee click event
+            $('.assignee-drd').click(function () {
+                var assignee_obj = $(this).data('assignee');
+                var assignee_id = assignee_obj.id;
+                $('input#assignee_id').val(assignee_obj.id);
+                $('input#assignee').val(assignee_obj.name);
+            })
         });
-
-        $('#formForAdminAddNew').submit(function(e) {
-            var status = $("<input>")
-            .attr("type", "hidden")
-            .attr("name", "status").val(data.status);
-            $(this).append($(status));
-            return true;
-        });
-        
 
         $('#adminEditItem').on('show.bs.modal', function(e) {
+            var modal = $(this);
             var button = $(e.relatedTarget);
             var item = button.data('itemdata');
             //set default for status dropdown
-            var spanStatus = $('#spanStatus');
-            switch(item.status){
-                case 'Available':
-                    spanStatus.attr('class','tag tag-info')
-                    break;
-                    case 'Broken':
-                        spanStatus.attr('class','tag tag-danger')
-                        break;
-                        case 'Borrowed':
-                            spanStatus.attr('class','tag tag-borrow')
-                            break;
-                            case 'Lost':
-                                spanStatus.attr('class','tag tag-lost')
-                                break;
-                                case 'Repairing':
-                                    spanStatus.attr('class','tag tag-warning')
-                                    break;
-                                    case 'Reserved':
-                                        spanStatus.attr('class','tag tag-success')
-                                        break;
-                                        case 'ReturnPending':
-                                            spanStatus.attr('class','tag tag-return-pending')
-                                            break;
-                                            case 'Unavailable':
-                                                spanStatus.attr('class','tag tag-unavailable')
-                                                break;
-                                            }
-                                            spanStatus.html(item.status);
-                                            $('#inputStatus').val(item.status);
+            console.log(item);
+            if (item.status == "Reserved" || item.status == "ReturnPending" || item.status == "Borrowed") {
+                modal.find('.btn-group').hide();
+                modal.find('label[for="status"]').html("<strong>Item status:</strong>&nbsp;<em>This item cannot <b>change</b> status.</em>");
+            } else {
+                modal.find('.btn-group').show();
+                modal.find('label[for="status"]').html("<strong>Item status:</strong>&nbsp;");
+            }
+            modal.find('input[value='+ item.status +']').parent('label').addClass('active').click();
+            $('#status').val(item.status);
+            $('#itemid').val(item.custom_id);
+            $('#itemname').val(item.name);
+            $('#location').val(item.location);
+            $('#note').val(item.note);
+            $('#bought_year').val(item.bought_year);
 
-                                            $('#itemid').val(item.custom_id);
-                                            $('#itemname').val(item.name);
-                                            $('#location').val(item.location);
-                                            $('#note').val(item.note);
-                                            $('#bought_year').val(item.bought_year);
-                                            $('form#formForAdminEdit').attr('action','item/'+ item.id); 
-                                            $('#formForAdminEdit').find('option[value="'+ item.category.id+'"]').prop("selected",true);
-                                        });
+            if (item.users !== null) {
+                $('input#assignee').val(item.users.name);
+                $('input#assignee_id').val(item.users.id);
+            }
+            $('form#formForAdminEdit').attr('action','item/'+ item.id); 
+            $('#formForAdminEdit').find('option[value="'+ item.category.id+'"]').prop("selected",true);
+            // Assignee click event
+            $('.assignee-drd').click(function () {
+                var assignee_obj = $(this).data('assignee');
+                var assignee_id = assignee_obj.id;
+                $('input#assignee_id').val(assignee_obj.id);
+                $('input#assignee').val(assignee_obj.name);
+            })
+        });
 
         var table = $('#tableItemAdmin').DataTable();
 
