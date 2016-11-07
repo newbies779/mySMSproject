@@ -15,9 +15,6 @@ $returnTable = $rentList->where('return_status', 'Pending');
 <div class="tab-pane fade" id="return" role="tab">
     @include('admin.adminReturnList', ['returns' => $returnTable])
 </div>
-<div class="tab-pane fade" id="history" role="tab">
-
-</div>
 
 {{-- Modal --}}
 @include('modals.showModalApprove')
@@ -71,10 +68,10 @@ $returnTable = $rentList->where('return_status', 'Pending');
                     var rent = button.data('rent');
                     console.log(rent);
                     //console.log(rent.item.custom_id);
-                    modal.find('#icustomId').text(rent.item.custom_id);
-                    modal.find('#iname').text(rent.item.name);
-                    modal.find('#istatus').text(rent.item.status);
-                    modal.find('#inote').text(rent.rent_req_note);
+                    modal.find('#icustomId').val(rent.item.custom_id);
+                    modal.find('#iname').val(rent.item.name);
+                    modal.find('#istatus').val(rent.item.status);
+                    modal.find('#inote').val(rent.rent_req_note);
 
                     modal.find('#formRentApprove').attr('action','rent/approve/'+rent.id);
                 });
@@ -84,10 +81,10 @@ $returnTable = $rentList->where('return_status', 'Pending');
                     var button = $(e.relatedTarget);
                     var rent = button.data('rent');
                     //console.log(rent.item.custom_id);
-                    modal.find('#rcustomId').text(rent.item.custom_id);
-                    modal.find('#rname').text(rent.item.name);
-                    modal.find('#rstatus').text(rent.item.status);
-                    modal.find('#rnote').text(rent.return_req_note);
+                    modal.find('#rcustomId').val(rent.item.custom_id);
+                    modal.find('#rname').val(rent.item.name);
+                    modal.find('#rstatus').val(rent.item.status);
+                    modal.find('#rnote').val(rent.return_req_note);
 
                     modal.find('#formReturnApprove').attr('action','return/approve/'+rent.id);
                 });

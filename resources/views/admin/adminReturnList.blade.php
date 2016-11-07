@@ -25,7 +25,17 @@
                 <td class="pos-left">{{ date('H:i', strtotime($return->created_at))}}</td>
                 <td class="pos-left">{{ $return->user->name }}</td>
                 <td class="pos-left">{{ $return->item->name }}</td>
-                <td class="pos-left"> {{ date('d/m/y', strtotime($return->rent_req_date))}} </td>
+                <td class="pos-left"
+                    <?php if(strtotime('now') >= strtotime($return->return_date)) : ?>
+                        style = "color:red"
+                    <?php endif ?>
+                >
+                    @if (!is_null($return->return_date))
+                    {{ date('d/m/y', strtotime($return->return_date)) }}
+                    @elseif(!is_null($return->return_req_date))
+                    {{ date('d/m/y', strtotime($return->return_req_date)) }}
+                    @endif
+                </td>
                 <td class="pos-left" style="display:none;">
                 @if ($return->return_status == "Approved")
                     <span class="tag tag-success">

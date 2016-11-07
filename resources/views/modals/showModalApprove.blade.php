@@ -14,28 +14,28 @@
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Item-CustomId:</label>
 				    <div class="col-sm-7">
-				      <p class="mb-0 form-control-static" id="icustomId"></p>
+				    <input class="form-control" name="icustomId" id="icustomId" type="text" value="" readonly>
 				    </div>
 				</div>
 				
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Item-Name:</label>
 				    <div class="col-sm-7">
-				      <p class="mb-0 form-control-static" id="iname"></p>
+				    <input class="form-control" name="iname" id="iname" type="text" value="" readonly>
 				    </div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Item-Status:</label>
 				    <div class="col-sm-7">
-				      <p class="mb-0 form-control-static" id="istatus"></p>
+				    	<input class="form-control" name="istatus" id="istatus" type="text" value="" readonly>
 				    </div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Rent-Note:</label>
 				    <div class="col-sm-7">
-				      <p class="mb-0 form-control-static" id="inote"></p>
+				    	<textarea class="form-control" rows="6" name="inote" id="inote" type="text" value="" readonly></textarea>
 				    </div>
 				</div>
 
@@ -75,28 +75,28 @@
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Item-CustomId:</label>
 				    <div class="col-sm-7">
-				      <p class="mb-0 form-control-static" id="rcustomId"></p>
+				      <input class="form-control" name="rcustomId" id="rcustomId" type="text" value="" readonly>
 				    </div>
 				</div>
 				
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Item-Name:</label>
 				    <div class="col-sm-7">
-				      <p class="mb-0 form-control-static" id="rname"></p>
+				      <input class="form-control" name="rname" id="rname" type="text" value="" readonly>
 				    </div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Item-Status:</label>
 				    <div class="col-sm-7">
-				      <p class="mb-0 form-control-static" id="rstatus"></p>
+				      <input class="form-control" name="rstatus" id="rstatus" type="text" value="" readonly>
 				    </div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Return-Note:</label>
 				    <div class="col-sm-7">
-				      <p class="mb-0 form-control-static" id="rnote"></p>
+				      <textarea class="form-control" rows="6" name="rnote" id="rnote" type="text" value="" readonly></textarea>
 				    </div>
 				</div>
 

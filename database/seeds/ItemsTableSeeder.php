@@ -12,7 +12,7 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-    	for($i = 1; $i<=150; $i++){
+    	for($i = 1; $i<=200; $i++){
     		factory('App\Item')->create();
     		$item = \DB::table('items')->select('id','status')->orderBy('id','desc')->first();
     		event(new ItemCreate($item->status, 2 ,$item->id));

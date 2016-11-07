@@ -19,9 +19,6 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#return" role="tab">Return</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#history" role="tab">History</a>
-            </li>
         </ul>
     </div>
 </div>

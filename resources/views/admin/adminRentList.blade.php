@@ -28,26 +28,16 @@
             <td class="pos-left" style="display:none;">
                 @if ($rent->rent_status == "Approved")
                 <span class="tag tag-success">
-                    @elseif ($rent->rent_status == "Pending")
-                    <span class="tag tag-warning">
-                        @endif
-                        {{ $rent->rent_status }}</span>
-                    </td>
-                    <td class="pos-left
-                    @if (strtotime('now') >= strtotime($rent->return_date))
-                    text-danger"
-                    @endif
-                    >
-                    @if (!is_null($rent->return_date))
-                    {{ date('d/m/y', strtotime($rent->return_date)) }}
-                    @elseif(!is_null($rent->return_req_date))
-                    {{ date('d/m/y', strtotime($rent-> return_req_date)) }}
-                    @endif
-                </td>
-                <!-- Button Rent Trigger Modal -->
+                @elseif ($rent->rent_status == "Pending")
+                <span class="tag tag-warning">
+                @endif
+                    {{ $rent->rent_status }}
+                </span>
+            </td>
+            <!-- Button Rent Trigger Modal -->
 
-                <td class="pos-left">
-                    <button type="button" class="btn btn-sm btn-primary rent-approve"
+            <td class="pos-left">
+                <button type="button" class="btn btn-sm btn-primary rent-approve"
                     data-toggle="modal"
                     data-target ="#rentApproveModal"
                     data-row="<?= $i ?>"
@@ -56,7 +46,7 @@
                     @if ($rent->rent_status === "Approved")
                     disabled
                     @endif
-                    >
+                >
                     @if ($rent->rent_status == "Pending")
                     Approve
                     @else

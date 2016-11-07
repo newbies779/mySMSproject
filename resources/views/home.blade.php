@@ -22,7 +22,7 @@
     </div>
     <div id="grid-body" class="col-sm-10 offset-sm-1">
         <div id="table-container" class="card card-block shadow">
-            <h3 class="card-title text-xs-center">Request List</h3>
+            <h3 class="card-title text-xs-center"></h3>
                 <div class="table-responsive">
         <table class="table table-hover" style="width: 100%;" cellspacing="0" id="itemtable">
             <thead>
@@ -84,7 +84,7 @@
                     <td class="pos-left">
                         <button type="button" class="btn btn-primary btn-sm returnBtn"  data-toggle="modal" href="#stack3" data-row=" {{ $i }} " data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled"; 
                             ?>>Return</button>
-                        <button type="button" class="btn btn-primary btn-sm btn_show_delete" data-rent="{{ $rent }}" data-toggle="modal" href="#deleteModal" @if ($rent->rent_status != "Pending")
+                        <button type="button" class="btn btn-secondary btn-sm btn_show_delete" data-rent="{{ $rent }}" data-toggle="modal" href="#deleteModal" @if ($rent->rent_status != "Pending")
                             disabled 
                         @endif>delete</button>
                     </td>
@@ -199,7 +199,21 @@
 
     <script>
         $(document).ready(function() {
-
+            var stickyHead = $('.grid-header').offset().top;
+            var stickyNav = function(){
+            var scrollTop = $(window).scrollTop();
+                  
+            if (scrollTop > stickyHead) { 
+                console.log('add');
+                $('.grid-header').addClass('sticky');
+            } else {
+                $('.grid-header').removeClass('sticky'); 
+            }
+            };
+             
+            $(window).scroll(function() {
+              stickyNav();
+            });
             $('#homenav').addClass("active");
 
             $('#RentConfirmModal').on('show.bs.modal', function(e) {
@@ -262,7 +276,7 @@
 
             today = yyyy+'-'+mm+'-'+dd;
             document.getElementById("RentDate").setAttribute("min", today);
-
+            stickyNav();
         });
 
         (function(){
