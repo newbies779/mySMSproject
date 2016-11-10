@@ -30,10 +30,13 @@
 			  	<div class="collapse navbar-toggleable-md" id="myNavbar">
 					{{-- {{ dd(Request::route()->uri()) }} --}}
 					<a class="navbar-brand" href="{{ url('/') }}" style="color:#0275d8;">
+					{{-- {{ dd(Request::route()->uri()) }} --}}
 					@if (Request::route()->uri() === "/")
-						SMS project
+						<a class="navbar-brand" href="{{ url('/') }}" style="color:#0275d8;">SMS project</a>
 					@elseif (Request::route()->uri() === "login" || Request::route()->uri() === "register")
-						Back
+						<a class="navbar-brand" href="{{ url('/') }}" style="color:#0275d8;">Back</a>
+					@elseif (Request::route()->uri() === "password/reset/{token?}")
+						<a class="navbar-brand" href="{{ url('/login') }}" style="color:#0275d8;">Back to Login</a>
 					@endif
 					</a>
 					<ul class="nav navbar-nav">
@@ -89,7 +92,7 @@
 			</div>
 
 		</header><!-- /header -->
-		<section id="app-content flex">
+		<section id="app-content" class="flex">
 			@yield('content')
 			@yield('tableContent')
 		</section>

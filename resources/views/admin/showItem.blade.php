@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-sm-10 offset-sm-2" id="grid-body">
-        <div class="card card-block shadow" id="table-container" style="height: 85%;">
+        <div class="card card-block shadow" id="table-container" style="height: 90%;">
             <div class="table-responsive">
                 @include('admin.adminItemList')
             </div>
@@ -35,7 +35,7 @@
             "info":     true,
             "pageLength": 25,
             "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
-            "scrollY":        "48vh",
+            "scrollY":        "55vh",
             "scrollCollapse": true,
             "columnDefs": [
                         { width: 300, targets: 6 }
