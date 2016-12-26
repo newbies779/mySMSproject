@@ -134,5 +134,15 @@ Route::get('pusher', function () {
 });
 
 Route::get('random', 'RandomController@index');
+Route::get('validate', 'RandomController@testvalidate');
 
-Route::get('getmember', 'RandomController@getmember')->name('getmem');
+Route::get('/getmember', ['as' => 'getmem', 'uses' => 'RandomController@getmember']);
+
+Route::get('reset', function(){
+	\DB::table('random')->update([
+		'NameChooser' => '',
+		'confirm' => 0
+	]);
+
+	return back();
+});

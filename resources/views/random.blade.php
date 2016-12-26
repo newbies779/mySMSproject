@@ -22,8 +22,8 @@
 			height: 100%;
 		}
 
-		#random-content {
-
+		.gotname2 {
+			font-weight: bold;
 		}
 	</style>
 
@@ -31,31 +31,56 @@
 <body>
 	<div id="center-content">
 		<div id="random-content">
-			<div class="dropdown open">
-				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Who are you?
-				</button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					@foreach ($choosen_peoples as $choosen_people)
-						{{-- expr --}}
-					@endforeach
-				</div>
-			</div>
+			<select class="selectName" data-toggle="tooltip" title="Who are you?">
+				<option value="0" selected>Who are you?</option>
+				@foreach ($avai_peoples as $avai_people)
+					<option value="{{ $avai_people->id }}">{{ $avai_people->Name }}</option>
+				@endforeach
+			</select>
 			
 		</div>
-		<button type="button" class="btn btn-primary clickme" data-url="{{ route('getmem') }}" style="margin-left: 20px" disabled="true">Click Me</button>
+		<button type="button" class="btn btn-primary clickme" data-url="{{ route('getmem') }}" style="margin-left: 20px">Click Me</button>
+		<div class="gotname1"></div>
+		<div class="gotname2" style="margin:0px 5px"></div>
+		<div class="gotname3"></div>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+
 	<script>
+		$('.gotname').hide();
+
 		$(document).on('click', '.clickme', function(){
-			$(this).prop('disabled', false);
+			if($('.selectName option:selected').val() == 0){
+				$('.selectName').tooltip('show');
+				// $('.selectName').focus();
+				return 0;
+			}
 
 			var url = $(this).data('url');
+			url += '?chooser=' + $('.selectName option:selected').val();
 			$.get(url , function(data) {
-				alert(data);
+				$('.selectName, .clickme').hide();
+				$('.gotname1').show().text('Congratulation! You have');
+				$('.gotname2').show().text(data.name.Name);
+				$('.gotname3').show().text('as your buddy.');
 			});
+
 		});
+
+		$(document).on('change', '.selectName', function(){
+			$('.clickme').prop('disabled', false);
+		});
+
+		$(document).on('blur, focus', '.selectName', function(){
+			$(this).tooltip('hide');
+		});
+
+		$(document).on('blur', '.clickme', function(){
+			$('.selectName').tooltip('hide');
+		});
+
 	</script>
 </body>
 </html>
