@@ -1,40 +1,40 @@
-@import "variables";
-a {
-	font-family: 'Roboto', sans-serif;
-}
+// @import "variables";
+// a {
+// 	font-family: 'Roboto', sans-serif;
+// }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-	-webkit-text-fill-color: $primary !important;
-    transition: background-color 5000s ease-in-out 0s;
-}
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+// 	-webkit-text-fill-color: $primary !important;
+//     transition: background-color 5000s ease-in-out 0s;
+// }
 
-.nav-link {
-	color: #fff;
-	&:hover{
-		color: #37435a;
-	}
-}
-.btn {
-	border-radius: 0.3rem;
-	&.btn-default {
-		color: darken($primary, 10%)!important;
-		background-color: $default!important;
-    	&:hover,&:focus
-    	{
-      	background-color: lighten($default, 20%)!important;
-    	}
-    	&:active {
-    		// color: lighten($primary, 20%)!important;
-    		background-color: lighten($default, 20%)!important;
-    	}
-	}
+// .nav-link {
+// 	color: #fff;
+// 	&:hover{
+// 		color: #37435a;
+// 	}
+// }
+// .btn {
+// 	border-radius: 0.3rem;
+// 	&.btn-default {
+// 		color: darken($primary, 10%)!important;
+// 		background-color: $default!important;
+//     	&:hover,&:focus
+//     	{
+//       	background-color: lighten($default, 20%)!important;
+//     	}
+//     	&:active {
+//     		// color: lighten($primary, 20%)!important;
+//     		background-color: lighten($default, 20%)!important;
+//     	}
+// 	}
 
-}
-.seperator {
-	border: 0;
-	border-top: 1px solid rgba(194, 213, 219, 0.4);
-	margin: 10px -10px;
-}
+// }
+// .seperator {
+// 	border: 0;
+// 	border-top: 1px solid rgba(194, 213, 219, 0.4);
+// 	margin: 10px -10px;
+// }

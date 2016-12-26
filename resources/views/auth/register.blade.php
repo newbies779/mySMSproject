@@ -1,5 +1,5 @@
 @extends('layouts.smslayout') @section('content')
-<div class="container-fluid" id="content">
+<div class="flex-container fxf-colw f-jc-c" id="content">
     <div id="regisForm" class="row">
         <div class="card card-slide col-xs-8 col-md-6 col-lg-4 offset-xs-2 offset-md-3 offset-lg-4 shadow">
             <div class="card-block">

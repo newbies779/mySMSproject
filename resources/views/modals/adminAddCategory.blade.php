@@ -10,15 +10,15 @@
 				</div>
 
 				<div class="modal-body">
-					
+
 					<div class="form-group">
-						<label for="name"><b>Category Name: <span class="tag tag-warning" style="color: red;"><?= requireTxt(); ?>:</span></b></label>
+						<label for="name"><b>Category Name:&nbsp;<?= requireTxt(); ?></b></label>
 						<input name="name" class="form-control" id="name" value="{{ old('name') }}" required>
 					</div>
 
 					<div class="form-group">
-						<label for="Rentable">Rentable:</label>
-						<select name="Rentable">
+						<label for="Rentable"><strong>Rentable:&nbsp;</strong></label>
+						<select class="form-control" name="Rentable" id="Rentable">
 							<option value="1">yes</option>
 							<option value="0">no</option>
 						</select>
