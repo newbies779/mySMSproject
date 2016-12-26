@@ -16,11 +16,11 @@
         <div id="header-button" class="col-xs-12 col-sm-2 pull-md-right">
          <!-- Button trigger modal -->
          <a role="button" class="btn btn-secondary btn-block shadow hvr-box-shadow-outset flex-container f-ai-c f-jc-c"  data-toggle="modal" href="#rentListModal">
-            <span><b>Rent</b></span>           
+            <span><b>Rent</b></span>
         </a>
         </div>
     </div>
-    <div id="grid-body" class="col-sm-10 offset-sm-1">
+    <div id="grid-body" class="col-sm-10 offset-sm-1" style="margin-top: 2rem;">
         <div id="table-container" class="card card-block shadow">
             <h3 class="card-title text-xs-center"></h3>
                 <div class="table-responsive">
@@ -45,28 +45,28 @@
                 <?php $i = $rentList->count(); ?>
 
                 @foreach ($rentList as $rent)
-                
+
                 <tr>
                     <td class="pos-left" scope="row"><strong> {{ $i }} </strong></td>
                     <td class="pos-left" id="tditemname<?= $i; ?>">{{ $rent->item->name }}</td>
                     <td class="pos-left">{{date('d/m/y', strtotime($rent->created_at))}}</td>
                     <td class="pos-left">{{date('H:i', strtotime($rent->created_at))}}</td>
                     <td class="pos-left">{{ date('d/m/y', strtotime($rent->rent_req_date))}}</td>
-                    <td class="pos-left" 
+                    <td class="pos-left"
                     <?php if(strtotime('now') >= strtotime($rent->return_date)) : ?>
                         style = "color:red"
                     <?php endif ?>>
                         <?php if(!is_null($rent->return_date)) : ?>
                             {{ date('d/m/Y', strtotime($rent->return_date)) }}
                         <?php endif ?>
-                    </td> 
-                    <td class="pos-left"> 
+                    </td>
+                    <td class="pos-left">
                         @if ($rent->rent_status == "Approved")
                             <span class="tag tag-success">
                         @elseif ($rent->rent_status == "Pending")
                             <span class="tag tag-warning">
                         @endif
-                        {{ $rent->rent_status }}</span></td> 
+                        {{ $rent->rent_status }}</span></td>
                     <td class="pos-left">
                         @if ($rent->return_status == "Yes")
                             <span class="tag tag-success">
@@ -82,10 +82,10 @@
 
                     <!-- Button trigger modal -->
                     <td class="pos-left">
-                        <button type="button" class="btn btn-primary btn-sm returnBtn"  data-toggle="modal" href="#stack3" data-row=" {{ $i }} " data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled"; 
+                        <button type="button" class="btn btn-primary btn-sm returnBtn"  data-toggle="modal" href="#stack3" data-row=" {{ $i }} " data-itemid="{{ $rent->item->custom_id }}" <?php if($rent->rent_status != "Approved" || $rent->return_status != "No" ) echo "disabled";
                             ?>>Return</button>
                         <button type="button" class="btn btn-secondary btn-sm btn_show_delete" data-rent="{{ $rent }}" data-toggle="modal" href="#deleteModal" @if ($rent->rent_status != "Pending")
-                            disabled 
+                            disabled
                         @endif>delete</button>
                     </td>
                         <td style="display:none" id="itemnoteForReturn<?= $i; ?>">{{  $rent->item->note }}</td>
@@ -185,7 +185,7 @@
                 "pageLength": 25,
                 "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
                 "aaSorting": [[0,'desc']]
-            }); 
+            });
 
             $('table#itemtable1').DataTable({
                 "paging":   true,
@@ -193,7 +193,7 @@
                 "info":     true,
                 "pageLength": 25,
                 "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
-            }); 
+            });
         });
     </script>
 
@@ -202,15 +202,15 @@
             var stickyHead = $('.grid-header').offset().top;
             var stickyNav = function(){
             var scrollTop = $(window).scrollTop();
-                  
-            if (scrollTop > stickyHead) { 
+
+            if (scrollTop > stickyHead) {
                 console.log('add');
                 $('.grid-header').addClass('sticky');
             } else {
-                $('.grid-header').removeClass('sticky'); 
+                $('.grid-header').removeClass('sticky');
             }
             };
-             
+
             $(window).scroll(function() {
               stickyNav();
             });
@@ -230,7 +230,7 @@
                 $('.modal').on('hidden.bs.modal', function (e) {
                     if($('.modal').hasClass('in')) {
                         $('body').addClass('modal-open');
-                    }    
+                    }
                 });
             });
 
@@ -246,13 +246,13 @@
                 $('#itemnameReturn').html($('#tditemname'+row).html());
 
                 $("#itemtable #itemnoteForReturn"+row).each(function(){
-                 $('textarea#itemNoteReturn').html($(this).html()); 
+                 $('textarea#itemNoteReturn').html($(this).html());
                     // console.log('itemsnote: ' + $('p#itemsnote').html());
                 });
 
                 $("#itemtable #itemidForReturn"+row).each(function(){
-                    $('input#hiddenidReturn').val($(this).html()); 
-                    $('form#formforreturn').attr('action','return/'+$(this).html()); 
+                    $('input#hiddenidReturn').val($(this).html());
+                    $('form#formforreturn').attr('action','return/'+$(this).html());
                 });
             });
 
@@ -269,10 +269,10 @@
             var yyyy = today.getFullYear();
              if(dd<10){
                     dd='0'+dd
-                } 
+                }
                 if(mm<10){
                     mm='0'+mm
-                } 
+                }
 
             today = yyyy+'-'+mm+'-'+dd;
             document.getElementById("RentDate").setAttribute("min", today);
@@ -284,7 +284,7 @@
             var pusher = new Pusher('0384eeee590df2dd40c8', {
                 cluster: 'ap1'
             });
-            
+
             var channel = pusher.subscribe('rent_approve_listener');
             channel.bind('App\\Events\\AdminRentApprove', function(data) {
                 console.log(data);

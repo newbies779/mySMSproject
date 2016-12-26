@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	
+
 	<title>SMS Website</title>
 
 	<link href="{{ asset('/css/all.css') }}" rel="stylesheet">
@@ -18,8 +18,6 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
 	<script src="https://use.fontawesome.com/ac129b77f2.js"></script>
-
-	
 
 </head>
 <body>
@@ -67,7 +65,7 @@
 
 								<li class="nav-item float-lg-right"><a class="nav-link" id="loginnav" href="{{ url('/login') }}">Login</a></li>
 							@endif
-						
+
 						@else
 						<div class="dropdown float-lg-right" style="margin-left: 20px;margin-right: 20px;">
 							<a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-target="#" aria-haspopup="true" aria-expanded="false" id="dropdownMenuLink">
@@ -85,14 +83,14 @@
 
 			<div id="header-body" class="container navbar-fixed-top">
 				@yield('header')
-				
 			</div>
 
 		</header><!-- /header -->
-		<section id="app-content flex">
+
+		<div id="app-content" class="full-page">
 			@yield('content')
 			@yield('tableContent')
-		</section>
+		</div>
 	</div>
 	{{-- jQuery --}}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -100,13 +98,13 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
 	<link href="{{ asset('/js/app.js') }}">
 
-	
+
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap4.min.js"></script>
 	<script src="https://js.pusher.com/3.2/pusher.min.js"></script>
 
 	@yield('script')
-	
+
 </body>
 </html>
