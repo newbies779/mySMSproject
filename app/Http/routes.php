@@ -132,3 +132,7 @@ Route::get('pusher', function () {
 
 // return view('pusher');
 });
+
+Route::get('random', 'RandomController@index');
+
+Route::get('getmember', 'RandomController@getmember')->name('getmem');
