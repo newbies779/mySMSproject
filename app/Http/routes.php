@@ -133,16 +133,16 @@ Route::get('pusher', function () {
 // return view('pusher');
 });
 
-Route::get('random', 'RandomController@index');
-Route::get('validate', 'RandomController@testvalidate');
+// Route::get('random', 'RandomController@index');
+// Route::get('validate', 'RandomController@testvalidate');
 
-Route::get('/getmember', ['as' => 'getmem', 'uses' => 'RandomController@getmember']);
+// Route::get('/getmember', ['as' => 'getmem', 'uses' => 'RandomController@getmember']);
 
-Route::get('reset', function(){
-	\DB::table('random')->update([
-		'NameChooser' => '',
-		'confirm' => 0
-	]);
+// Route::get('reset', function(){
+// 	\DB::table('random')->update([
+// 		'NameChooser' => '',
+// 		'confirm' => 0
+// 	]);
 
-	return back();
-});
+// 	return back();
+// });
