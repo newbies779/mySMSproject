@@ -52,7 +52,7 @@ label {
       justify-content: space-around;
 }
 #tableContent {
-  margin-top: 5rem;
+  margin-top: 5.5rem;
 }
 #loginForm {
   min-height: 20rem;
@@ -551,6 +551,10 @@ flex {
         -ms-flex-pack: distribute;
         justify-content: space-around;
     }
+}
+
+.modal-header {
+  height: 100% !important;
 }
 
 /* Media Query*/

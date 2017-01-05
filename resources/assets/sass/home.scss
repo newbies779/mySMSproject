@@ -66,13 +66,13 @@
     position: fixed;
     width: 100%;
     left: 0;
-    top: 9%;
-    z-index: 100;
+    z-index: 111;
     border-top: 0;
     transition: top .3s ease-in-out;
+    // margin-top: rem(0px) !important;
   }
   position: absolute;
   z-index: 2;
-  top: 10%;
+  // top: 10%;
   transform: translate(0, -25%);
 }

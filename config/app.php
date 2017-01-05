@@ -147,8 +147,7 @@ return [
            Illuminate\Translation\TranslationServiceProvider::class,
            Illuminate\Validation\ValidationServiceProvider::class,
            Illuminate\View\ViewServiceProvider::class,
-           // Collective\Bus\BusServiceProvider::class,
-           // Collective\Html\HtmlServiceProvider::class,
+           
            /*
             * Application Service Providers...
             */
@@ -204,8 +203,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        // 'Form' => Collective\Html\FormFacade::class,
-        // 'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

@@ -35,13 +35,11 @@ class RentListItem extends Model
     }
 
     public function getRentOrderDesc($user_id){
-        // dd($this->where('user_id',$user_id)->orderBy('id','desc')->get());
         return $this->where('user_id',$user_id)->orderBy('id','desc')->get();
     }
 
     public function getRentObject(Item $item){
-        //dd($this->where('item_id',$item->id)->get());
-        return $this->where('item_id',$item->id)->first();
+        return $this->where('item_id',$item->id)->orderBy('id','desc')->first();
     }
 
 

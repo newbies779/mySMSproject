@@ -15,7 +15,7 @@
 								<th class="text-xs-left">Custom Id</th>
 								<th class="text-xs-left">Item Name</th>
 								<th class="text-xs-left">Location</th>
-								<th class="text-xs-left">Category</th>
+								<!-- <th class="text-xs-left">Category</th> -->
 								<th style="display:none">Note</th>
 								<th style="display:none">id</th>
 								<th class="text-xs-left">Action</th>
@@ -30,7 +30,7 @@
 								<td class="pos-left">{{ $item->custom_id }}</td>
 								<td class="pos-left">{{ $item->name }}</td>
 								<td class="pos-left">{{ $item->location }}</td>
-								<td class="pos-left">{{ $item->category->name }}</td> 
+								<!-- <td class="pos-left">{{ $item->category->name }}</td>  -->
 								{{-- <td>{{ date('Y', strtotime($item->bought_year)) }}</td>  --}}
 								<td style="display:none" id="itemnote<?= $i; ?>">{{  $item->note }}</td>
 								<td style="display:none" id="itemid<?= $i++; ?>">{{  $item->id }}</td>
@@ -63,8 +63,8 @@
 		<div class="modal-content ">
 			<div class="modal-header">
 				<button type="button" class="btn-close close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title" id="itemid"></h4>
 				<h4 class="modal-title" id="itemname"></h4>
+				<h4 class="modal-title" id="itemid"></h4>
 				
 			</div>
 			<form action="" method="POST" id="formforrent">

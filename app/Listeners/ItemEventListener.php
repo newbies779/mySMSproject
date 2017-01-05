@@ -125,7 +125,7 @@ class ItemEventListener
     /**
      * Handle Item Review
      */
-    public function onItemRenturnApprove($event)
+    public function onItemReturnApprove($event)
     {
         \DB::beginTransaction();
         try{
@@ -180,7 +180,7 @@ class ItemEventListener
 
         $events->listen(
             'App\Events\ReturnApprove',
-            'App\Listeners\ItemEventListener@onItemRenturnApprove'
+            'App\Listeners\ItemEventListener@onItemReturnApprove'
         );
     }
 }

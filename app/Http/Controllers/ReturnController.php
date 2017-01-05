@@ -22,7 +22,7 @@ class ReturnController extends Controller
 	}
 
     public function returnValidateandUpdate(Request $request, item $item){
-
+        
     	$validator = Validator::make($request->all(), $this->validation($request));
 
     	if ($validator->fails()) {

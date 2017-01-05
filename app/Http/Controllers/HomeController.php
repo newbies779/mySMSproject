@@ -33,7 +33,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $rent = new RentListItem;
         $items = Item::Available()->CategoryRentable()->get();
-        // dd(Session::all());
+       
         $tab = (Session::has('tab')) ? Session::get('tab') : 'rent' ;
         if ($user->role === "Admin") {
             $rentList = $rent->getRentRequest();

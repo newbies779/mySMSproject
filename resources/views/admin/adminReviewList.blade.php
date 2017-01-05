@@ -132,7 +132,7 @@ var modal = $('#modalEditReview');
         });
 
         $('form#reviewForm').submit(function(e) {
-            console.log(reviewData);
+            
             var id = $("<input>")
                .attr("type", "hidden")
                .attr("name", "id").val(reviewData.id);
